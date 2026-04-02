@@ -1,0 +1,226 @@
+[versions]
+agp = "9.1.0"
+kotlin = "2.3.10"
+devtools-ksp = "2.3.6"
+core-ktx = "1.18.0"
+junit = "4.13.2"
+junit-version = "1.3.0"
+espresso-core = "3.7.0"
+lifecycle-runtime = "2.10.0"
+activity-compose = "1.13.0"
+compose-bom = "2026.03.00"
+androidx-navigation3 = "1.0.1"
+lifecycle-navigation3 = "2.10.0"
+adaptive-navigation3 = "1.3.0-alpha09"
+material-icons = "1.7.8"
+datastore-preferences = "1.2.1"
+hilt-android = "2.59.2"
+hilt-navigation-compose = "1.3.0"
+hilt-compiler = "1.3.0"
+androidx-splashscreen = "1.2.0"
+androidx-startup = "1.2.0"
+androidx-work = "2.11.1"
+hilt-work = "1.3.0"
+material3-window-size = "1.4.0"
+androidx-media3 = "1.10.0-rc01"
+ktor-client = "3.4.1"
+kotlinx-serialization = "1.10.0"
+kotlinx-collections-immutable = "0.4.0"
+kotlinx-datetime = "0.7.1"
+kotlinx-io = "0.9.0"
+room-ktx = "2.8.4"
+empty-libs = "1.4.3"
+accompanist-permissions = "0.37.3"
+coil-kt = "3.4.0"
+android-ytdl = "0.18.1"
+commons-io = "2.15.0"
+commons-compress = "1.24.0"
+fasterxml-jackson = "2.16.0"
+
+[libraries]
+androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "core-ktx" }
+junit = { group = "junit", name = "junit", version.ref = "junit" }
+androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junit-version" }
+androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espresso-core" }
+androidx-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycle-runtime" }
+androidx-lifecycle-runtime-compose = { group = "androidx.lifecycle", name = "lifecycle-runtime-compose", version.ref = "lifecycle-runtime" }
+androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "activity-compose" }
+androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "compose-bom" }
+androidx-ui = { group = "androidx.compose.ui", name = "ui" }
+androidx-ui-graphics = { group = "androidx.compose.ui", name = "ui-graphics" }
+androidx-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
+androidx-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
+androidx-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
+androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
+androidx-material3 = { group = "androidx.compose.material3", name = "material3" }
+androidx-navigation3-runtime = { group = "androidx.navigation3", name = "navigation3-runtime", version.ref = "androidx-navigation3" }
+androidx-navigation3-ui = { group = "androidx.navigation3", name = "navigation3-ui", version.ref = "androidx-navigation3" }
+androidx-lifecycle-viewmodel-navigation3 = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-navigation3", version.ref = "lifecycle-navigation3" }
+androidx-material3-adaptive-navigation3 = { group = "androidx.compose.material3.adaptive", name = "adaptive-navigation3", version.ref = "adaptive-navigation3" }
+androidx-compose-material3-adaptive = { group = "androidx.compose.material3.adaptive", name = "adaptive" }
+androidx-compose-material3-adaptive-layout = { group = "androidx.compose.material3.adaptive", name = "adaptive-layout" }
+androidx-compose-material3-adaptive-navigation = { group = "androidx.compose.material3.adaptive", name = "adaptive-navigation" }
+androidx-material-icons-extended = { group = "androidx.compose.material", name = "material-icons-extended", version.ref = "material-icons" }
+androidx-datastore-preferences = { group = "androidx.datastore", name = "datastore-preferences", version.ref = "datastore-preferences" }
+dagger-hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt-android" }
+dagger-hilt-android-compiler = { group = "com.google.dagger", name = "hilt-android-compiler", version.ref = "hilt-android" }
+androidx-hilt-navigation-compose = { group = "androidx.hilt", name = "hilt-navigation-compose", version.ref = "hilt-navigation-compose" }
+androidx-hilt-compiler = { group = "androidx.hilt", name = "hilt-compiler", version.ref = "hilt-compiler" }
+androidx-core-splashscreen = { group = "androidx.core", name = "core-splashscreen", version.ref = "androidx-splashscreen" }
+androidx-startup-runtime = { group = "androidx.startup", name = "startup-runtime", version.ref = "androidx-startup" }
+androidx-work-runtime-ktx = { group = "androidx.work", name = "work-runtime-ktx", version.ref = "androidx-work" }
+androidx-hilt-work = { group = "androidx.hilt", name = "hilt-work", version.ref = "hilt-work" }
+androidx-material3-window-size = { group = "androidx.compose.material3", name = "material3-window-size-class", version.ref = "material3-window-size" }
+androidx-media3-common = { group = "androidx.media3", name = "media3-common", version.ref = "androidx-media3" }
+androidx-media3-common-ktx = { group = "androidx.media3", name = "media3-common-ktx", version.ref = "androidx-media3" }
+androidx-media3-datasource = { group = "androidx.media3", name = "media3-datasource", version.ref = "androidx-media3" }
+androidx-media3-exoplayer = { group = "androidx.media3", name = "media3-exoplayer", version.ref = "androidx-media3" }
+androidx-media3-session = { group = "androidx.media3", name = "media3-session", version.ref = "androidx-media3" }
+androidx-media3-ui = { group = "androidx.media3", name = "media3-ui", version.ref = "androidx-media3" }
+androidx-media3-ui-compose = { group = "androidx.media3", name = "media3-ui-compose", version.ref = "androidx-media3" }
+androidx-media3-ui-compose-material3 = { group = "androidx.media3", name = "media3-ui-compose-material3", version.ref = "androidx-media3" }
+ktor-client-android = { group = "io.ktor", name = "ktor-client-android", version.ref = "ktor-client" }
+ktor-client-cio = { group = "io.ktor", name = "ktor-client-cio", version.ref = "ktor-client" }
+ktor-client-content-negotiation = { group = "io.ktor", name = "ktor-client-content-negotiation", version.ref = "ktor-client" }
+ktor-client-core = { group = "io.ktor", name = "ktor-client-core", version.ref = "ktor-client" }
+ktor-client-logging = { group = "io.ktor", name = "ktor-client-logging", version.ref = "ktor-client" }
+ktor-client-okhttp = { group = "io.ktor", name = "ktor-client-okhttp", version.ref = "ktor-client" }
+ktor-client-serialization = { group = "io.ktor", name = "ktor-client-serialization", version.ref = "ktor-client" }
+ktor-serialization-kotlinx-cbor = { group = "io.ktor", name = "ktor-serialization-kotlinx-cbor", version.ref = "ktor-client" }
+ktor-serialization-kotlinx-json = { group = "io.ktor", name = "ktor-serialization-kotlinx-json", version.ref = "ktor-client" }
+ktor-serialization-kotlinx-protobuf = { group = "io.ktor", name = "ktor-serialization-kotlinx-protobuf", version.ref = "ktor-client" }
+ktor-serialization-kotlinx-xml = { group = "io.ktor", name = "ktor-serialization-kotlinx-xml", version.ref = "ktor-client" }
+kotlinx-serialization-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-core", version.ref = "kotlinx-serialization" }
+kotlinx-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "kotlinx-serialization" }
+kotlinx-collections-immutable = { group = "org.jetbrains.kotlinx", name = "kotlinx-collections-immutable", version.ref = "kotlinx-collections-immutable" }
+kotlinx-datetime = { group = "org.jetbrains.kotlinx", name = "kotlinx-datetime", version.ref = "kotlinx-datetime" }
+kotlinx-io-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-io-core", version.ref = "kotlinx-io" }
+androidx-room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "room-ktx" }
+androidx-room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "room-ktx" }
+androidx-room-paging = { group = "androidx.room", name = "room-paging", version.ref = "room-ktx" }
+androidx-room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "room-ktx" }
+androidx-room-testing = { group = "androidx.room", name = "room-testing", version.ref = "room-ktx" }
+bashpsk-emptylibs-animations = { group = "com.github.bashpsk.emptylibs", name = "animations", version.ref = "empty-libs" }
+bashpsk-emptylibs-canvas-slate = { group = "com.github.bashpsk.emptylibs", name = "canvas-slate", version.ref = "empty-libs" }
+bashpsk-emptylibs-compose-utils = { group = "com.github.bashpsk.emptylibs", name = "compose-utils", version.ref = "empty-libs" }
+bashpsk-emptylibs-compose-widgets = { group = "com.github.bashpsk.emptylibs", name = "compose-widgets", version.ref = "empty-libs" }
+bashpsk-emptylibs-datastore-ui = { group = "com.github.bashpsk.emptylibs", name = "datastore-ui", version.ref = "empty-libs" }
+bashpsk-emptylibs-formatter = { group = "com.github.bashpsk.emptylibs", name = "formatter", version.ref = "empty-libs" }
+bashpsk-emptylibs-gesture-ui = { group = "com.github.bashpsk.emptylibs", name = "gesture-ui", version.ref = "empty-libs" }
+bashpsk-emptylibs-image-edit = { group = "com.github.bashpsk.emptylibs", name = "image-edit", version.ref = "empty-libs" }
+bashpsk-emptylibs-image-kolor = { group = "com.github.bashpsk.emptylibs", name = "image-kolor", version.ref = "empty-libs" }
+bashpsk-emptylibs-image-krop = { group = "com.github.bashpsk.emptylibs", name = "image-krop", version.ref = "empty-libs" }
+bashpsk-emptylibs-image-utils = { group = "com.github.bashpsk.emptylibs", name = "image-utils", version.ref = "empty-libs" }
+bashpsk-emptylibs-image-view = { group = "com.github.bashpsk.emptylibs", name = "image-view", version.ref = "empty-libs" }
+bashpsk-emptylibs-image-wallpaper = { group = "com.github.bashpsk.emptylibs", name = "image-wallpaper", version.ref = "empty-libs" }
+bashpsk-emptylibs-jetpack-ui = { group = "com.github.bashpsk.emptylibs", name = "jetpack-ui", version.ref = "empty-libs" }
+bashpsk-emptylibs-kolor-picker = { group = "com.github.bashpsk.emptylibs", name = "kolor-picker", version.ref = "empty-libs" }
+bashpsk-emptylibs-lrucache-manager = { group = "com.github.bashpsk.emptylibs", name = "lrucache-manager", version.ref = "empty-libs" }
+bashpsk-emptylibs-pdf-template = { group = "com.github.bashpsk.emptylibs", name = "pdf-template", version.ref = "empty-libs" }
+bashpsk-emptylibs-pdf-viewer = { group = "com.github.bashpsk.emptylibs", name = "pdf-viewer", version.ref = "empty-libs" }
+bashpsk-emptylibs-serialization-xml = { group = "com.github.bashpsk.emptylibs", name = "serialization-xml", version.ref = "empty-libs" }
+bashpsk-emptylibs-storage = { group = "com.github.bashpsk.emptylibs", name = "storage", version.ref = "empty-libs" }
+github-youtubedl-android-library = { group = "io.github.junkfood02.youtubedl-android", name = "library", version.ref = "android-ytdl" }
+github-youtubedl-android-ffmpeg = { group = "io.github.junkfood02.youtubedl-android", name = "ffmpeg", version.ref = "android-ytdl" }
+github-youtubedl-android-aria2c = { group = "io.github.junkfood02.youtubedl-android", name = "aria2c", version.ref = "android-ytdl" }
+commons-io = { group = "commons-io", name = "commons-io", version.ref = "commons-io" }
+apache-commons-compress = { group = "org.apache.commons", name = "commons-compress", version.ref = "commons-compress" }
+fasterxml-jackson-core = { group = "com.fasterxml.jackson.core", name = "jackson-core", version.ref = "fasterxml-jackson" }
+fasterxml-jackson-databind = { group = "com.fasterxml.jackson.core", name = "jackson-databind", version.ref = "fasterxml-jackson" }
+fasterxml-jackson-annotations = { group = "com.fasterxml.jackson.core", name = "jackson-annotations", version.ref = "fasterxml-jackson" }
+google-accompanist-permissions = { group = "com.google.accompanist", name = "accompanist-permissions", version.ref = "accompanist-permissions" }
+coil3-compose = { group = "io.coil-kt.coil3", name = "coil-compose", version.ref = "coil-kt" }
+coil3-gif = { group = "io.coil-kt.coil3", name = "coil-gif", version.ref = "coil-kt" }
+coil3-svg = { group = "io.coil-kt.coil3", name = "coil-svg", version.ref = "coil-kt" }
+coil3-video = { group = "io.coil-kt.coil3", name = "coil-video", version.ref = "coil-kt" }
+coil3-network-okhttp = { group = "io.coil-kt.coil3", name = "coil-network-okhttp", version.ref = "coil-kt" }
+
+[plugins]
+android-application = { id = "com.android.application", version.ref = "agp" }
+android-library = { id = "com.android.library", version.ref = "agp" }
+kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+kotlin-parcelize = { id = "org.jetbrains.kotlin.plugin.parcelize", version.ref = "kotlin" }
+kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+dagger-hilt-android = { id = "com.google.dagger.hilt.android", version.ref = "hilt-android" }
+google-devtools-ksp = { id = "com.google.devtools.ksp", version.ref = "devtools-ksp" }
+androidx-room = { id = "androidx.room", version.ref = "room-ktx" }
+
+[bundles]
+androidx-navigation3 = [
+    "androidx-navigation3-runtime",
+    "androidx-navigation3-ui",
+    "androidx-lifecycle-viewmodel-navigation3",
+    "androidx-material3-adaptive-navigation3"
+]
+androidx-compose-material3-adaptive = [
+    "androidx-compose-material3-adaptive",
+    "androidx-compose-material3-adaptive-layout",
+    "androidx-compose-material3-adaptive-navigation"
+]
+androidx-media3 = [
+    "androidx-media3-common",
+    "androidx-media3-common-ktx",
+    "androidx-media3-datasource",
+    "androidx-media3-exoplayer",
+    "androidx-media3-session",
+    "androidx-media3-ui",
+    "androidx-media3-ui-compose",
+    "androidx-media3-ui-compose-material3",
+]
+androidx-room = [
+    "androidx-room-ktx",
+    "androidx-room-paging",
+    "androidx-room-runtime"
+]
+ktor-client = [
+    "ktor-client-android",
+    "ktor-client-cio",
+    "ktor-client-content-negotiation",
+    "ktor-client-core",
+    "ktor-client-logging",
+    "ktor-client-okhttp",
+    "ktor-client-serialization",
+    "ktor-serialization-kotlinx-cbor",
+    "ktor-serialization-kotlinx-json",
+    "ktor-serialization-kotlinx-protobuf",
+    "ktor-serialization-kotlinx-xml"
+]
+bashpsk-emptylibs = [
+    "bashpsk-emptylibs-animations",
+    "bashpsk-emptylibs-canvas-slate",
+    "bashpsk-emptylibs-compose-utils",
+    "bashpsk-emptylibs-compose-widgets",
+    "bashpsk-emptylibs-datastore-ui",
+    "bashpsk-emptylibs-formatter",
+    "bashpsk-emptylibs-gesture-ui",
+    "bashpsk-emptylibs-image-edit",
+    "bashpsk-emptylibs-image-kolor",
+    "bashpsk-emptylibs-image-krop",
+    "bashpsk-emptylibs-image-utils",
+    "bashpsk-emptylibs-image-view",
+    "bashpsk-emptylibs-image-wallpaper",
+    "bashpsk-emptylibs-jetpack-ui",
+    "bashpsk-emptylibs-kolor-picker",
+    "bashpsk-emptylibs-lrucache-manager",
+    "bashpsk-emptylibs-pdf-template",
+    "bashpsk-emptylibs-pdf-viewer",
+    "bashpsk-emptylibs-serialization-xml",
+    "bashpsk-emptylibs-storage"
+]
+coil3-kt = [
+    "coil3-compose",
+    "coil3-gif",
+    "coil3-svg",
+    "coil3-video",
+    "coil3-network-okhttp"
+]
+github-youtubedl-android = [
+    "github-youtubedl-android-library",
+    "github-youtubedl-android-ffmpeg",
+    "github-youtubedl-android-aria2c"
+]
+fasterxml-jackson-core = [
+    "fasterxml-jackson-core",
+    "fasterxml-jackson-databind",
+    "fasterxml-jackson-annotations"
+]

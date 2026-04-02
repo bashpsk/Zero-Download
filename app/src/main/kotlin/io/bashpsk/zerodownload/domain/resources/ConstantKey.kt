@@ -1,0 +1,37 @@
+package io.bashpsk.zerodownload.domain.resources
+
+object ConstantKey {
+
+    //  MAIN                :
+    const val MAIN_KEEP_SPLASH_SCREEN = "MAIN-KEEP-SPLASH-SCREEN"
+
+    //  HOME                :
+    const val HOME_OPTION_MENU = "HOME-OPTION-MENU"
+    const val HOME_MEDIA_SELECT = "HOME-MEDIA-SELECT"
+    const val HOME_SELECTED_AUDIO = "HOME-SELECTED-AUDIO"
+    const val HOME_SELECTED_VIDEO = "HOME-SELECTED-VIDEO"
+
+    //  WORK INPUT          :
+    const val WORK_INPUT_SOURCE_LIST = "WORK-INPUT-SOURCE-LIST"
+    const val WORK_INPUT_SOURCE = "WORK-INPUT-SOURCE"
+    const val WORK_INPUT_DESTINATION = "WORK-INPUT-DESTINATION"
+    const val WORK_INPUT_ENTRY = "WORK-INPUT-ENTRY"
+    const val WORK_INPUT_TITLE = "WORK-INPUT-TITLE"
+    const val WORK_INPUT_COMMAND = "WORK-INPUT-COMMAND"
+    const val WORK_INPUT_INDEX = "WORK-INPUT-INDEX"
+
+    //  WORK OUTPUT         :
+    const val WORK_OUTPUT_TITLE = "WORK-OUTPUT-TITLE"
+    const val WORK_OUTPUT_MESSAGE = "WORK-OUTPUT-MESSAGE"
+    const val WORK_OUTPUT_ENTRY = "WORK-OUTPUT-ENTRY"
+    const val WORK_OUTPUT_TOTAL = "WORK-OUTPUT-TOTAL"
+    const val WORK_OUTPUT_SAVED = "WORK-OUTPUT-SAVED"
+    const val WORK_OUTPUT_PROGRESS = "WORK-OUTPUT-PROGRESS"
+    const val WORK_OUTPUT_ETA = "WORK-OUTPUT-ETA"
+    const val WORK_OUTPUT_SOURCE = "WORK-OUTPUT-SOURCE"
+    const val WORK_OUTPUT_SOURCE_ENTRY = "WORK-OUTPUT-SOURCE-ENTRY"
+    const val WORK_OUTPUT_DESTINATION = "WORK-OUTPUT-DESTINATION"
+
+    //  YT DL               :
+    const val YT_DL_SEARCH_ID = "YT-DL-SEARCH-ID"
+}

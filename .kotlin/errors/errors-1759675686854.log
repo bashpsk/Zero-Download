@@ -1,0 +1,375 @@
+kotlin version: 2.2.20
+error message: java.lang.RuntimeException: Exception while generating code for:
+FUN LOCAL_FUNCTION_FOR_LAMBDA name:MainNavHost$lambda$8$0$1 visibility:private modality:FINAL returnType:kotlin.Unit?
+  VALUE_PARAMETER BOUND_VALUE_PARAMETER kind:Regular name:$navController index:0 type:androidx.navigation.NavHostController
+  VALUE_PARAMETER kind:Regular name:$this$composable index:1 type:androidx.compose.animation.AnimatedContentScope
+  VALUE_PARAMETER kind:Regular name:backStackEntry index:2 type:androidx.navigation.NavBackStackEntry
+  VALUE_PARAMETER kind:Regular name:$composer index:3 type:androidx.compose.runtime.Composer? [assignable]
+  VALUE_PARAMETER kind:Regular name:$changed index:4 type:kotlin.Int
+  annotations:
+    Composable
+    ComposableTarget(applier = "androidx.compose.ui.UiComposable")
+  BLOCK_BODY
+    CALL 'public final fun sourceInformation (composer: androidx.compose.runtime.Composer, sourceInformation: kotlin.String): kotlin.Unit declared in androidx.compose.runtime.ComposerKt' type=kotlin.Unit origin=null
+      ARG composer: GET_VAR '$composer: androidx.compose.runtime.Composer? [assignable] declared in io.bashpsk.edm.presentation.navigation.MainNavHostKt.MainNavHost$lambda$8$0$1' type=androidx.compose.runtime.Composer? origin=null
+      ARG sourceInformation: CONST String type=kotlin.String value="CN(backStackEntry)103@3525L25,89@3095L469:MainNavHost.kt#7ujdi2"
+    COMPOSITE type=kotlin.Unit origin=null
+      WHEN type=kotlin.Unit origin=IF
+        BRANCH
+          if: CALL 'public final fun isTraceInProgress (): kotlin.Boolean declared in androidx.compose.runtime.ComposerKt' type=kotlin.Boolean origin=null
+          then: CALL 'public final fun traceEventStart (key: kotlin.Int, dirty1: kotlin.Int, dirty2: kotlin.Int, info: kotlin.String): kotlin.Unit declared in androidx.compose.runtime.ComposerKt' type=kotlin.Unit origin=null
+            ARG key: CONST Int type=kotlin.Int value=-373393972
+            ARG dirty1: GET_VAR '$changed: kotlin.Int declared in io.bashpsk.edm.presentation.navigation.MainNavHostKt.MainNavHost$lambda$8$0$1' type=kotlin.Int origin=null
+            ARG dirty2: CONST Int type=kotlin.Int value=-1
+            ARG info: CONST String type=kotlin.String value="io.bashpsk.edm.presentation.navigation.MainNavHost.<anonymous>.<anonymous>.<anonymous> (MainNavHost.kt:89)"
+      CALL 'public final fun AppSettingsScreen (onNavigateScreen: kotlin.Function1<@[ParameterName(name = "navScreen")] io.bashpsk.edm.domain.navigation.NavScreen, kotlin.Unit>, onNavigateBack: kotlin.Function0<kotlin.Unit>, $composer: androidx.compose.runtime.Composer?, $changed: kotlin.Int): kotlin.Unit [inline] declared in io.bashpsk.edm.presentation.appscreen.settings.AppSettingsScreenKt' type=kotlin.Unit origin=null
+        ARG onNavigateScreen: BLOCK type=kotlin.Function1<io.bashpsk.edm.domain.navigation.NavScreen, kotlin.Unit> origin=LAMBDA
+          COMPOSITE type=kotlin.Unit origin=null
+          FUNCTION_REFERENCE 'private final fun MainNavHost$lambda$8$0$1$0 ($navController: androidx.navigation.NavHostController, navScreen: io.bashpsk.edm.domain.navigation.NavScreen): kotlin.Unit declared in io.bashpsk.edm.presentation.navigation.MainNavHostKt' type=kotlin.Function1<io.bashpsk.edm.domain.navigation.NavScreen, kotlin.Unit> origin=INLINE_LAMBDA reflectionTarget=null
+            ARG $navController: GET_VAR '$navController: androidx.navigation.NavHostController declared in io.bashpsk.edm.presentation.navigation.MainNavHostKt.MainNavHost$lambda$8$0$1' type=androidx.navigation.NavHostController origin=null
+        ARG onNavigateBack: BLOCK type=kotlin.Function0<kotlin.Unit> origin=null
+          BLOCK type=kotlin.Function0<kotlin.Unit> origin=null
+            CALL 'public final fun sourceInformationMarkerStart (composer: androidx.compose.runtime.Composer, key: kotlin.Int, sourceInformation: kotlin.String): kotlin.Unit declared in androidx.compose.runtime.ComposerKt' type=kotlin.Unit origin=null
+              ARG composer: GET_VAR '$composer: androidx.compose.runtime.Composer? [assignable] declared in io.bashpsk.edm.presentation.navigation.MainNavHostKt.MainNavHost$lambda$8$0$1' type=androidx.compose.runtime.Composer? origin=null
+              ARG key: CONST Int type=kotlin.Int value=1945660613
+              ARG sourceInformation: CONST String type=kotlin.String value="CC(remember):MainNavHost.kt#9igjgp"
+            VAR IR_TEMPORARY_VARIABLE name:tmp0_group type:kotlin.Function0<kotlin.Unit> [val]
+              CALL 'public final fun cache <T> (<this>: androidx.compose.runtime.Composer, invalid: kotlin.Boolean, block: @[DisallowComposableCalls] kotlin.Function0<T of androidx.compose.runtime.ComposerKt.cache>): T of androidx.compose.runtime.ComposerKt.cache [inline] declared in androidx.compose.runtime.ComposerKt' type=kotlin.Function0<kotlin.Unit> origin=null
+                TYPE_ARG T: kotlin.Function0<kotlin.Unit>
+                ARG <this>: GET_VAR '$composer: androidx.compose.runtime.Composer? [assignable] declared in io.bashpsk.edm.presentation.navigation.MainNavHostKt.MainNavHost$lambda$8$0$1' type=androidx.compose.runtime.Composer? origin=null
+                ARG invalid: CALL 'public open fun changedInstance (value: kotlin.Any?): kotlin.Boolean declared in androidx.compose.runtime.Composer' type=kotlin.Boolean origin=null
+                  ARG <this>: GET_VAR '$composer: androidx.compose.runtime.Composer? [assignable] declared in io.bashpsk.edm.presentation.navigation.MainNavHostKt.MainNavHost$lambda$8$0$1' type=androidx.compose.runtime.Composer? origin=null
+                  ARG value: GET_VAR '$navController: androidx.navigation.NavHostController declared in io.bashpsk.edm.presentation.navigation.MainNavHostKt.MainNavHost$lambda$8$0$1' type=androidx.navigation.NavHostController origin=null
+                ARG block: BLOCK type=kotlin.Function0<kotlin.Function0<kotlin.Unit>> origin=LAMBDA
+                  COMPOSITE type=kotlin.Unit origin=null
+                  FUNCTION_REFERENCE 'private final fun MainNavHost$lambda$8$0$1$1 ($tmp0: androidx.navigation.NavHostController): kotlin.Function0<kotlin.Unit> declared in io.bashpsk.edm.presentation.navigation.MainNavHostKt' type=kotlin.Function0<kotlin.Function0<kotlin.Unit>> origin=INLINE_LAMBDA reflectionTarget=null
+                    ARG $tmp0: GET_VAR '$navController: androidx.navigation.NavHostController declared in io.bashpsk.edm.presentation.navigation.MainNavHostKt.MainNavHost$lambda$8$0$1' type=androidx.navigation.NavHostController origin=null
+            CALL 'public final fun sourceInformationMarkerEnd (composer: androidx.compose.runtime.Composer): kotlin.Unit declared in androidx.compose.runtime.ComposerKt' type=kotlin.Unit origin=null
+              ARG composer: GET_VAR '$composer: androidx.compose.runtime.Composer? [assignable] declared in io.bashpsk.edm.presentation.navigation.MainNavHostKt.MainNavHost$lambda$8$0$1' type=androidx.compose.runtime.Composer? origin=null
+            GET_VAR 'val tmp0_group: kotlin.Function0<kotlin.Unit> [val] declared in io.bashpsk.edm.presentation.navigation.MainNavHostKt.MainNavHost$lambda$8$0$1' type=kotlin.Function0<kotlin.Unit> origin=null
+        ARG $composer: GET_VAR '$composer: androidx.compose.runtime.Composer? [assignable] declared in io.bashpsk.edm.presentation.navigation.MainNavHostKt.MainNavHost$lambda$8$0$1' type=androidx.compose.runtime.Composer? origin=null
+        ARG $changed: CONST Int type=kotlin.Int value=0
+      WHEN type=kotlin.Unit origin=IF
+        BRANCH
+          if: CALL 'public final fun isTraceInProgress (): kotlin.Boolean declared in androidx.compose.runtime.ComposerKt' type=kotlin.Boolean origin=null
+          then: CALL 'public final fun traceEventEnd (): kotlin.Unit declared in androidx.compose.runtime.ComposerKt' type=kotlin.Unit origin=null
+
+	at org.jetbrains.kotlin.backend.jvm.codegen.FunctionCodegen.generate(FunctionCodegen.kt:53)
+	at org.jetbrains.kotlin.backend.jvm.codegen.FunctionCodegen.generate$default(FunctionCodegen.kt:46)
+	at org.jetbrains.kotlin.backend.jvm.codegen.ClassCodegen.generateMethodNode(ClassCodegen.kt:422)
+	at org.jetbrains.kotlin.backend.jvm.codegen.ClassCodegen.generateMethod(ClassCodegen.kt:439)
+	at org.jetbrains.kotlin.backend.jvm.codegen.ClassCodegen.generate(ClassCodegen.kt:164)
+	at org.jetbrains.kotlin.backend.jvm.JvmIrCodegenFactory.generateFile(JvmIrCodegenFactory.kt:446)
+	at org.jetbrains.kotlin.backend.jvm.JvmIrCodegenFactory.invokeCodegen(JvmIrCodegenFactory.kt:413)
+	at org.jetbrains.kotlin.cli.jvm.compiler.KotlinToJVMBytecodeCompiler.runCodegen$cli(KotlinToJVMBytecodeCompiler.kt:425)
+	at org.jetbrains.kotlin.cli.pipeline.jvm.JvmBackendPipelinePhase.executePhase(JvmBackendPipelinePhase.kt:89)
+	at org.jetbrains.kotlin.cli.pipeline.jvm.JvmBackendPipelinePhase.executePhase(JvmBackendPipelinePhase.kt:27)
+	at org.jetbrains.kotlin.cli.pipeline.PipelinePhase.phaseBody(PipelinePhase.kt:68)
+	at org.jetbrains.kotlin.cli.pipeline.PipelinePhase.phaseBody(PipelinePhase.kt:58)
+	at org.jetbrains.kotlin.config.phaser.NamedCompilerPhase.invoke(CompilerPhase.kt:102)
+	at org.jetbrains.kotlin.backend.common.phaser.CompositePhase.invoke(PhaseBuilders.kt:22)
+	at org.jetbrains.kotlin.config.phaser.CompilerPhaseKt.invokeToplevel(CompilerPhase.kt:53)
+	at org.jetbrains.kotlin.cli.pipeline.AbstractCliPipeline.runPhasedPipeline(AbstractCliPipeline.kt:109)
+	at org.jetbrains.kotlin.cli.pipeline.AbstractCliPipeline.execute(AbstractCliPipeline.kt:68)
+	at org.jetbrains.kotlin.cli.jvm.K2JVMCompiler.doExecutePhased(K2JVMCompiler.kt:79)
+	at org.jetbrains.kotlin.cli.jvm.K2JVMCompiler.doExecutePhased(K2JVMCompiler.kt:45)
+	at org.jetbrains.kotlin.cli.common.CLICompiler.execImpl(CLICompiler.kt:90)
+	at org.jetbrains.kotlin.cli.common.CLICompiler.exec(CLICompiler.kt:352)
+	at org.jetbrains.kotlin.incremental.IncrementalJvmCompilerRunnerBase.runCompiler(IncrementalJvmCompilerRunnerBase.kt:176)
+	at org.jetbrains.kotlin.incremental.IncrementalJvmCompilerRunnerBase.runCompiler(IncrementalJvmCompilerRunnerBase.kt:39)
+	at org.jetbrains.kotlin.incremental.IncrementalCompilerRunner.doCompile(IncrementalCompilerRunner.kt:499)
+	at org.jetbrains.kotlin.incremental.IncrementalCompilerRunner.compileImpl(IncrementalCompilerRunner.kt:416)
+	at org.jetbrains.kotlin.incremental.IncrementalCompilerRunner.tryCompileIncrementally$lambda$0$compile(IncrementalCompilerRunner.kt:249)
+	at org.jetbrains.kotlin.incremental.IncrementalCompilerRunner.tryCompileIncrementally(IncrementalCompilerRunner.kt:267)
+	at org.jetbrains.kotlin.incremental.IncrementalCompilerRunner.compile(IncrementalCompilerRunner.kt:119)
+	at org.jetbrains.kotlin.daemon.CompileServiceImplBase.execIncrementalCompiler(CompileServiceImpl.kt:684)
+	at org.jetbrains.kotlin.daemon.CompileServiceImplBase.access$execIncrementalCompiler(CompileServiceImpl.kt:94)
+	at org.jetbrains.kotlin.daemon.CompileServiceImpl.compile(CompileServiceImpl.kt:1810)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(Unknown Source)
+	at java.base/java.lang.reflect.Method.invoke(Unknown Source)
+	at java.rmi/sun.rmi.server.UnicastServerRef.dispatch(Unknown Source)
+	at java.rmi/sun.rmi.transport.Transport$1.run(Unknown Source)
+	at java.rmi/sun.rmi.transport.Transport$1.run(Unknown Source)
+	at java.base/java.security.AccessController.doPrivileged(Unknown Source)
+	at java.rmi/sun.rmi.transport.Transport.serviceCall(Unknown Source)
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport.handleMessages(Unknown Source)
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run0(Unknown Source)
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.lambda$run$0(Unknown Source)
+	at java.base/java.security.AccessController.doPrivileged(Unknown Source)
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run(Unknown Source)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.base/java.lang.Thread.run(Unknown Source)
+Caused by: org.jetbrains.kotlin.codegen.CompilationException: Back-end (JVM) Internal error: Couldn't inline method call: CALL 'public final fun AppSettingsScreen (onNavigateScreen: kotlin.Function1<@[ParameterName(name = "navScreen")] io.bashpsk.edm.domain.navigation.NavScreen, kotlin.Unit>, onNavigateBack: kotlin.Function0<kotlin.Unit>, $composer: androidx.compose.runtime.Composer?, $changed: kotlin.Int): kotlin.Unit [inline] declared in io.bashpsk.edm.presentation.appscreen.settings.AppSettingsScreenKt' type=kotlin.Unit origin=null
+Method: AppSettingsScreen (Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function0;Landroidx/compose/runtime/Composer;I)V:
+  @Landroidx/compose/runtime/Composable;() // invisible
+  @Landroidx/compose/runtime/ComposableTarget;(applier="androidx.compose.ui.UiComposable") // invisible
+    // annotable parameter count: 4 (invisible)
+    @Lorg/jetbrains/annotations/NotNull;() // invisible, parameter 0
+    @Lorg/jetbrains/annotations/NotNull;() // invisible, parameter 1
+    @Lorg/jetbrains/annotations/Nullable;() // invisible, parameter 2
+   L0
+    ALOAD 0
+    LDC "onNavigateScreen"
+    INVOKESTATIC kotlin/jvm/internal/Intrinsics.checkNotNullParameter (Ljava/lang/Object;Ljava/lang/String;)V
+    ALOAD 1
+    LDC "onNavigateBack"
+    INVOKESTATIC kotlin/jvm/internal/Intrinsics.checkNotNullParameter (Ljava/lang/Object;Ljava/lang/String;)V
+    ICONST_0
+    ISTORE 4
+   L1
+    ALOAD 2
+    LDC -1241074399
+    LDC "CC(AppSettingsScreen)N(onNavigateScreen,onNavigateBack)35@1579L23,36@1646L27,38@1705L57,44@1929L207,52@2143L1283,40@1768L1658:AppSettingsScreen.kt#75kquu"
+   L2
+    LINENUMBER 34 L2
+    INVOKESTATIC androidx/compose/runtime/ComposerKt.sourceInformationMarkerStart (Landroidx/compose/runtime/Composer;ILjava/lang/String;)V
+    ICONST_0
+    ICONST_0
+    ALOAD 2
+    ICONST_0
+    ICONST_3
+   L3
+    LINENUMBER 36 L3
+    INVOKESTATIC androidx/compose/foundation/lazy/grid/LazyGridStateKt.rememberLazyGridState (IILandroidx/compose/runtime/Composer;II)Landroidx/compose/foundation/lazy/grid/LazyGridState;
+    ASTORE 5
+   L4
+    LINENUMBER 37 L4
+    GETSTATIC androidx/compose/material3/TopAppBarDefaults.INSTANCE : Landroidx/compose/material3/TopAppBarDefaults;
+    ACONST_NULL
+    ACONST_NULL
+    ACONST_NULL
+    ACONST_NULL
+    ICONST_0
+    ALOAD 2
+    GETSTATIC androidx/compose/material3/TopAppBarDefaults.$stable : I
+    BIPUSH 15
+    ISHL
+    BIPUSH 31
+    INVOKEVIRTUAL androidx/compose/material3/TopAppBarDefaults.enterAlwaysScrollBehavior (Landroidx/compose/material3/TopAppBarState;Lkotlin/jvm/functions/Function0;Landroidx/compose/animation/core/AnimationSpec;Landroidx/compose/animation/core/DecayAnimationSpec;ZLandroidx/compose/runtime/Composer;II)Landroidx/compose/material3/TopAppBarScrollBehavior;
+    ASTORE 6
+   L5
+    ALOAD 2
+    LDC 1328420250
+    LDC "CC(remember):AppSettingsScreen.kt#9igjgp"
+   L6
+    LINENUMBER 39 L6
+    INVOKESTATIC androidx/compose/runtime/ComposerKt.sourceInformationMarkerStart (Landroidx/compose/runtime/Composer;ILjava/lang/String;)V
+    ALOAD 2
+    ASTORE 9
+    ICONST_0
+    ISTORE 10
+   L7
+    ICONST_0
+    ISTORE 11
+   L8
+    LINENUMBER 87 L8
+    ALOAD 9
+    INVOKEINTERFACE androidx/compose/runtime/Composer.rememberedValue ()Ljava/lang/Object; (itf)
+    ASTORE 12
+   L9
+    ICONST_0
+    ISTORE 13
+   L10
+    LINENUMBER 88 L10
+    ALOAD 12
+    GETSTATIC androidx/compose/runtime/Composer.Companion : Landroidx/compose/runtime/Composer$Companion;
+    INVOKEVIRTUAL androidx/compose/runtime/Composer$Companion.getEmpty ()Ljava/lang/Object;
+    IF_ACMPNE L11
+   L12
+    LINENUMBER 89 L12
+    ICONST_0
+    ISTORE 14
+   L13
+    LINENUMBER 39 L13
+    INVOKESTATIC io/bashpsk/edm/domain/navigation/AppSettingCategory.getEntries ()Lkotlin/enums/EnumEntries;
+    CHECKCAST java/lang/Iterable
+    INVOKESTATIC kotlinx/collections/immutable/ExtensionsKt.toImmutableList (Ljava/lang/Iterable;)Lkotlinx/collections/immutable/ImmutableList;
+   L14
+    LINENUMBER 89 L14
+    ASTORE 14
+   L15
+    LINENUMBER 90 L15
+    ALOAD 9
+    ALOAD 14
+    INVOKEINTERFACE androidx/compose/runtime/Composer.updateRememberedValue (Ljava/lang/Object;)V (itf)
+   L16
+    LINENUMBER 91 L16
+    ALOAD 14
+   L17
+    GOTO L18
+   L11
+    LINENUMBER 92 L11
+    ALOAD 12
+   L18
+    LINENUMBER 87 L18
+    NOP
+   L19
+    LINENUMBER 87 L19
+    NOP
+   L20
+    LINENUMBER 39 L20
+    CHECKCAST kotlinx/collections/immutable/ImmutableList
+    ASTORE 8
+    ALOAD 2
+    INVOKESTATIC androidx/compose/runtime/ComposerKt.sourceInformationMarkerEnd (Landroidx/compose/runtime/Composer;)V
+    ALOAD 8
+    ASTORE 7
+   L21
+    LINENUMBER 42 L21
+    GETSTATIC androidx/compose/ui/Modifier.Companion : Landroidx/compose/ui/Modifier$Companion;
+    CHECKCAST androidx/compose/ui/Modifier
+   L22
+    LINENUMBER 43 L22
+    FCONST_0
+    ICONST_1
+    ACONST_NULL
+    INVOKESTATIC androidx/compose/foundation/layout/SizeKt.fillMaxSize$default (Landroidx/compose/ui/Modifier;FILjava/lang/Object;)Landroidx/compose/ui/Modifier;
+   L23
+    LINENUMBER 44 L23
+    ALOAD 6
+    INVOKEINTERFACE androidx/compose/material3/TopAppBarScrollBehavior.getNestedScrollConnection ()Landroidx/compose/ui/input/nestedscroll/NestedScrollConnection; (itf)
+    ACONST_NULL
+    ICONST_2
+    ACONST_NULL
+    INVOKESTATIC androidx/compose/ui/input/nestedscroll/NestedScrollModifierKt.nestedScroll$default (Landroidx/compose/ui/Modifier;Landroidx/compose/ui/input/nestedscroll/NestedScrollConnection;Landroidx/compose/ui/input/nestedscroll/NestedScrollDispatcher;ILjava/lang/Object;)Landroidx/compose/ui/Modifier;
+   L24
+    LINENUMBER 45 L24
+    LDC -1515131675
+    ICONST_1
+    NEW io/bashpsk/edm/presentation/appscreen/settings/AppSettingsScreenKt$AppSettingsScreen$1
+    DUP
+    ALOAD 6
+    ALOAD 1
+    INVOKESPECIAL io/bashpsk/edm/presentation/appscreen/settings/AppSettingsScreenKt$AppSettingsScreen$1.<init> (Landroidx/compose/material3/TopAppBarScrollBehavior;Lkotlin/jvm/functions/Function0;)V
+    ALOAD 2
+    BIPUSH 54
+    INVOKESTATIC androidx/compose/runtime/internal/ComposableLambdaKt.rememberComposableLambda (IZLjava/lang/Object;Landroidx/compose/runtime/Composer;I)Landroidx/compose/runtime/internal/ComposableLambda;
+    CHECKCAST kotlin/jvm/functions/Function2
+    ACONST_NULL
+    ACONST_NULL
+    ACONST_NULL
+    ICONST_0
+    LCONST_0
+    LCONST_0
+    ACONST_NULL
+   L25
+    LINENUMBER 53 L25
+    LDC -1471053840
+    ICONST_1
+    NEW io/bashpsk/edm/presentation/appscreen/settings/AppSettingsScreenKt$AppSettingsScreen$2
+    DUP
+    ALOAD 5
+    ALOAD 7
+    ALOAD 0
+    INVOKESPECIAL io/bashpsk/edm/presentation/appscreen/settings/AppSettingsScreenKt$AppSettingsScreen$2.<init> (Landroidx/compose/foundation/lazy/grid/LazyGridState;Lkotlinx/collections/immutable/ImmutableList;Lkotlin/jvm/functions/Function1;)V
+    ALOAD 2
+    BIPUSH 54
+    INVOKESTATIC androidx/compose/runtime/internal/ComposableLambdaKt.rememberComposableLambda (IZLjava/lang/Object;Landroidx/compose/runtime/Composer;I)Landroidx/compose/runtime/internal/ComposableLambda;
+    CHECKCAST kotlin/jvm/functions/Function3
+    ALOAD 2
+    LDC 805306416
+    SIPUSH 508
+   L26
+    LINENUMBER 41 L26
+    INVOKESTATIC androidx/compose/material3/ScaffoldKt.Scaffold-TvnljyQ (Landroidx/compose/ui/Modifier;Lkotlin/jvm/functions/Function2;Lkotlin/jvm/functions/Function2;Lkotlin/jvm/functions/Function2;Lkotlin/jvm/functions/Function2;IJJLandroidx/compose/foundation/layout/WindowInsets;Lkotlin/jvm/functions/Function3;Landroidx/compose/runtime/Composer;II)V
+    ALOAD 2
+   L27
+    LINENUMBER 34 L27
+    INVOKESTATIC androidx/compose/runtime/ComposerKt.sourceInformationMarkerEnd (Landroidx/compose/runtime/Composer;)V
+   L28
+    LINENUMBER 86 L28
+    RETURN
+   L29
+    LOCALVARIABLE $i$a$-cache-AppSettingsScreenKt$AppSettingsScreen$settingCategoryList$1\7\89\4 I L13 L14 14
+    LOCALVARIABLE value\6 Ljava/lang/Object; L15 L17 14
+    LOCALVARIABLE $i$a$-let-ComposerKt$cache$1\6\87\5 I L10 L18 13
+    LOCALVARIABLE it\5 Ljava/lang/Object; L9 L18 12
+    LOCALVARIABLE $i$f$cache\5\39 I L8 L20 11
+    LOCALVARIABLE $this$cache\5 Landroidx/compose/runtime/Composer; L7 L20 9
+    LOCALVARIABLE invalid\5 Z L7 L20 10
+    LOCALVARIABLE $i$f$AppSettingsScreen\4\90 I L1 L29 4
+    LOCALVARIABLE settingsLazyListState\4 Landroidx/compose/foundation/lazy/grid/LazyGridState; L4 L29 5
+    LOCALVARIABLE scrollBehavior\4 Landroidx/compose/material3/TopAppBarScrollBehavior; L5 L29 6
+    LOCALVARIABLE settingCategoryList\4 Lkotlinx/collections/immutable/ImmutableList; L21 L29 7
+    LOCALVARIABLE onNavigateScreen\4 Lkotlin/jvm/functions/Function1; L0 L29 0
+    LOCALVARIABLE onNavigateBack\4 Lkotlin/jvm/functions/Function0; L0 L29 1
+    LOCALVARIABLE $composer\4 Landroidx/compose/runtime/Composer; L0 L29 2
+    LOCALVARIABLE $changed\4 I L0 L29 3
+    MAXSTACK = 18
+    MAXLOCALS = 15
+
+File is unknown
+The root cause java.lang.RuntimeException was thrown at: org.jetbrains.kotlin.codegen.inline.InlineCodegenUtilsKt.loadClassBytesByInternalName(inlineCodegenUtils.kt:446)
+	at org.jetbrains.kotlin.backend.jvm.codegen.IrInlineCodegen.genInlineCall(IrInlineCodegen.kt:82)
+	at org.jetbrains.kotlin.backend.jvm.codegen.IrInlineCallGenerator.genCall(IrInlineCallGenerator.kt:36)
+	at org.jetbrains.kotlin.backend.jvm.codegen.ExpressionCodegen.visitCall(ExpressionCodegen.kt:589)
+	at org.jetbrains.kotlin.backend.jvm.codegen.ExpressionCodegen.visitCall(ExpressionCodegen.kt:134)
+	at org.jetbrains.kotlin.ir.expressions.IrCall.accept(IrCall.kt:24)
+	at org.jetbrains.kotlin.backend.jvm.codegen.ExpressionCodegen.visitStatementContainer(ExpressionCodegen.kt:530)
+	at org.jetbrains.kotlin.backend.jvm.codegen.ExpressionCodegen.visitContainerExpression(ExpressionCodegen.kt:544)
+	at org.jetbrains.kotlin.backend.jvm.codegen.ExpressionCodegen.visitContainerExpression(ExpressionCodegen.kt:134)
+	at org.jetbrains.kotlin.ir.visitors.IrVisitor.visitComposite(IrVisitor.kt:125)
+	at org.jetbrains.kotlin.ir.expressions.IrComposite.accept(IrComposite.kt:18)
+	at org.jetbrains.kotlin.backend.jvm.codegen.ExpressionCodegen.visitStatementContainer(ExpressionCodegen.kt:530)
+	at org.jetbrains.kotlin.backend.jvm.codegen.ExpressionCodegen.visitBlockBody(ExpressionCodegen.kt:535)
+	at org.jetbrains.kotlin.backend.jvm.codegen.ExpressionCodegen.visitBlockBody(ExpressionCodegen.kt:134)
+	at org.jetbrains.kotlin.ir.expressions.IrBlockBody.accept(IrBlockBody.kt:20)
+	at org.jetbrains.kotlin.backend.jvm.codegen.ExpressionCodegen.generate(ExpressionCodegen.kt:232)
+	at org.jetbrains.kotlin.backend.jvm.codegen.FunctionCodegen.doGenerate(FunctionCodegen.kt:129)
+	at org.jetbrains.kotlin.backend.jvm.codegen.FunctionCodegen.generate(FunctionCodegen.kt:50)
+	... 45 more
+Caused by: java.lang.RuntimeException: Couldn't find virtual file for io/bashpsk/edm/presentation/settings/SettingCategoryViewKt$SettingCategoryView$1
+	at org.jetbrains.kotlin.codegen.inline.InlineCodegenUtilsKt.loadClassBytesByInternalName(inlineCodegenUtils.kt:446)
+	at org.jetbrains.kotlin.codegen.inline.ObjectTransformer.createClassReader(ObjectTransformer.kt:50)
+	at org.jetbrains.kotlin.codegen.inline.AnonymousObjectTransformer.doTransform(AnonymousObjectTransformer.kt:57)
+	at org.jetbrains.kotlin.codegen.inline.MethodInliner$doInline$lambdaInliner$1.handleAnonymousObjectRegeneration(MethodInliner.kt:196)
+	at org.jetbrains.kotlin.codegen.inline.MethodInliner$doInline$lambdaInliner$1.anew(MethodInliner.kt:236)
+	at org.jetbrains.org.objectweb.asm.commons.InstructionAdapter.visitTypeInsn(InstructionAdapter.java:472)
+	at org.jetbrains.org.objectweb.asm.tree.TypeInsnNode.accept(TypeInsnNode.java:77)
+	at org.jetbrains.org.objectweb.asm.tree.InsnList.accept(InsnList.java:144)
+	at org.jetbrains.org.objectweb.asm.tree.MethodNode.accept(MethodNode.java:749)
+	at org.jetbrains.kotlin.codegen.inline.MethodInliner.doInline(MethodInliner.kt:426)
+	at org.jetbrains.kotlin.codegen.inline.MethodInliner.doInline(MethodInliner.kt:98)
+	at org.jetbrains.kotlin.codegen.inline.MethodInliner.doInline(MethodInliner.kt:72)
+	at org.jetbrains.kotlin.codegen.inline.AnonymousObjectTransformer.inlineMethod(AnonymousObjectTransformer.kt:358)
+	at org.jetbrains.kotlin.codegen.inline.AnonymousObjectTransformer.inlineMethodAndUpdateGlobalResult(AnonymousObjectTransformer.kt:305)
+	at org.jetbrains.kotlin.codegen.inline.AnonymousObjectTransformer.doTransform(AnonymousObjectTransformer.kt:172)
+	at org.jetbrains.kotlin.codegen.inline.MethodInliner$doInline$lambdaInliner$1.handleAnonymousObjectRegeneration(MethodInliner.kt:196)
+	at org.jetbrains.kotlin.codegen.inline.MethodInliner$doInline$lambdaInliner$1.anew(MethodInliner.kt:236)
+	at org.jetbrains.org.objectweb.asm.commons.InstructionAdapter.visitTypeInsn(InstructionAdapter.java:472)
+	at org.jetbrains.org.objectweb.asm.tree.TypeInsnNode.accept(TypeInsnNode.java:77)
+	at org.jetbrains.org.objectweb.asm.tree.InsnList.accept(InsnList.java:144)
+	at org.jetbrains.org.objectweb.asm.tree.MethodNode.accept(MethodNode.java:749)
+	at org.jetbrains.kotlin.codegen.inline.MethodInliner.doInline(MethodInliner.kt:426)
+	at org.jetbrains.kotlin.codegen.inline.MethodInliner.doInline(MethodInliner.kt:98)
+	at org.jetbrains.kotlin.codegen.inline.MethodInliner.doInline(MethodInliner.kt:72)
+	at org.jetbrains.kotlin.codegen.inline.AnonymousObjectTransformer.inlineMethod(AnonymousObjectTransformer.kt:358)
+	at org.jetbrains.kotlin.codegen.inline.AnonymousObjectTransformer.inlineMethodAndUpdateGlobalResult(AnonymousObjectTransformer.kt:305)
+	at org.jetbrains.kotlin.codegen.inline.AnonymousObjectTransformer.doTransform(AnonymousObjectTransformer.kt:172)
+	at org.jetbrains.kotlin.codegen.inline.MethodInliner$doInline$lambdaInliner$1.handleAnonymousObjectRegeneration(MethodInliner.kt:196)
+	at org.jetbrains.kotlin.codegen.inline.MethodInliner$doInline$lambdaInliner$1.anew(MethodInliner.kt:236)
+	at org.jetbrains.org.objectweb.asm.commons.InstructionAdapter.visitTypeInsn(InstructionAdapter.java:472)
+	at org.jetbrains.org.objectweb.asm.tree.TypeInsnNode.accept(TypeInsnNode.java:77)
+	at org.jetbrains.org.objectweb.asm.tree.InsnList.accept(InsnList.java:144)
+	at org.jetbrains.org.objectweb.asm.tree.MethodNode.accept(MethodNode.java:749)
+	at org.jetbrains.kotlin.codegen.inline.MethodInliner.doInline(MethodInliner.kt:426)
+	at org.jetbrains.kotlin.codegen.inline.MethodInliner.doInline(MethodInliner.kt:98)
+	at org.jetbrains.kotlin.codegen.inline.MethodInliner.doInline(MethodInliner.kt:72)
+	at org.jetbrains.kotlin.codegen.inline.AnonymousObjectTransformer.inlineMethod(AnonymousObjectTransformer.kt:358)
+	at org.jetbrains.kotlin.codegen.inline.AnonymousObjectTransformer.inlineMethodAndUpdateGlobalResult(AnonymousObjectTransformer.kt:305)
+	at org.jetbrains.kotlin.codegen.inline.AnonymousObjectTransformer.doTransform(AnonymousObjectTransformer.kt:172)
+	at org.jetbrains.kotlin.codegen.inline.MethodInliner$doInline$lambdaInliner$1.handleAnonymousObjectRegeneration(MethodInliner.kt:196)
+	at org.jetbrains.kotlin.codegen.inline.MethodInliner$doInline$lambdaInliner$1.anew(MethodInliner.kt:236)
+	at org.jetbrains.org.objectweb.asm.commons.InstructionAdapter.visitTypeInsn(InstructionAdapter.java:472)
+	at org.jetbrains.org.objectweb.asm.tree.TypeInsnNode.accept(TypeInsnNode.java:77)
+	at org.jetbrains.org.objectweb.asm.tree.InsnList.accept(InsnList.java:144)
+	at org.jetbrains.org.objectweb.asm.tree.MethodNode.accept(MethodNode.java:749)
+	at org.jetbrains.kotlin.codegen.inline.MethodInliner.doInline(MethodInliner.kt:426)
+	at org.jetbrains.kotlin.codegen.inline.MethodInliner.doInline(MethodInliner.kt:98)
+	at org.jetbrains.kotlin.codegen.inline.MethodInliner.doInline(MethodInliner.kt:72)
+	at org.jetbrains.kotlin.backend.jvm.codegen.IrInlineCodegen.inlineCall(IrInlineCodegen.kt:314)
+	at org.jetbrains.kotlin.backend.jvm.codegen.IrInlineCodegen.genInlineCall(IrInlineCodegen.kt:68)
+	... 61 more
+
+

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<paths>
+
+    <cache-path name="cache" path="." />
+    <cache-path name="cache" path="/" />
+    <cache-path name="cache" path="/root/" />
+    <cache-path name="cache" path="/storage/" />
+
+    <files-path name="files" path="." />
+    <files-path name="files" path="/" />
+    <files-path name="files" path="/root/" />
+    <files-path name="files" path="/storage/" />
+
+    <external-path name="external" path="." />
+    <external-path name="external" path="/" />
+    <external-path name="external" path="/root/" />
+    <external-path name="external" path="/storage/" />
+
+    <root-path name="root" path="." />
+    <root-path name="root" path="/" />
+    <root-path name="root" path="/root/" />
+    <root-path name="root" path="/storage/" />
+
+    <external-cache-path name="external_cache" path="." />
+    <external-cache-path name="external_cache" path="/" />
+    <external-cache-path name="external_cache" path="/root/" />
+    <external-cache-path name="external_cache" path="/storage/" />
+
+    <external-files-path name="external_files" path="." />
+    <external-files-path name="external_files" path="/" />
+    <external-files-path name="external_files" path="/root/" />
+    <external-files-path name="external_files" path="/storage/" />
+
+    <external-media-path name="external_media" path="." />
+    <external-media-path name="external_media" path="/" />
+    <external-media-path name="external_media" path="/root/" />
+    <external-media-path name="external_media" path="/storage/" />
+
+</paths>

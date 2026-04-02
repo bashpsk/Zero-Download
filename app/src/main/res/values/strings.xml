@@ -1,0 +1,124 @@
+<resources>
+
+    <string name="app_name">Zero Download</string>
+
+    <string name="empty" />
+    <string name="none">None</string>
+    <string name="enabled">Enabled</string>
+    <string name="disabled">Disabled</string>
+    <string name="no_media_found">No Media Found!</string>
+    <string name="optional">Optional</string>
+    <string name="required">* Required</string>
+    <string name="unknown">Unknown</string>
+    <string name="enqueued">Enqueued</string>
+    <string name="items">Items</string>
+    <string name="items_selected">items selected</string>
+
+    <string name="best">Best</string>
+
+    <string name="kbps_32">32 Kbps</string>
+    <string name="kbps_64">64 Kbps</string>
+    <string name="kbps_128">128 Kbps</string>
+    <string name="kbps_192">192 Kbps</string>
+    <string name="kbps_256">256 Kbps</string>
+    <string name="kbps_320">320 Kbps</string>
+
+    <string name="close">Close</string>
+    <string name="cancel">Cancel</string>
+    <string name="dismiss">Dismiss</string>
+    <string name="ok">OK</string>
+    <string name="done">Done</string>
+    <string name="save">Save</string>
+    <string name="edit">Edit</string>
+    <string name="reset">Reset</string>
+    <string name="on">ON</string>
+    <string name="off">Off</string>
+    <string name="rename">Rename</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+    <string name="finish">Finish</string>
+    <string name="start">Start</string>
+    <string name="create_new_playlist">New Playlist</string>
+    <string name="create_new_folder">New Folder</string>
+    <string name="paste">Paste</string>
+    <string name="play">Play</string>
+    <string name="download">Download</string>
+    <string name="maybe_later">Maybe Later</string>
+    <string name="open_player">Open Player</string>
+    <string name="select_folders">Select Folders</string>
+    <string name="select">Select</string>
+    <string name="select_path">Select Path</string>
+    <string name="more_option">More Option</string>
+    <string name="open">Open</string>
+    <string name="thumbnail">Thumbnail</string>
+    <string name="navigation">Navigation</string>
+    <string name="search">Search</string>
+    <string name="app_theme">App Theme</string>
+    <string name="undo">Undo</string>
+    <string name="redo">Redo</string>
+    <string name="clear">Clear</string>
+    <string name="expanded">Expanded</string>
+
+    <string name="title">Title</string>
+    <string name="description">Description</string>
+
+    <string name="home_app_title">Media</string>
+    <string name="settings_app_title">Settings</string>
+
+    <string name="video_audio_media_category_title">Video with Audio</string>
+    <string name="audio_only_media_category_title">Audio Only</string>
+    <string name="video_only_media_category_title">Video Only</string>
+    <string name="unknown_media_category_title">Unknown type</string>
+
+    <string name="sort_order_dialog_title">Sort Order</string>
+    <string name="media_details_dialog_title">Media Details</string>
+    <string name="media_confirm_dialog_title">Media Confirmation</string>
+    <string name="search_link_input_dialog_title">Media/Playlist URL</string>
+
+    <string name="downloader_settings">Downloader Settings</string>
+    <string name="downloads_settings">Downloads Settings</string>
+    <string name="general_settings">General Settings</string>
+
+    <string name="read_storage_permission_desc">Read Storage permission is required to access videos and audios from your device. Please grant the permission.</string>
+    <string name="write_storage_permission_desc">Write Storage permission is required to save files to your device. Please grant the permission.</string>
+    <string name="manage_storage_permission_desc">Manage All Files permission is required for this feature. Please grant the permission.</string>
+    <string name="read_media_audio_permission_desc">Read Media Audio permission is required to access audios from your device. Please grant the permission.</string>
+    <string name="read_media_image_permission_desc">Read Media Image permission is required to access images from your device. Please grant the permission.</string>
+    <string name="read_media_video_permission_desc">Read Media Video permission is required to access videos from your device. Please grant the permission.</string>
+    <string name="post_notifications_permission_desc">Post Notification permission is required for this feature. Please grant the permission.</string>
+
+    <string name="general_settings_desc">Customize theme, UI, and language.</string>
+    <string name="downloader_settings_desc">Customize downloader path, format, and quality.</string>
+    <string name="downloads_settings_desc">Customize downloads UI, view, and sort order.</string>
+
+    <string name="media_download_option_disabled">Media download option currently unavailable. Try again after search operation finished.</string>
+
+    <string name="library_update_already_running_message">Library update is already in progress!</string>
+    <string name="library_update_starting_message">Starting library update!</string>
+
+    <string name="application_theme_preference_title">Application Theme</string>
+    <string name="application_theme_preference_summary">Change application theme.</string>
+
+    <string name="dynamic_color_theme_preference_title">Dynamic Color Theme</string>
+    <string name="dynamic_color_theme_preference_summary">Dynamic color theme can adjust application theme based on wallpaper.</string>
+
+    <string name="application_language_preference_title">Application Language</string>
+    <string name="application_language_preference_summary">Change application language.</string>
+
+    <string name="yt_dlp_library_preference_title">Yt-dlp Library Version</string>
+    <string name="yt_dlp_library_theme_preference_summary">Click to update Yt-dlp library.</string>
+
+    <string name="link_input_label">Media/Playlist URL</string>
+    <string name="video_quality_label">Video Quality</string>
+    <string name="audio_quality_label">Audio Quality</string>
+    <string name="video_format_label">Video Format</string>
+    <string name="audio_format_label">Audio Format</string>
+    <string name="playlist_url_detected">Playlist url detected.</string>
+
+    <string name="link_input_instruction">Click \'+\' button to search a media/playlist from the internet.</string>
+    <string name="searching_wait_instruction">Please wait while we search for the media/playlist. Its take few seconds.</string>
+    <string name="searching_failed">Search failed. Due to following error:</string>
+
+</resources>
