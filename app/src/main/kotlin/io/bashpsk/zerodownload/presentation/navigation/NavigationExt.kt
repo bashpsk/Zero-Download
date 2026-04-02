@@ -27,5 +27,5 @@ fun NavBackStack<NavKey>.hasNavigationItemSelected(element: NavKey): Boolean {
 
 fun NavKey.hasNavKeyEqual(element: NavKey): Boolean {
 
-    return this::class == element::class
+    return this === element
 }

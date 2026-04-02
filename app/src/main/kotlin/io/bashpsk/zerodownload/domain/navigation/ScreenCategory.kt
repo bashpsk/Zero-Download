@@ -1,5 +1,6 @@
 package io.bashpsk.zerodownload.domain.navigation
 
+import androidx.annotation.StringRes
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.CloudDownload
 import androidx.compose.material.icons.filled.FileDownload
@@ -12,7 +13,9 @@ import androidx.compose.ui.res.stringResource
 import io.bashpsk.zerodownload.R
 
 enum class AppSettingCategory(
+    @param:StringRes
     val title: Int = R.string.none,
+    @param:StringRes
     val description: Int = R.string.none,
     val icon: ImageVector = Icons.Filled.QuestionMark,
     val screen: NavScreen = NavScreen.Unknown

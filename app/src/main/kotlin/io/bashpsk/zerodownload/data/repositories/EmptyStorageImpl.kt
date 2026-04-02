@@ -1,70 +1,38 @@
 package io.bashpsk.zerodownload.data.repositories
 
-import android.annotation.SuppressLint
 import android.content.Context
-import android.util.Log
-import androidx.core.net.toUri
 import dagger.hilt.android.qualifiers.ApplicationContext
-import io.bashpsk.zerodownload.domain.repositories.EmptyMedia
-import io.bashpsk.zerodownload.domain.repositories.EmptyStorage
-import io.bashpsk.zerodownload.domain.settings.FileSort
-import io.bashpsk.zerodownload.domain.utils.LOG_TAG
 import io.bashpsk.emptylibs.storage.storage.DirectoryData
 import io.bashpsk.emptylibs.storage.storage.DirectoryFileData
 import io.bashpsk.emptylibs.storage.storage.FileData
-import io.bashpsk.emptylibs.storage.storage.FileType
 import io.bashpsk.emptylibs.storage.storage.FileVisibleType
 import io.bashpsk.emptylibs.storage.storage.MakeFileResult
 import io.bashpsk.emptylibs.storage.storage.StorageExt
 import io.bashpsk.emptylibs.storage.storage.StorageVolumeData
+import io.bashpsk.zerodownload.domain.repositories.EmptyMedia
+import io.bashpsk.zerodownload.domain.repositories.EmptyStorage
+import io.bashpsk.zerodownload.domain.settings.FileSort
 import kotlinx.collections.immutable.ImmutableList
-import kotlinx.collections.immutable.persistentListOf
 import kotlinx.collections.immutable.toImmutableList
-import kotlinx.coroutines.CoroutineExceptionHandler
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.emitAll
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
-import kotlinx.coroutines.flow.toList
-import java.io.File
 import javax.inject.Inject
-import kotlin.time.ExperimentalTime
 
-@OptIn(ExperimentalTime::class)
-@SuppressLint("Range")
 class EmptyStorageImpl @Inject constructor(
     @param:ApplicationContext private val context: Context,
     private val emptyMedia: EmptyMedia
 ) : EmptyStorage {
 
-    private val emptyScope = CoroutineScope(context = SupervisorJob() + Dispatchers.IO)
-
-    private val exceptionHandler = CoroutineExceptionHandler { coroutineContext, throwable ->
-
-        Log.e(LOG_TAG, throwable.message, throwable)
-    }
-
     override fun getStorageVolumes(): Flow<ImmutableList<StorageVolumeData>> {
 
-        return flow {
-
-            val storageVolumeListFlow = StorageExt.getStorageVolumeFlow(context = context)
-
-            emitAll(flow = storageVolumeListFlow)
-        }.flowOn(context = Dispatchers.IO)
+        return StorageExt.getStorageVolumeFlow(context = context)
     }
 
     override fun getDirectoryDataList(path: String): Flow<DirectoryFileData> {
 
-        return flow {
-
-            val directoryFileList = StorageExt.getDirectoryFileData(context = context, path = path)
-
-            emit(value = directoryFileList)
-        }.flowOn(context = Dispatchers.IO)
+        return StorageExt.getDirectoryFileFlow(context = context, path = path)
     }
 
     override fun getFolderDataSortList(
@@ -159,146 +127,9 @@ class EmptyStorageImpl @Inject constructor(
 
         return flow {
 
-            val cacheSize = context.cacheDir.walkTopDown().sumOf { file: File -> file.length() }
+            val cacheSize = StorageExt.getFileSize(context.cacheDir.path)
 
             emit(value = cacheSize)
-        }.flowOn(context = Dispatchers.IO)
-    }
-
-    override fun getPathDirectoryData(path: String): Flow<DirectoryData> {
-
-        return flow {
-
-            try {
-
-                val sourceFile = File(path)
-
-                val storageList = getStorageVolumes().toList().flatten().distinctBy { storage ->
-
-                    storage.path
-                }.toImmutableList()
-
-                val storageData = storageList.firstOrNull { storage ->
-
-                    storage.path == sourceFile.path
-                }
-
-                emit(
-                    value = DirectoryData(
-                        title = storageData?.volumeType?.label ?: sourceFile.name,
-                        path = sourceFile.path,
-                        uri = sourceFile.toUri().toString(),
-                        visibleType = FileVisibleType.getFileVisibleType(file = sourceFile),
-                        folders = 0,
-                        files = 0,
-                        modifiedDate = sourceFile.lastModified()
-                    )
-                )
-            } catch (exception: Exception) {
-
-                Log.e(LOG_TAG, exception.message, exception)
-                emit(value = DirectoryData())
-            }
-        }.flowOn(context = Dispatchers.IO)
-    }
-
-    override fun getParentDirectory(path: String): Flow<DirectoryData> {
-
-        return flow {
-
-            try {
-
-                File(path).parentFile?.let { sourceFile ->
-
-                    val newDirectoryData = getPathDirectoryData(path = sourceFile.path)
-
-                    emitAll(flow = newDirectoryData)
-                } ?: emit(value = DirectoryData())
-            } catch (exception: Exception) {
-
-                Log.e(LOG_TAG, exception.message, exception)
-                emit(value = DirectoryData())
-            }
-        }.flowOn(context = Dispatchers.IO)
-    }
-
-    override fun getDirectoryDetailList(
-        paths: ImmutableList<String>
-    ): Flow<ImmutableList<DirectoryData>> {
-
-        return flow {
-
-            try {
-
-                val storageList = getStorageVolumes().toList().flatten().distinctBy { storage ->
-
-                    storage.path
-                }.toImmutableList()
-
-                val detailList = paths.map { path ->
-
-                    val sourceFile = File(path)
-
-                    val storageData = storageList.firstOrNull { storage ->
-
-                        storage.path == sourceFile.path
-                    }
-
-                    val folders = sourceFile.listFiles()?.count { folder ->
-
-                        folder.isDirectory
-                    } ?: 0
-
-                    val files = sourceFile.listFiles()?.count { file -> file.isFile } ?: 0
-
-                    DirectoryData(
-                        title = storageData?.volumeType?.label ?: sourceFile.name,
-                        path = sourceFile.path,
-                        uri = sourceFile.toUri().toString(),
-                        visibleType = FileVisibleType.getFileVisibleType(file = sourceFile),
-                        folders = folders,
-                        files = files,
-                        modifiedDate = sourceFile.lastModified()
-                    )
-                }.toImmutableList()
-
-                emit(value = detailList)
-            } catch (exception: Exception) {
-
-                Log.e(LOG_TAG, exception.message, exception)
-                emit(value = persistentListOf())
-            }
-        }.flowOn(context = Dispatchers.IO)
-    }
-
-    override fun getFileDetailList(paths: ImmutableList<String>): Flow<ImmutableList<FileData>> {
-
-        return flow {
-
-            try {
-
-                val detailList = paths.map { path ->
-
-                    val sourceFile = File(path)
-
-                    FileData(
-                        title = sourceFile.name,
-                        path = sourceFile.path,
-                        uri = sourceFile.toUri().toString(),
-                        extension = sourceFile.extension,
-                        visibleType = FileVisibleType.getFileVisibleType(file = sourceFile),
-                        fileType = FileType.getFileType(extension = sourceFile.extension),
-                        size = sourceFile.length(),
-                        modifiedDate = sourceFile.lastModified()
-                    )
-                }.toImmutableList()
-
-                emit(value = detailList)
-            } catch (exception: Exception) {
-
-                Log.e(LOG_TAG, exception.message, exception)
-                emit(value = persistentListOf())
-            }
         }.flowOn(context = Dispatchers.IO)
     }
 

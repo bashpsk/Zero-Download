@@ -1,6 +1,5 @@
 package io.bashpsk.zerodownload.data.extension
 
-import android.graphics.Bitmap
 import android.system.Os
 import android.util.Log
 import io.bashpsk.zerodownload.domain.utils.LOG_TAG
@@ -21,16 +20,5 @@ suspend fun hasAtomicPath(sourcePath: String?, destinationPath: String?): Boolea
             Log.i(LOG_TAG, exception.message,exception)
             false
         }
-    }
-}
-
-fun findCompressFormatFromExtension(extension: String): Bitmap.CompressFormat {
-
-    return when (extension.lowercase()) {
-
-        "png" -> Bitmap.CompressFormat.PNG
-        "jpg", "jpeg" -> Bitmap.CompressFormat.JPEG
-        "webp" -> Bitmap.CompressFormat.WEBP
-        else -> Bitmap.CompressFormat.JPEG
     }
 }

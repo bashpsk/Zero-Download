@@ -62,7 +62,7 @@ class EmptyWorkerImpl @Inject constructor(
                 request = oneTimeWorkRequest
             )
 
-            emit(value = WorkRequestResult.Init)
+            emit(value = WorkRequestResult.Completed)
         }.flowOn(context = Dispatchers.IO)
     }
 
@@ -82,7 +82,7 @@ class EmptyWorkerImpl @Inject constructor(
                 request = oneTimeWorkRequest
             )
 
-            emit(value = WorkRequestResult.Init)
+            emit(value = WorkRequestResult.Completed)
         }.flowOn(context = Dispatchers.IO)
     }
 

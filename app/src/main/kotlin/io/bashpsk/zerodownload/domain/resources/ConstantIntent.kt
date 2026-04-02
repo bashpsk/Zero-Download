@@ -8,6 +8,6 @@ object ConstantIntent {
     const val MEDIA_DATA = "MEDIA-DATA"
     const val FILE_PATH = "FILE-PATH"
 
-    const val APP_SCHEME = "edm"
+    const val APP_SCHEME = "zerodownload"
     const val WORKER_BASE = "$APP_SCHEME://worker"
 }

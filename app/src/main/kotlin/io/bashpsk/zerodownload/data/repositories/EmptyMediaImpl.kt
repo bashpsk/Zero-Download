@@ -7,6 +7,7 @@ import android.util.Log
 import com.yausername.youtubedl_android.YoutubeDL
 import com.yausername.youtubedl_android.YoutubeDLRequest
 import dagger.hilt.android.qualifiers.ApplicationContext
+import io.bashpsk.emptylibs.storage.extension.findMimeType
 import io.bashpsk.zerodownload.data.extension.toMediaData
 import io.bashpsk.zerodownload.data.extension.toMediaFormatData
 import io.bashpsk.zerodownload.data.extension.toPlaylistMediaData
@@ -20,7 +21,6 @@ import io.bashpsk.zerodownload.domain.utils.LOG_TAG
 import io.bashpsk.zerodownload.ytdlext.utils.hasPlaylistLink
 import io.bashpsk.zerodownload.ytdlext.youtubedl.getInfo
 import io.bashpsk.zerodownload.ytdlext.youtubedl.getPlaylistInfo
-import io.bashpsk.emptylibs.storage.extension.findMimeType
 import kotlinx.collections.immutable.persistentListOf
 import kotlinx.collections.immutable.toImmutableList
 import kotlinx.coroutines.Dispatchers
@@ -65,7 +65,7 @@ class EmptyMediaImpl @Inject constructor(
             } catch (exception: Exception) {
 
                 currentCoroutineContext().ensureActive()
-                emit(value = MediaSearchState.Failed(message = exception.message ?: ""))
+                emit(value = MediaSearchState.Failed(message = exception.message ?: "Unknown."))
                 Log.e(LOG_TAG, exception.message, exception)
             }
         }.flowOn(context = Dispatchers.IO)

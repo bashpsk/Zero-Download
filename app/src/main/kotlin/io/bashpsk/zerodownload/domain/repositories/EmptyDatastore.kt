@@ -11,7 +11,7 @@ interface EmptyDatastore {
 
     suspend fun <T> setPreference(key: Preferences.Key<T>, value: T)
 
-    suspend fun <T> removePreference(key: Preferences.Key<T>)
+    suspend fun <T> resetPreference(key: Preferences.Key<T>)
 
-    suspend fun clearPreference()
+    suspend fun clearAllPreference()
 }

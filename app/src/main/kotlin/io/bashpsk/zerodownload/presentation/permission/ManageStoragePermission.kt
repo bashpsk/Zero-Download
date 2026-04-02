@@ -21,7 +21,7 @@ fun rememberManageStoragePermission(): Boolean {
 
     DisposableEffect(lifecycleOwner, permissionState) {
 
-        val lifecycleEventObserver = LifecycleEventObserver { owner, event ->
+        val lifecycleEventObserver = LifecycleEventObserver { _, event ->
 
             when (event) {
 

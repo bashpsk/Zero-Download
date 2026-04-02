@@ -21,9 +21,9 @@ import androidx.compose.ui.unit.dp
 import io.bashpsk.zerodownload.R
 
 @Composable
-fun DialogTitleView(
+inline fun DialogTitleView(
     title: String,
-    onClick: () -> Unit,
+    noinline onClick: () -> Unit,
     content: @Composable RowScope.() -> Unit = {}
 ) {
 

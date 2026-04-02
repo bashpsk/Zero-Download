@@ -53,7 +53,7 @@ sealed class PreferenceData<PK, EK, EV>(
         key = stringPreferencesKey("YT-DL-LIBRARY-VERSION"),
         initial = ConstantString.NONE,
         entities = mapOf()
-    );
+    )
 
     companion object {
 

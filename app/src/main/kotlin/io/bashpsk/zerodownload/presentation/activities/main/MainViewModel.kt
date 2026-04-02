@@ -35,11 +35,8 @@ class MainViewModel @Inject constructor(
 
             is MainUIEvent.SetNavChannel -> {
 
-                viewModelScope.launch(context = Dispatchers.Default) {
-
-                    _navScreenChannel.send(findNavScreen(uri = uiEvent.uri, type = uiEvent.type))
-                    savedStateHandle[ConstantKey.MAIN_KEEP_SPLASH_SCREEN] = false
-                }
+                _navScreenChannel.send(findNavScreen(uri = uiEvent.uri, type = uiEvent.type))
+                savedStateHandle[ConstantKey.MAIN_KEEP_SPLASH_SCREEN] = false
             }
         }
     }

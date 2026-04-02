@@ -2,6 +2,7 @@ package io.bashpsk.zerodownload.domain.settings
 
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.ReadOnlyComposable
 
 enum class AppTheme(val theme: String) {
 
@@ -12,6 +13,7 @@ enum class AppTheme(val theme: String) {
     companion object {
 
         @Composable
+        @ReadOnlyComposable
         fun getTheme(theme: String): Boolean {
 
             return when (valueOf(value = theme)) {

@@ -17,13 +17,13 @@ import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.currentCoroutineContext
 import kotlinx.coroutines.ensureActive
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.launch
 import javax.inject.Inject
-import kotlin.coroutines.coroutineContext
 
 class EmptyAboutImpl @Inject constructor(
     @param:ApplicationContext private val context: Context
@@ -31,7 +31,7 @@ class EmptyAboutImpl @Inject constructor(
 
     private val emptyScope = CoroutineScope(context = SupervisorJob() + Dispatchers.IO)
 
-    private val exceptionHandler = CoroutineExceptionHandler { coroutineContext, throwable ->
+    private val exceptionHandler = CoroutineExceptionHandler { _, throwable ->
 
         Log.e(LOG_TAG, throwable.message, throwable)
     }
@@ -66,7 +66,7 @@ class EmptyAboutImpl @Inject constructor(
                 emit(value = newAppVersion)
             } catch (exception: Exception) {
 
-                coroutineContext.ensureActive()
+                currentCoroutineContext().ensureActive()
                 Log.e(LOG_TAG, exception.message, exception)
                 emit(value = AppVersion())
             }
@@ -81,7 +81,7 @@ class EmptyAboutImpl @Inject constructor(
 
             Intent(Intent.ACTION_SEND).apply {
 
-                setType("text/plain")
+                type = "text/plain"
                 putExtra(Intent.EXTRA_TEXT, appLink)
             }.let { intent ->
 
@@ -127,7 +127,7 @@ class EmptyAboutImpl @Inject constructor(
 
             Intent(Intent.ACTION_SENDTO).apply {
 
-                setData("mailto:".toUri())
+                data = "mailto:".toUri()
                 putExtra(Intent.EXTRA_EMAIL, arrayOf(email))
                 putExtra(Intent.EXTRA_SUBJECT, subject)
                 putExtra(Intent.EXTRA_TEXT, body)
