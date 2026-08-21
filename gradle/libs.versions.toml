@@ -1,37 +1,37 @@
 [versions]
-agp = "9.1.0"
-kotlin = "2.3.10"
-devtools-ksp = "2.3.6"
-core-ktx = "1.18.0"
+agp = "9.3.1"
+kotlin = "2.4.10"
+devtools-ksp = "2.3.11"
+core-ktx = "1.19.0"
 junit = "4.13.2"
 junit-version = "1.3.0"
 espresso-core = "3.7.0"
-lifecycle-runtime = "2.10.0"
+lifecycle-runtime = "2.11.0"
 activity-compose = "1.13.0"
-compose-bom = "2026.03.00"
-androidx-navigation3 = "1.0.1"
-lifecycle-navigation3 = "2.10.0"
-adaptive-navigation3 = "1.3.0-alpha09"
+compose-bom = "2026.08.00"
+androidx-navigation3 = "1.2.0-alpha07"
+lifecycle-navigation3 = "2.11.0"
+adaptive-navigation3 = "1.3.0"
 material-icons = "1.7.8"
 datastore-preferences = "1.2.1"
-hilt-android = "2.59.2"
-hilt-navigation-compose = "1.3.0"
-hilt-compiler = "1.3.0"
+hilt-android = "2.60.1"
+hilt-navigation-compose = "1.4.0"
+hilt-compiler = "1.4.0"
 androidx-splashscreen = "1.2.0"
 androidx-startup = "1.2.0"
-androidx-work = "2.11.1"
-hilt-work = "1.3.0"
+androidx-work = "2.11.2"
+hilt-work = "1.4.0"
 material3-window-size = "1.4.0"
-androidx-media3 = "1.10.0-rc01"
-ktor-client = "3.4.1"
-kotlinx-serialization = "1.10.0"
-kotlinx-collections-immutable = "0.4.0"
-kotlinx-datetime = "0.7.1"
-kotlinx-io = "0.9.0"
+androidx-media3 = "1.10.1"
+ktor-client = "3.5.2"
+kotlinx-serialization = "1.11.0"
+kotlinx-collections-immutable = "0.5.1"
+kotlinx-datetime = "0.8.0"
+kotlinx-io = "0.9.1"
 room-ktx = "2.8.4"
-empty-libs = "1.4.3"
+empty-libs = "1.4.5-alpha02"
 accompanist-permissions = "0.37.3"
-coil-kt = "3.4.0"
+coil-kt = "3.5.0"
 android-ytdl = "0.18.1"
 commons-io = "2.15.0"
 commons-compress = "1.24.0"
@@ -115,6 +115,7 @@ bashpsk-emptylibs-image-view = { group = "com.github.bashpsk.emptylibs", name = 
 bashpsk-emptylibs-image-wallpaper = { group = "com.github.bashpsk.emptylibs", name = "image-wallpaper", version.ref = "empty-libs" }
 bashpsk-emptylibs-jetpack-ui = { group = "com.github.bashpsk.emptylibs", name = "jetpack-ui", version.ref = "empty-libs" }
 bashpsk-emptylibs-kolor-picker = { group = "com.github.bashpsk.emptylibs", name = "kolor-picker", version.ref = "empty-libs" }
+bashpsk-emptylibs-layouts = { group = "com.github.bashpsk.emptylibs", name = "layouts", version.ref = "empty-libs" }
 bashpsk-emptylibs-lrucache-manager = { group = "com.github.bashpsk.emptylibs", name = "lrucache-manager", version.ref = "empty-libs" }
 bashpsk-emptylibs-pdf-template = { group = "com.github.bashpsk.emptylibs", name = "pdf-template", version.ref = "empty-libs" }
 bashpsk-emptylibs-pdf-viewer = { group = "com.github.bashpsk.emptylibs", name = "pdf-viewer", version.ref = "empty-libs" }
@@ -201,6 +202,7 @@ bashpsk-emptylibs = [
     "bashpsk-emptylibs-image-wallpaper",
     "bashpsk-emptylibs-jetpack-ui",
     "bashpsk-emptylibs-kolor-picker",
+    "bashpsk-emptylibs-layouts",
     "bashpsk-emptylibs-lrucache-manager",
     "bashpsk-emptylibs-pdf-template",
     "bashpsk-emptylibs-pdf-viewer",
