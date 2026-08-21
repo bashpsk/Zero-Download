@@ -1,0 +1,24 @@
+<resources>
+    <string name="video_audio_media_category_title">Video with Audio</string>
+    <string name="audio_only_media_category_title">Audio Only</string>
+    <string name="video_only_media_category_title">Video Only</string>
+    <string name="kbps_32">32 Kbps</string>
+    <string name="kbps_64">64 Kbps</string>
+    <string name="kbps_128">128 Kbps</string>
+    <string name="kbps_192">192 Kbps</string>
+    <string name="kbps_256">256 Kbps</string>
+    <string name="kbps_320">320 Kbps</string>
+    <string name="best">Best</string>
+
+    <string name="application_theme_preference_title">Application Theme</string>
+    <string name="application_theme_preference_summary">Change application theme.</string>
+
+    <string name="dynamic_color_theme_preference_title">Dynamic Color Theme</string>
+    <string name="dynamic_color_theme_preference_summary">Dynamic color theme can adjust application theme based on wallpaper.</string>
+
+    <string name="application_language_preference_title">Application Language</string>
+    <string name="application_language_preference_summary">Change application language.</string>
+
+    <string name="yt_dlp_library_preference_title">Yt-dlp Library Version</string>
+    <string name="yt_dlp_library_theme_preference_summary">Click to update Yt-dlp library.</string>
+</resources>

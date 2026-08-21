@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_theme">App Theme</string>
+
+    <string name="none">None</string>
+    <string name="general_settings">General Settings</string>
+    <string name="general_settings_desc">Customize theme, UI, and language.</string>
+    <string name="downloader_settings">Downloader Settings</string>
+    <string name="downloader_settings_desc">Customize downloader path, format, and quality.</string>
+    <string name="downloads_settings">Downloads Settings</string>
+    <string name="downloads_settings_desc">Customize downloads UI, view, and sort order.</string>
+</resources>

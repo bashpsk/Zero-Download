@@ -1,0 +1,37 @@
+package io.bashpsk.zerodownload.core.domain.repositories
+
+import io.bashpsk.emptylibs.storage.storage.DirectoryData
+import io.bashpsk.emptylibs.storage.storage.DirectoryFileData
+import io.bashpsk.emptylibs.storage.storage.FileData
+import io.bashpsk.emptylibs.storage.storage.FileVisibleType
+import io.bashpsk.emptylibs.storage.storage.MakeFileResult
+import io.bashpsk.emptylibs.storage.storage.StorageVolumeData
+import io.bashpsk.zerodownload.core.model.settings.FileSort
+import kotlinx.collections.immutable.ImmutableList
+import kotlinx.coroutines.flow.Flow
+
+interface EmptyStorage {
+
+    fun getStorageVolumes(): Flow<ImmutableList<StorageVolumeData>>
+
+    fun getDirectoryDataList(path: String): Flow<DirectoryFileData>
+
+    fun getFolderDataSortList(
+        folders: ImmutableList<DirectoryData>,
+        fileSort: FileSort.Type
+    ): Flow<ImmutableList<DirectoryData>>
+
+    fun getFileDataSortList(
+        files: ImmutableList<FileData>,
+        fileSort: FileSort.Type
+    ): Flow<ImmutableList<FileData>>
+
+    fun getCacheSize(): Flow<Long>
+
+    fun setMakeFolderFile(
+        parentPath: String,
+        name: String,
+        isFolder: Boolean,
+        visibleType: FileVisibleType
+    ): Flow<MakeFileResult>
+}

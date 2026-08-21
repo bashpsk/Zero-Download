@@ -25,5 +25,23 @@ dependencyResolutionManagement {
 
 rootProject.name = "Zero Download"
 include(":app")
-include(":utilities")
-include(":ytdl-ext")
+
+include(":core:common")
+include(":core:data")
+include(":core:database")
+include(":core:datastore")
+include(":core:domain")
+include(":core:model")
+include(":core:navigation")
+include(":core:network")
+include(":core:ui")
+
+include(":feature:about")
+include(":feature:command")
+include(":feature:downloads")
+include(":feature:home")
+include(":feature:navigation")
+include(":feature:player")
+include(":feature:settings")
+include(":feature:unknown")
+include(":feature:worker")

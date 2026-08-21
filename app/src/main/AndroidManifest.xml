@@ -41,7 +41,7 @@
         android:theme="@style/Theme.AppStarting">
 
         <activity
-            android:name=".presentation.activities.main.MainActivity"
+            android:name=".activities.main.MainActivity"
             android:exported="true"
             android:label="@string/app_name"
             android:launchMode="singleInstancePerTask"

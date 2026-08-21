@@ -8,8 +8,8 @@ import com.yausername.aria2c.Aria2c
 import com.yausername.ffmpeg.FFmpeg
 import com.yausername.youtubedl_android.YoutubeDL
 import dagger.hilt.android.HiltAndroidApp
-import io.bashpsk.zerodownload.domain.repositories.EmptyNotification
-import io.bashpsk.zerodownload.domain.utils.LOG_TAG
+import io.bashpsk.zerodownload.core.common.log.LOG_TAG
+import io.bashpsk.zerodownload.core.domain.repositories.EmptyNotification
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers

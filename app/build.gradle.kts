@@ -185,6 +185,14 @@ dependencies {
 
     //  MODULE              :
     implementation(fileTree("libs") { include("*.aar") })
-    implementation(project(":utilities"))
-    implementation(project(":ytdl-ext"))
+    implementation(project(":core:common"))
+    implementation(project(":core:data"))
+    implementation(project(":core:database"))
+    implementation(project(":core:datastore"))
+    implementation(project(":core:domain"))
+    implementation(project(":core:model"))
+    implementation(project(":core:navigation"))
+    implementation(project(":core:network"))
+    implementation(project(":core:ui"))
+    implementation(project(":feature:navigation"))
 }
