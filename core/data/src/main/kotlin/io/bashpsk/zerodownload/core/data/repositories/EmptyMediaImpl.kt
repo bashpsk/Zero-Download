@@ -15,7 +15,7 @@ import io.bashpsk.zerodownload.core.domain.utils.hasPlaylistLink
 import io.bashpsk.zerodownload.core.model.media.MediaData
 import io.bashpsk.zerodownload.core.model.media.MediaFormatData
 import io.bashpsk.zerodownload.core.model.media.PlaylistMediaData
-import io.bashpsk.zerodownload.core.model.resources.ConstantKey
+import io.bashpsk.zerodownload.core.model.resources.WorkerKey
 import io.bashpsk.zerodownload.core.network.ytdl.extension.toMediaData
 import io.bashpsk.zerodownload.core.network.ytdl.extension.toMediaFormatData
 import io.bashpsk.zerodownload.core.network.ytdl.extension.toPlaylistMediaData
@@ -77,11 +77,11 @@ class EmptyMediaImpl @Inject constructor(
 
         return@withContext try {
 
-            setYtDlDestroy(id = ConstantKey.YT_DL_SEARCH_ID)
+            setYtDlDestroy(id = WorkerKey.YT_DL_SEARCH_ID)
 
             val dlResponse = YoutubeDL.getInstance().getInfo(
                 url = link,
-                processId = ConstantKey.YT_DL_SEARCH_ID
+                processId = WorkerKey.YT_DL_SEARCH_ID
             )
 
             val formatList = dlResponse.formats?.map { videoFormat ->
@@ -118,7 +118,7 @@ class EmptyMediaImpl @Inject constructor(
 
         return@withContext try {
 
-            setYtDlDestroy(id = ConstantKey.YT_DL_SEARCH_ID)
+            setYtDlDestroy(id = WorkerKey.YT_DL_SEARCH_ID)
 
             val commandRegex = "\"([^\"]*)\"|(\\S+)"
             val dlRequest = YoutubeDLRequest(urls = Collections.emptyList())
@@ -139,7 +139,7 @@ class EmptyMediaImpl @Inject constructor(
 
             val dlResponse = YoutubeDL.getInstance().getPlaylistInfo(
                 request = dlRequest,
-                processId = ConstantKey.YT_DL_SEARCH_ID
+                processId = WorkerKey.YT_DL_SEARCH_ID
             )
 
             dlResponse.toPlaylistMediaData()

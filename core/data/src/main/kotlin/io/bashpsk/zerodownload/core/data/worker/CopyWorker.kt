@@ -25,7 +25,7 @@ import io.bashpsk.zerodownload.core.domain.repositories.EmptyMedia
 import io.bashpsk.zerodownload.core.domain.repositories.EmptyNotification
 import io.bashpsk.zerodownload.core.model.notification.AppNotification
 import io.bashpsk.zerodownload.core.model.resources.ConstantIntent
-import io.bashpsk.zerodownload.core.model.resources.ConstantKey
+import io.bashpsk.zerodownload.core.model.resources.WorkerKey
 import io.bashpsk.zerodownload.core.model.worker.WorkTaskType
 import kotlinx.collections.immutable.persistentListOf
 import kotlinx.coroutines.Dispatchers
@@ -51,8 +51,8 @@ class CopyWorker @AssistedInject constructor(
 
     companion object {
 
-        private const val NOTIFICATION_ID = 3
-        const val WORKER_ID = "FILE-COPY-WORKER"
+        val WorkerId = WorkTaskType.FileCopy.name
+        val NotificationId = WorkTaskType.FileCopy.ordinal
     }
 
     private val cancelIntent = WorkManager.getInstance(context).createCancelPendingIntent(id)
@@ -60,7 +60,7 @@ class CopyWorker @AssistedInject constructor(
     private val activityIntent = Intent().apply {
 
         action = Intent.ACTION_VIEW
-        data = "${ConstantIntent.WORKER_BASE}/${WorkTaskType.FileCopy.id}".toUri()
+        data = "${ConstantIntent.WORKER_BASE}/${WorkTaskType.FileCopy.ordinal}".toUri()
     }
 
     private val activityPendingIntent = TaskStackBuilder.create(context).run {
@@ -81,14 +81,14 @@ class CopyWorker @AssistedInject constructor(
 
     override suspend fun doWork(): Result = withContext(context = Dispatchers.IO) {
 
-        val workInitData = workDataOf(ConstantKey.WORK_OUTPUT_MESSAGE to "Input Data is Empty")
+        val workInitData = workDataOf(WorkerKey.WORK_OUTPUT_MESSAGE to "Input Data is Empty")
 
         val destinationInput = workerParameters.inputData.getString(
-            key = ConstantKey.WORK_INPUT_DESTINATION
+            key = WorkerKey.WORK_INPUT_DESTINATION
         ) ?: return@withContext Result.failure(workInitData)
 
         val pathInput = workerParameters.inputData.getString(
-            key = ConstantKey.WORK_INPUT_SOURCE
+            key = WorkerKey.WORK_INPUT_SOURCE
         ) ?: return@withContext Result.failure(workInitData)
 
         var progressJob: Job? = null
@@ -96,7 +96,7 @@ class CopyWorker @AssistedInject constructor(
         notificationBuilder.setProgress(100, 0, true)
 
         emptyNotification.setNotification(
-            id = NOTIFICATION_ID,
+            id = NotificationId,
             notification = notificationBuilder.build()
         )
 
@@ -126,12 +126,12 @@ class CopyWorker @AssistedInject constructor(
                     val savedSize = savedBytes.toFileSize(context = context)
 
                     val workProgressData = workDataOf(
-                        ConstantKey.WORK_OUTPUT_TITLE to sourcePath.name,
-                        ConstantKey.WORK_OUTPUT_MESSAGE to "Copying",
-                        ConstantKey.WORK_OUTPUT_SOURCE to sourceFile.path,
-                        ConstantKey.WORK_OUTPUT_DESTINATION to destinationFile.path,
-                        ConstantKey.WORK_OUTPUT_TOTAL to totalBytes,
-                        ConstantKey.WORK_OUTPUT_SAVED to savedBytes
+                        WorkerKey.WORK_OUTPUT_TITLE to sourcePath.name,
+                        WorkerKey.WORK_OUTPUT_MESSAGE to "Copying",
+                        WorkerKey.WORK_OUTPUT_SOURCE to sourceFile.path,
+                        WorkerKey.WORK_OUTPUT_DESTINATION to destinationFile.path,
+                        WorkerKey.WORK_OUTPUT_TOTAL to totalBytes,
+                        WorkerKey.WORK_OUTPUT_SAVED to savedBytes
                     )
 
                     setProgress(data = workProgressData)
@@ -142,7 +142,7 @@ class CopyWorker @AssistedInject constructor(
                         .setProgress(100, progress, progress == 0)
 
                     emptyNotification.setNotification(
-                        id = NOTIFICATION_ID,
+                        id = NotificationId,
                         notification = notificationBuilder.build()
                     )
 
@@ -168,12 +168,12 @@ class CopyWorker @AssistedInject constructor(
             progressJob.cancel()
 
             val workScanningData = workDataOf(
-                ConstantKey.WORK_OUTPUT_TITLE to destinationFile.name,
-                ConstantKey.WORK_OUTPUT_MESSAGE to "Scanning",
-                ConstantKey.WORK_OUTPUT_SOURCE to sourceFile.path,
-                ConstantKey.WORK_OUTPUT_DESTINATION to destinationFile.path,
-                ConstantKey.WORK_OUTPUT_TOTAL to destinationFile.length(),
-                ConstantKey.WORK_OUTPUT_SAVED to destinationFile.length()
+                WorkerKey.WORK_OUTPUT_TITLE to destinationFile.name,
+                WorkerKey.WORK_OUTPUT_MESSAGE to "Scanning",
+                WorkerKey.WORK_OUTPUT_SOURCE to sourceFile.path,
+                WorkerKey.WORK_OUTPUT_DESTINATION to destinationFile.path,
+                WorkerKey.WORK_OUTPUT_TOTAL to destinationFile.length(),
+                WorkerKey.WORK_OUTPUT_SAVED to destinationFile.length()
             )
 
             setProgress(data = workScanningData)
@@ -184,7 +184,7 @@ class CopyWorker @AssistedInject constructor(
                 .setProgress(100, 0, true)
 
             emptyNotification.setNotification(
-                id = NOTIFICATION_ID,
+                id = NotificationId,
                 notification = notificationBuilder.build()
             )
 
@@ -194,11 +194,11 @@ class CopyWorker @AssistedInject constructor(
             }
 
             val workCompletedData = workDataOf(
-                ConstantKey.WORK_OUTPUT_TITLE to destinationPath.name,
-                ConstantKey.WORK_OUTPUT_MESSAGE to "Copied",
-                ConstantKey.WORK_OUTPUT_SOURCE to sourceFile.path,
-                ConstantKey.WORK_OUTPUT_DESTINATION to destinationFile.path,
-                ConstantKey.WORK_OUTPUT_TOTAL to destinationFile.length()
+                WorkerKey.WORK_OUTPUT_TITLE to destinationPath.name,
+                WorkerKey.WORK_OUTPUT_MESSAGE to "Copied",
+                WorkerKey.WORK_OUTPUT_SOURCE to sourceFile.path,
+                WorkerKey.WORK_OUTPUT_DESTINATION to destinationFile.path,
+                WorkerKey.WORK_OUTPUT_TOTAL to destinationFile.length()
             )
 
             Result.success(workCompletedData)
@@ -208,8 +208,8 @@ class CopyWorker @AssistedInject constructor(
             val failedMessage = "Error - ${exception.message}"
 
             val workFailedData = workDataOf(
-                ConstantKey.WORK_OUTPUT_TITLE to title,
-                ConstantKey.WORK_OUTPUT_MESSAGE to failedMessage
+                WorkerKey.WORK_OUTPUT_TITLE to title,
+                WorkerKey.WORK_OUTPUT_MESSAGE to failedMessage
             )
 
             val failedNotification = emptyNotification
@@ -235,12 +235,12 @@ class CopyWorker @AssistedInject constructor(
         return when {
 
             Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q -> ForegroundInfo(
-                NOTIFICATION_ID,
+                NotificationId,
                 notificationBuilder.build(),
                 ServiceInfo.FOREGROUND_SERVICE_TYPE_DATA_SYNC
             )
 
-            else -> ForegroundInfo(NOTIFICATION_ID, notificationBuilder.build())
+            else -> ForegroundInfo(NotificationId, notificationBuilder.build())
         }
     }
 }

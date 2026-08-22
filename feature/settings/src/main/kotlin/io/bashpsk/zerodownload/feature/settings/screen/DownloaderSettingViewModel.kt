@@ -26,7 +26,7 @@ class DownloaderSettingViewModel @Inject constructor(
 ) : ViewModel() {
 
     val runningUpdateWorkList = emptyWorker.getWorkInfoList(
-        workerId = WorkTaskType.LibraryUpdate.uuid
+        workerId = WorkTaskType.LibraryUpdate.name
     ).flatMapLatest { workInfos ->
 
         val newInfoList = workInfos.filter { workInfo ->

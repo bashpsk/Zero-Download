@@ -26,7 +26,7 @@ import io.bashpsk.zerodownload.core.domain.repositories.EmptyMedia
 import io.bashpsk.zerodownload.core.domain.repositories.EmptyNotification
 import io.bashpsk.zerodownload.core.model.notification.AppNotification
 import io.bashpsk.zerodownload.core.model.resources.ConstantIntent
-import io.bashpsk.zerodownload.core.model.resources.ConstantKey
+import io.bashpsk.zerodownload.core.model.resources.WorkerKey
 import io.bashpsk.zerodownload.core.model.worker.WorkTaskType
 import kotlinx.collections.immutable.persistentListOf
 import kotlinx.coroutines.Dispatchers
@@ -52,8 +52,8 @@ class MoveWorker @AssistedInject constructor(
 
     companion object {
 
-        private const val NOTIFICATION_ID = 4
-        const val WORKER_ID = "FILE-MOVE-WORKER"
+        val WorkerId = WorkTaskType.FileMove.name
+        val NotificationId = WorkTaskType.FileMove.ordinal
     }
 
     private val cancelIntent = WorkManager.getInstance(context).createCancelPendingIntent(id)
@@ -61,7 +61,7 @@ class MoveWorker @AssistedInject constructor(
     private val activityIntent = Intent().apply {
 
         action = Intent.ACTION_VIEW
-        data = "${ConstantIntent.WORKER_BASE}/${WorkTaskType.FileMove.id}".toUri()
+        data = "${ConstantIntent.WORKER_BASE}/${WorkTaskType.FileMove.ordinal}".toUri()
     }
 
     private val activityPendingIntent = TaskStackBuilder.create(context).run {
@@ -82,14 +82,14 @@ class MoveWorker @AssistedInject constructor(
 
     override suspend fun doWork(): Result = withContext(context = Dispatchers.IO) {
 
-        val workInitData = workDataOf(ConstantKey.WORK_OUTPUT_MESSAGE to "Input Data is Empty")
+        val workInitData = workDataOf(WorkerKey.WORK_OUTPUT_MESSAGE to "Input Data is Empty")
 
         val destinationInput = workerParameters.inputData.getString(
-            key = ConstantKey.WORK_INPUT_DESTINATION
+            key = WorkerKey.WORK_INPUT_DESTINATION
         ) ?: return@withContext Result.failure(workInitData)
 
         val pathInput = workerParameters.inputData.getString(
-            key = ConstantKey.WORK_INPUT_SOURCE
+            key = WorkerKey.WORK_INPUT_SOURCE
         ) ?: return@withContext Result.failure(workInitData)
 
         var progressJob: Job? = null
@@ -97,7 +97,7 @@ class MoveWorker @AssistedInject constructor(
         notificationBuilder.setProgress(100, 0, true)
 
         emptyNotification.setNotification(
-            id = NOTIFICATION_ID,
+            id = NotificationId,
             notification = notificationBuilder.build()
         )
 
@@ -132,12 +132,12 @@ class MoveWorker @AssistedInject constructor(
                     val savedSize = savedBytes.toFileSize(context = context)
 
                     val workProgressData = workDataOf(
-                        ConstantKey.WORK_OUTPUT_TITLE to sourceFile.name,
-                        ConstantKey.WORK_OUTPUT_MESSAGE to "Moving",
-                        ConstantKey.WORK_OUTPUT_SOURCE to sourceFile.path,
-                        ConstantKey.WORK_OUTPUT_DESTINATION to destinationFile.path,
-                        ConstantKey.WORK_OUTPUT_TOTAL to totalBytes,
-                        ConstantKey.WORK_OUTPUT_SAVED to savedBytes
+                        WorkerKey.WORK_OUTPUT_TITLE to sourceFile.name,
+                        WorkerKey.WORK_OUTPUT_MESSAGE to "Moving",
+                        WorkerKey.WORK_OUTPUT_SOURCE to sourceFile.path,
+                        WorkerKey.WORK_OUTPUT_DESTINATION to destinationFile.path,
+                        WorkerKey.WORK_OUTPUT_TOTAL to totalBytes,
+                        WorkerKey.WORK_OUTPUT_SAVED to savedBytes
                     )
 
                     setProgress(data = workProgressData)
@@ -148,7 +148,7 @@ class MoveWorker @AssistedInject constructor(
                         .setProgress(100, progress, progress == 0)
 
                     emptyNotification.setNotification(
-                        id = NOTIFICATION_ID,
+                        id = NotificationId,
                         notification = notificationBuilder.build()
                     )
 
@@ -184,12 +184,12 @@ class MoveWorker @AssistedInject constructor(
                 !isAtomicPath && sourceFile.exists() && destinationFile.exists() -> {
 
                     val workDeleteSourceData = workDataOf(
-                        ConstantKey.WORK_OUTPUT_TITLE to destinationFile.name,
-                        ConstantKey.WORK_OUTPUT_MESSAGE to "Deleting Original File",
-                        ConstantKey.WORK_OUTPUT_SOURCE to sourceFile.path,
-                        ConstantKey.WORK_OUTPUT_DESTINATION to destinationFile.path,
-                        ConstantKey.WORK_OUTPUT_TOTAL to destinationFile.length(),
-                        ConstantKey.WORK_OUTPUT_SAVED to destinationFile.length()
+                        WorkerKey.WORK_OUTPUT_TITLE to destinationFile.name,
+                        WorkerKey.WORK_OUTPUT_MESSAGE to "Deleting Original File",
+                        WorkerKey.WORK_OUTPUT_SOURCE to sourceFile.path,
+                        WorkerKey.WORK_OUTPUT_DESTINATION to destinationFile.path,
+                        WorkerKey.WORK_OUTPUT_TOTAL to destinationFile.length(),
+                        WorkerKey.WORK_OUTPUT_SAVED to destinationFile.length()
                     )
 
                     setProgress(data = workDeleteSourceData)
@@ -200,7 +200,7 @@ class MoveWorker @AssistedInject constructor(
                         .setProgress(100, 0, true)
 
                     emptyNotification.setNotification(
-                        id = NOTIFICATION_ID,
+                        id = NotificationId,
                         notification = notificationBuilder.build()
                     )
 
@@ -211,12 +211,12 @@ class MoveWorker @AssistedInject constructor(
             progressJob.cancel()
 
             val workScanningData = workDataOf(
-                ConstantKey.WORK_OUTPUT_TITLE to destinationFile.name,
-                ConstantKey.WORK_OUTPUT_MESSAGE to "Scanning",
-                ConstantKey.WORK_OUTPUT_SOURCE to sourceFile.path,
-                ConstantKey.WORK_OUTPUT_DESTINATION to destinationFile.path,
-                ConstantKey.WORK_OUTPUT_TOTAL to destinationFile.length(),
-                ConstantKey.WORK_OUTPUT_SAVED to destinationFile.length()
+                WorkerKey.WORK_OUTPUT_TITLE to destinationFile.name,
+                WorkerKey.WORK_OUTPUT_MESSAGE to "Scanning",
+                WorkerKey.WORK_OUTPUT_SOURCE to sourceFile.path,
+                WorkerKey.WORK_OUTPUT_DESTINATION to destinationFile.path,
+                WorkerKey.WORK_OUTPUT_TOTAL to destinationFile.length(),
+                WorkerKey.WORK_OUTPUT_SAVED to destinationFile.length()
             )
 
             setProgress(data = workScanningData)
@@ -227,7 +227,7 @@ class MoveWorker @AssistedInject constructor(
                 .setProgress(100, 0, true)
 
             emptyNotification.setNotification(
-                id = NOTIFICATION_ID,
+                id = NotificationId,
                 notification = notificationBuilder.build()
             )
 
@@ -237,11 +237,11 @@ class MoveWorker @AssistedInject constructor(
             }
 
             val workCompletedData = workDataOf(
-                ConstantKey.WORK_OUTPUT_TITLE to sourceFile.name,
-                ConstantKey.WORK_OUTPUT_MESSAGE to "Moved",
-                ConstantKey.WORK_OUTPUT_SOURCE to sourceFile.path,
-                ConstantKey.WORK_OUTPUT_DESTINATION to destinationFile.path,
-                ConstantKey.WORK_OUTPUT_TOTAL to destinationFile.length()
+                WorkerKey.WORK_OUTPUT_TITLE to sourceFile.name,
+                WorkerKey.WORK_OUTPUT_MESSAGE to "Moved",
+                WorkerKey.WORK_OUTPUT_SOURCE to sourceFile.path,
+                WorkerKey.WORK_OUTPUT_DESTINATION to destinationFile.path,
+                WorkerKey.WORK_OUTPUT_TOTAL to destinationFile.length()
             )
 
             Result.success(workCompletedData)
@@ -251,8 +251,8 @@ class MoveWorker @AssistedInject constructor(
             val failedMessage = "Error - ${exception.message}"
 
             val workFailedData = workDataOf(
-                ConstantKey.WORK_OUTPUT_TITLE to title,
-                ConstantKey.WORK_OUTPUT_MESSAGE to failedMessage
+                WorkerKey.WORK_OUTPUT_TITLE to title,
+                WorkerKey.WORK_OUTPUT_MESSAGE to failedMessage
             )
 
             val failedNotification = emptyNotification
@@ -278,12 +278,12 @@ class MoveWorker @AssistedInject constructor(
         return when {
 
             Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q -> ForegroundInfo(
-                NOTIFICATION_ID,
+                NotificationId,
                 notificationBuilder.build(),
                 ServiceInfo.FOREGROUND_SERVICE_TYPE_DATA_SYNC
             )
 
-            else -> ForegroundInfo(NOTIFICATION_ID, notificationBuilder.build())
+            else -> ForegroundInfo(NotificationId, notificationBuilder.build())
         }
     }
 }

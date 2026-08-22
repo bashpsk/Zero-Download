@@ -1,15 +1,6 @@
 package io.bashpsk.zerodownload.core.model.resources
 
-object ConstantKey {
-
-    //  MAIN                :
-    const val MAIN_KEEP_SPLASH_SCREEN = "MAIN-KEEP-SPLASH-SCREEN"
-
-    //  HOME                :
-    const val HOME_OPTION_MENU = "HOME-OPTION-MENU"
-    const val HOME_MEDIA_SELECT = "HOME-MEDIA-SELECT"
-    const val HOME_SELECTED_AUDIO = "HOME-SELECTED-AUDIO"
-    const val HOME_SELECTED_VIDEO = "HOME-SELECTED-VIDEO"
+object WorkerKey {
 
     //  WORK INPUT          :
     const val WORK_INPUT_SOURCE_LIST = "WORK-INPUT-SOURCE-LIST"

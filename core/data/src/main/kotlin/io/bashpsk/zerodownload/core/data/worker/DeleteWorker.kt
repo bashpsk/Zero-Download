@@ -23,7 +23,7 @@ import io.bashpsk.zerodownload.core.domain.repositories.EmptyMedia
 import io.bashpsk.zerodownload.core.domain.repositories.EmptyNotification
 import io.bashpsk.zerodownload.core.model.notification.AppNotification
 import io.bashpsk.zerodownload.core.model.resources.ConstantIntent
-import io.bashpsk.zerodownload.core.model.resources.ConstantKey
+import io.bashpsk.zerodownload.core.model.resources.WorkerKey
 import io.bashpsk.zerodownload.core.model.worker.WorkTaskType
 import kotlinx.collections.immutable.persistentListOf
 import kotlinx.coroutines.Dispatchers
@@ -40,8 +40,8 @@ class DeleteWorker @AssistedInject constructor(
 
     companion object {
 
-        private const val NOTIFICATION_ID = 5
-        const val WORKER_ID = "FILE-DELETE-WORKER"
+        val WorkerId = WorkTaskType.FileDelete.name
+        val NotificationId = WorkTaskType.FileDelete.ordinal
     }
 
     private val cancelIntent = WorkManager.getInstance(context).createCancelPendingIntent(id)
@@ -49,7 +49,7 @@ class DeleteWorker @AssistedInject constructor(
     private val activityIntent = Intent().apply {
 
         action = Intent.ACTION_VIEW
-        data = "${ConstantIntent.WORKER_BASE}/${WorkTaskType.FileDelete.id}".toUri()
+        data = "${ConstantIntent.WORKER_BASE}/${WorkTaskType.FileDelete.ordinal}".toUri()
     }
 
     private val activityPendingIntent = TaskStackBuilder.create(context).run {
@@ -70,16 +70,16 @@ class DeleteWorker @AssistedInject constructor(
 
     override suspend fun doWork(): Result = withContext(context = Dispatchers.IO) {
 
-        val workInitData = workDataOf(ConstantKey.WORK_OUTPUT_MESSAGE to "Input Data is Empty")
+        val workInitData = workDataOf(WorkerKey.WORK_OUTPUT_MESSAGE to "Input Data is Empty")
 
         val pathInput = workerParameters.inputData.getString(
-            ConstantKey.WORK_INPUT_SOURCE
+            WorkerKey.WORK_INPUT_SOURCE
         ) ?: return@withContext Result.failure(workInitData)
 
         notificationBuilder.setProgress(100, 0, true)
 
         emptyNotification.setNotification(
-            id = NOTIFICATION_ID,
+            id = NotificationId,
             notification = notificationBuilder.build()
         )
 
@@ -88,10 +88,10 @@ class DeleteWorker @AssistedInject constructor(
             val sourceFile = File(pathInput)
 
             val workProgressData = workDataOf(
-                ConstantKey.WORK_OUTPUT_TITLE to sourceFile.name,
-                ConstantKey.WORK_OUTPUT_MESSAGE to "File Deleting",
-                ConstantKey.WORK_OUTPUT_SOURCE to sourceFile.path,
-                ConstantKey.WORK_OUTPUT_TOTAL to sourceFile.length()
+                WorkerKey.WORK_OUTPUT_TITLE to sourceFile.name,
+                WorkerKey.WORK_OUTPUT_MESSAGE to "File Deleting",
+                WorkerKey.WORK_OUTPUT_SOURCE to sourceFile.path,
+                WorkerKey.WORK_OUTPUT_TOTAL to sourceFile.length()
             )
 
             setProgress(data = workProgressData)
@@ -102,7 +102,7 @@ class DeleteWorker @AssistedInject constructor(
                 .setProgress(100, 0, true)
 
             emptyNotification.setNotification(
-                id = NOTIFICATION_ID,
+                id = NotificationId,
                 notification = notificationBuilder.build()
             )
 
@@ -113,10 +113,10 @@ class DeleteWorker @AssistedInject constructor(
                     true -> {
 
                         val workScanningData = workDataOf(
-                            ConstantKey.WORK_OUTPUT_TITLE to sourceFile.name,
-                            ConstantKey.WORK_OUTPUT_MESSAGE to "Scanning...",
-                            ConstantKey.WORK_OUTPUT_SOURCE to sourceFile.path,
-                            ConstantKey.WORK_OUTPUT_TOTAL to sourceFile.length()
+                            WorkerKey.WORK_OUTPUT_TITLE to sourceFile.name,
+                            WorkerKey.WORK_OUTPUT_MESSAGE to "Scanning...",
+                            WorkerKey.WORK_OUTPUT_SOURCE to sourceFile.path,
+                            WorkerKey.WORK_OUTPUT_TOTAL to sourceFile.length()
                         )
 
                         setProgress(data = workScanningData)
@@ -127,7 +127,7 @@ class DeleteWorker @AssistedInject constructor(
                             .setProgress(100, 0, true)
 
                         emptyNotification.setNotification(
-                            id = NOTIFICATION_ID,
+                            id = NotificationId,
                             notification = notificationBuilder.build()
                         )
 
@@ -140,8 +140,8 @@ class DeleteWorker @AssistedInject constructor(
                     false -> {
 
                         val workFailedData = workDataOf(
-                            ConstantKey.WORK_OUTPUT_TITLE to sourceFile.name,
-                            ConstantKey.WORK_OUTPUT_MESSAGE to "Unknown Error"
+                            WorkerKey.WORK_OUTPUT_TITLE to sourceFile.name,
+                            WorkerKey.WORK_OUTPUT_MESSAGE to "Unknown Error"
                         )
 
                         setProgress(data = workFailedData)
@@ -164,10 +164,10 @@ class DeleteWorker @AssistedInject constructor(
             }
 
             val workCompletedData = workDataOf(
-                ConstantKey.WORK_OUTPUT_TITLE to sourceFile.name,
-                ConstantKey.WORK_OUTPUT_MESSAGE to "Deleted",
-                ConstantKey.WORK_OUTPUT_SOURCE to sourceFile.path,
-                ConstantKey.WORK_OUTPUT_TOTAL to sourceFile.length()
+                WorkerKey.WORK_OUTPUT_TITLE to sourceFile.name,
+                WorkerKey.WORK_OUTPUT_MESSAGE to "Deleted",
+                WorkerKey.WORK_OUTPUT_SOURCE to sourceFile.path,
+                WorkerKey.WORK_OUTPUT_TOTAL to sourceFile.length()
             )
 
             Result.success(workCompletedData)
@@ -177,8 +177,8 @@ class DeleteWorker @AssistedInject constructor(
             val failedMessage = "Error - ${exception.message}"
 
             val workFailedData = workDataOf(
-                ConstantKey.WORK_OUTPUT_TITLE to title,
-                ConstantKey.WORK_OUTPUT_MESSAGE to failedMessage
+                WorkerKey.WORK_OUTPUT_TITLE to title,
+                WorkerKey.WORK_OUTPUT_MESSAGE to failedMessage
             )
 
             val failedNotification = emptyNotification
@@ -203,12 +203,12 @@ class DeleteWorker @AssistedInject constructor(
         return when {
 
             Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q -> ForegroundInfo(
-                NOTIFICATION_ID,
+                NotificationId,
                 notificationBuilder.build(),
                 ServiceInfo.FOREGROUND_SERVICE_TYPE_DATA_SYNC
             )
 
-            else -> ForegroundInfo(NOTIFICATION_ID, notificationBuilder.build())
+            else -> ForegroundInfo(NotificationId, notificationBuilder.build())
         }
     }
 }

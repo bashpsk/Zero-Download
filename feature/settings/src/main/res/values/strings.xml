@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="library_update_already_running_message">Library update is already in progress!</string>
+    <string name="library_update_starting_message">Starting library update!</string>
+
+</resources>

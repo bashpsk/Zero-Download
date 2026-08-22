@@ -8,14 +8,14 @@ import androidx.work.WorkInfo
 import androidx.work.WorkManager
 import androidx.work.workDataOf
 import dagger.hilt.android.qualifiers.ApplicationContext
-import io.bashpsk.zerodownload.core.model.resources.ConstantKey
-import io.bashpsk.zerodownload.core.domain.worker.WorkRequestResult
 import io.bashpsk.zerodownload.core.data.worker.CopyWorker
 import io.bashpsk.zerodownload.core.data.worker.DeleteWorker
 import io.bashpsk.zerodownload.core.data.worker.MoveWorker
 import io.bashpsk.zerodownload.core.data.worker.YtDlCommandWorker
 import io.bashpsk.zerodownload.core.data.worker.YtDlUpdateWorker
 import io.bashpsk.zerodownload.core.domain.repositories.EmptyWorker
+import io.bashpsk.zerodownload.core.domain.worker.WorkRequestResult
+import io.bashpsk.zerodownload.core.model.resources.WorkerKey
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -47,8 +47,8 @@ class EmptyWorkerImpl @Inject constructor(
             emit(value = WorkRequestResult.Init)
 
             val workInputData = workDataOf(
-                ConstantKey.WORK_INPUT_COMMAND to command,
-                ConstantKey.WORK_INPUT_TITLE to title
+                WorkerKey.WORK_INPUT_COMMAND to command,
+                WorkerKey.WORK_INPUT_TITLE to title
             )
 
             val oneTimeWorkRequest = OneTimeWorkRequestBuilder<YtDlCommandWorker>()
@@ -77,7 +77,7 @@ class EmptyWorkerImpl @Inject constructor(
                 .build()
 
             workManager.enqueueUniqueWork(
-                uniqueWorkName = YtDlUpdateWorker.WORKER_ID,
+                uniqueWorkName = YtDlUpdateWorker.WorkerId,
                 existingWorkPolicy = ExistingWorkPolicy.KEEP,
                 request = oneTimeWorkRequest
             )
@@ -98,8 +98,8 @@ class EmptyWorkerImpl @Inject constructor(
             pathList.forEach { path ->
 
                 val workInputData = workDataOf(
-                    ConstantKey.WORK_INPUT_DESTINATION to destination,
-                    ConstantKey.WORK_INPUT_SOURCE to path
+                    WorkerKey.WORK_INPUT_DESTINATION to destination,
+                    WorkerKey.WORK_INPUT_SOURCE to path
                 )
 
                 val oneTimeWorkRequest = OneTimeWorkRequestBuilder<CopyWorker>()
@@ -108,7 +108,7 @@ class EmptyWorkerImpl @Inject constructor(
                     .build()
 
                 workManager.enqueueUniqueWork(
-                    uniqueWorkName = CopyWorker.WORKER_ID,
+                    uniqueWorkName = CopyWorker.WorkerId,
                     existingWorkPolicy = ExistingWorkPolicy.APPEND_OR_REPLACE,
                     request = oneTimeWorkRequest
                 )
@@ -130,8 +130,8 @@ class EmptyWorkerImpl @Inject constructor(
             pathList.forEach { path ->
 
                 val workInputData = workDataOf(
-                    ConstantKey.WORK_INPUT_DESTINATION to destination,
-                    ConstantKey.WORK_INPUT_SOURCE to path
+                    WorkerKey.WORK_INPUT_DESTINATION to destination,
+                    WorkerKey.WORK_INPUT_SOURCE to path
                 )
 
                 val oneTimeWorkRequest = OneTimeWorkRequestBuilder<MoveWorker>()
@@ -140,7 +140,7 @@ class EmptyWorkerImpl @Inject constructor(
                     .build()
 
                 workManager.enqueueUniqueWork(
-                    uniqueWorkName = MoveWorker.WORKER_ID,
+                    uniqueWorkName = MoveWorker.WorkerId,
                     existingWorkPolicy = ExistingWorkPolicy.APPEND_OR_REPLACE,
                     request = oneTimeWorkRequest
                 )
@@ -158,7 +158,7 @@ class EmptyWorkerImpl @Inject constructor(
 
             pathList.forEach { path ->
 
-                val workInputData = workDataOf(ConstantKey.WORK_INPUT_SOURCE to path)
+                val workInputData = workDataOf(WorkerKey.WORK_INPUT_SOURCE to path)
 
                 val oneTimeWorkRequest = OneTimeWorkRequestBuilder<DeleteWorker>()
                     .setExpedited(policy = OutOfQuotaPolicy.RUN_AS_NON_EXPEDITED_WORK_REQUEST)
@@ -166,7 +166,7 @@ class EmptyWorkerImpl @Inject constructor(
                     .build()
 
                 workManager.enqueueUniqueWork(
-                    uniqueWorkName = DeleteWorker.WORKER_ID,
+                    uniqueWorkName = DeleteWorker.WorkerId,
                     existingWorkPolicy = ExistingWorkPolicy.APPEND_OR_REPLACE,
                     request = oneTimeWorkRequest
                 )

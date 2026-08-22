@@ -3,6 +3,8 @@ package io.bashpsk.zerodownload.core.model.menu
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Brightness6
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.ReadOnlyComposable
+import androidx.compose.runtime.Stable
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
 import io.bashpsk.zerodownload.core.model.R
@@ -13,6 +15,8 @@ enum class HomeMenu(val label: Int, val icon: ImageVector) {
 
     companion object {
 
+        @Stable
+        @ReadOnlyComposable
         @Composable
         fun HomeMenu.toLabel(): String {
 

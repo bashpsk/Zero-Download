@@ -18,11 +18,11 @@ import androidx.compose.ui.res.stringResource
 import io.bashpsk.zerodownload.core.domain.states.MediaSearchState
 import io.bashpsk.zerodownload.core.model.media.MediaData
 import io.bashpsk.zerodownload.core.model.media.MediaFormatData
-import io.bashpsk.zerodownload.core.ui.R
 import io.bashpsk.zerodownload.core.ui.media.MediaFormatView
 import io.bashpsk.zerodownload.core.ui.media.MediaView
 import io.bashpsk.zerodownload.core.ui.media.PlaylistMediaView
 import io.bashpsk.zerodownload.core.ui.playlist.PlaylistView
+import io.bashpsk.zerodownload.feature.home.R
 import kotlinx.collections.immutable.ImmutableList
 
 @PublishedApi

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="video_audio_media_category_title">Video with Audio</string>
+    <string name="audio_only_media_category_title">Audio Only</string>
+    <string name="video_only_media_category_title">Video Only</string>
+    <string name="unknown_media_category_title">Unknown type</string>
+
+    <string name="link_input_instruction">Click \'+\' button to search a media/playlist from the internet.</string>
+    <string name="searching_wait_instruction">Please wait while we search for the media/playlist. Its take few seconds.</string>
+    <string name="searching_failed">Search failed. Due to following error:</string>
+
+</resources>

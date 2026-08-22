@@ -20,12 +20,12 @@ import dagger.assisted.Assisted
 import dagger.assisted.AssistedInject
 import io.bashpsk.zerodownload.core.common.log.LOG_TAG
 import io.bashpsk.zerodownload.core.data.R
+import io.bashpsk.zerodownload.core.datastore.settings.PreferenceData
 import io.bashpsk.zerodownload.core.domain.repositories.EmptyDatastore
 import io.bashpsk.zerodownload.core.domain.repositories.EmptyNotification
-import io.bashpsk.zerodownload.core.datastore.settings.PreferenceData
 import io.bashpsk.zerodownload.core.model.notification.AppNotification
 import io.bashpsk.zerodownload.core.model.resources.ConstantIntent
-import io.bashpsk.zerodownload.core.model.resources.ConstantKey
+import io.bashpsk.zerodownload.core.model.resources.WorkerKey
 import io.bashpsk.zerodownload.core.model.worker.WorkTaskType
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ensureActive
@@ -41,8 +41,8 @@ class YtDlUpdateWorker @AssistedInject constructor(
 
     companion object {
 
-        private const val NOTIFICATION_ID = 1
-        const val WORKER_ID = "YT-DL-UPDATE-WORKER"
+        val WorkerId = WorkTaskType.LibraryUpdate.name
+        val NotificationId = WorkTaskType.LibraryUpdate.ordinal
     }
 
     private val cancelIntent = WorkManager.getInstance(context).createCancelPendingIntent(id)
@@ -50,7 +50,7 @@ class YtDlUpdateWorker @AssistedInject constructor(
     private val activityIntent = Intent().apply {
 
         action = Intent.ACTION_VIEW
-        data = "${ConstantIntent.WORKER_BASE}/${WorkTaskType.LibraryUpdate.id}".toUri()
+        data = "${ConstantIntent.WORKER_BASE}/${WorkTaskType.LibraryUpdate.ordinal}".toUri()
     }
 
     private val activityPendingIntent = TaskStackBuilder.create(context).run {
@@ -76,7 +76,7 @@ class YtDlUpdateWorker @AssistedInject constructor(
             notificationBuilder.setContentTitle("Updating Library...").setProgress(100, 0, true)
 
             emptyNotification.setNotification(
-                id = NOTIFICATION_ID,
+                id = NotificationId,
                 notification = notificationBuilder.build()
             )
 
@@ -86,8 +86,8 @@ class YtDlUpdateWorker @AssistedInject constructor(
             )?.name
 
             val workCompletedData = workDataOf(
-                ConstantKey.WORK_OUTPUT_TITLE to "Library Update Completed",
-                ConstantKey.WORK_OUTPUT_MESSAGE to updateOutput
+                WorkerKey.WORK_OUTPUT_TITLE to "Library Update Completed",
+                WorkerKey.WORK_OUTPUT_MESSAGE to updateOutput
             )
 
             val completedNotification = emptyNotification
@@ -97,7 +97,7 @@ class YtDlUpdateWorker @AssistedInject constructor(
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT)
 
             emptyNotification.setNotification(
-                id = NOTIFICATION_ID,
+                id = NotificationId,
                 notification = completedNotification.build()
             )
 
@@ -107,8 +107,8 @@ class YtDlUpdateWorker @AssistedInject constructor(
             val failedMessage = "Error: ${exception.message}"
 
             val workFailedData = workDataOf(
-                ConstantKey.WORK_OUTPUT_TITLE to "Library Update Failed",
-                ConstantKey.WORK_OUTPUT_MESSAGE to failedMessage
+                WorkerKey.WORK_OUTPUT_TITLE to "Library Update Failed",
+                WorkerKey.WORK_OUTPUT_MESSAGE to failedMessage
             )
 
             val failedNotification = emptyNotification
@@ -119,7 +119,7 @@ class YtDlUpdateWorker @AssistedInject constructor(
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT)
 
             emptyNotification.setNotification(
-                id = NOTIFICATION_ID,
+                id = NotificationId,
                 notification = failedNotification.build()
             )
 
@@ -143,12 +143,12 @@ class YtDlUpdateWorker @AssistedInject constructor(
         return when {
 
             Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q -> ForegroundInfo(
-                NOTIFICATION_ID,
+                NotificationId,
                 notificationBuilder.build(),
                 ServiceInfo.FOREGROUND_SERVICE_TYPE_DATA_SYNC
             )
 
-            else -> ForegroundInfo(NOTIFICATION_ID, notificationBuilder.build())
+            else -> ForegroundInfo(NotificationId, notificationBuilder.build())
         }
     }
 }

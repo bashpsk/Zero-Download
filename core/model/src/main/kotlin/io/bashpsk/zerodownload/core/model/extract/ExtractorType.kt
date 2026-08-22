@@ -1,9 +1,16 @@
 package io.bashpsk.zerodownload.core.model.extract
 
-enum class ExtractorType(val label: String = "") {
+import androidx.annotation.StringRes
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.ReadOnlyComposable
+import androidx.compose.runtime.Stable
+import androidx.compose.ui.res.stringResource
+import io.bashpsk.zerodownload.core.model.R
 
-    Youtube(label = "Youtube"),
-    Unknown(label = "Unknown");
+enum class ExtractorType(@StringRes val id: Int) {
+
+    Youtube(id = R.string.extractor_youtube),
+    Unknown(id = R.string.extractor_unknown);
 
     companion object {
 
@@ -14,8 +21,14 @@ enum class ExtractorType(val label: String = "") {
                 valueOf(value = name)
             } catch (exception: Exception) {
 
-                entries.firstOrNull { type -> type.label == name } ?: Unknown
+                Unknown
             }
         }
+
+        val ExtractorType.label: String
+        @Stable
+        @ReadOnlyComposable
+        @Composable
+        get() = stringResource(id)
     }
 }

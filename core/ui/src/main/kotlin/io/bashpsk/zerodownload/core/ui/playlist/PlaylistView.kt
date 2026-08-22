@@ -31,6 +31,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import io.bashpsk.zerodownload.core.domain.extension.getIcon
 import io.bashpsk.zerodownload.core.model.extract.ExtractorType
+import io.bashpsk.zerodownload.core.model.extract.ExtractorType.Companion.label
 import io.bashpsk.zerodownload.core.model.media.PlaylistMediaData
 import io.bashpsk.zerodownload.core.ui.R
 import io.bashpsk.zerodownload.core.ui.components.LabelRow

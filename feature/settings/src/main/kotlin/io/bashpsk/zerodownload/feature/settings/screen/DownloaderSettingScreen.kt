@@ -26,8 +26,8 @@ import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import io.bashpsk.zerodownload.core.model.resources.ConstantWindow
 import io.bashpsk.zerodownload.core.model.topbar.TopAppBarType
-import io.bashpsk.zerodownload.core.ui.R
 import io.bashpsk.zerodownload.core.ui.topbar.DownloaderSettingTopBar
+import io.bashpsk.zerodownload.feature.settings.R
 import io.bashpsk.zerodownload.feature.settings.event.DownloaderSettingUIEvent
 import io.bashpsk.zerodownload.feature.settings.ui.YtDlUpdateSetting
 import kotlinx.coroutines.cancelChildren

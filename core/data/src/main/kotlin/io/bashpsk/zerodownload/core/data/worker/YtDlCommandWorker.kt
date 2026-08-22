@@ -25,8 +25,8 @@ import io.bashpsk.zerodownload.core.domain.repositories.EmptyNotification
 import io.bashpsk.zerodownload.core.model.notification.AppNotification
 import io.bashpsk.zerodownload.core.model.resources.ConstantCommand
 import io.bashpsk.zerodownload.core.model.resources.ConstantIntent
-import io.bashpsk.zerodownload.core.model.resources.ConstantKey
 import io.bashpsk.zerodownload.core.model.resources.ConstantString
+import io.bashpsk.zerodownload.core.model.resources.WorkerKey
 import io.bashpsk.zerodownload.core.model.worker.WorkTaskType
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -49,8 +49,8 @@ class YtDlCommandWorker @AssistedInject constructor(
 
     companion object {
 
-        val WorkerId = WorkTaskType.YtDlCommand.uuid
-        val NotificationId = WorkTaskType.YtDlCommand.id
+        val WorkerId = WorkTaskType.YtDlCommand.name
+        val NotificationId = WorkTaskType.YtDlCommand.ordinal
     }
 
     val cancelIntent = WorkManager.getInstance(context).createCancelPendingIntent(id)
@@ -58,7 +58,7 @@ class YtDlCommandWorker @AssistedInject constructor(
     val activityIntent = Intent().apply {
 
         action = Intent.ACTION_VIEW
-        data = "${ConstantIntent.WORKER_BASE}/${WorkTaskType.YtDlCommand.id}".toUri()
+        data = "${ConstantIntent.WORKER_BASE}/${WorkTaskType.YtDlCommand.ordinal}".toUri()
     }
 
     val activityPendingIntent = TaskStackBuilder.create(context).run {
@@ -81,14 +81,14 @@ class YtDlCommandWorker @AssistedInject constructor(
 
         setForeground(foregroundInfo = createForegroundInfo())
 
-        val workInitData = workDataOf(ConstantKey.WORK_OUTPUT_MESSAGE to "Input Data is Empty.")
+        val workInitData = workDataOf(WorkerKey.WORK_OUTPUT_MESSAGE to "Input Data is Empty.")
 
         val titleInput = inputData.getString(
-            ConstantKey.WORK_INPUT_TITLE
+            WorkerKey.WORK_INPUT_TITLE
         ) ?: return@withContext Result.failure(workInitData)
 
         val commandInput = inputData.getString(
-            ConstantKey.WORK_INPUT_COMMAND
+            WorkerKey.WORK_INPUT_COMMAND
         ) ?: return@withContext Result.failure(workInitData)
 
         notificationBuilder.setProgress(100, 0, true)
@@ -150,11 +150,11 @@ class YtDlCommandWorker @AssistedInject constructor(
 //                    "PROGRESS: $progress, ETA: $eta, LINE: $line".setDebug()
 
                     val progressData = workDataOf(
-                        ConstantKey.WORK_OUTPUT_TITLE to titleInput,
-                        ConstantKey.WORK_OUTPUT_MESSAGE to line,
-                        ConstantKey.WORK_OUTPUT_ENTRY to commandInput,
-                        ConstantKey.WORK_OUTPUT_PROGRESS to progress,
-                        ConstantKey.WORK_OUTPUT_ETA to eta
+                        WorkerKey.WORK_OUTPUT_TITLE to titleInput,
+                        WorkerKey.WORK_OUTPUT_MESSAGE to line,
+                        WorkerKey.WORK_OUTPUT_ENTRY to commandInput,
+                        WorkerKey.WORK_OUTPUT_PROGRESS to progress,
+                        WorkerKey.WORK_OUTPUT_ETA to eta
                     )
 
                     notificationBuilder
@@ -203,10 +203,10 @@ class YtDlCommandWorker @AssistedInject constructor(
             )
 
             val workCompletedData = workDataOf(
-                ConstantKey.WORK_OUTPUT_TITLE to titleInput,
-                ConstantKey.WORK_OUTPUT_MESSAGE to "Completed",
-                ConstantKey.WORK_OUTPUT_ENTRY to commandInput,
-                ConstantKey.WORK_OUTPUT_DESTINATION to commandOutputFile.path
+                WorkerKey.WORK_OUTPUT_TITLE to titleInput,
+                WorkerKey.WORK_OUTPUT_MESSAGE to "Completed",
+                WorkerKey.WORK_OUTPUT_ENTRY to commandInput,
+                WorkerKey.WORK_OUTPUT_DESTINATION to commandOutputFile.path
             )
 
             Result.success(workCompletedData)
@@ -222,8 +222,8 @@ class YtDlCommandWorker @AssistedInject constructor(
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT)
 
             val completedWorkData = workDataOf(
-                ConstantKey.WORK_OUTPUT_TITLE to titleInput,
-                ConstantKey.WORK_OUTPUT_MESSAGE to message
+                WorkerKey.WORK_OUTPUT_TITLE to titleInput,
+                WorkerKey.WORK_OUTPUT_MESSAGE to message
             )
 
             emptyNotification.setNotification(

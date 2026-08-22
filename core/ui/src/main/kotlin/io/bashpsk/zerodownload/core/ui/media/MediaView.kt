@@ -41,6 +41,7 @@ import io.bashpsk.emptylibs.formatter.format.findAspectRatio
 import io.bashpsk.emptylibs.formatter.format.formattedDuration
 import io.bashpsk.zerodownload.core.domain.extension.getIcon
 import io.bashpsk.zerodownload.core.model.extract.ExtractorType
+import io.bashpsk.zerodownload.core.model.extract.ExtractorType.Companion.label
 import io.bashpsk.zerodownload.core.model.media.EmptyMediaType
 import io.bashpsk.zerodownload.core.model.media.MediaData
 import io.bashpsk.zerodownload.core.ui.R
