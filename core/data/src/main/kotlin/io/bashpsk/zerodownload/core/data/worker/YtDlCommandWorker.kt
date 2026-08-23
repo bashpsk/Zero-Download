@@ -106,7 +106,7 @@ class YtDlCommandWorker @AssistedInject constructor(
                 Environment.DIRECTORY_DOWNLOADS
             )
 
-            val rootDirectory = File(downloadsDirectory, ConstantString.APP_NAME)
+            val rootDirectory = File(downloadsDirectory, ConstantString.ROOT_FOLDER)
 
             val dlRequest = YoutubeDLRequest(urls = Collections.emptyList())
             val commandMatcher = Pattern.compile(commandRegex).matcher(commandInput)

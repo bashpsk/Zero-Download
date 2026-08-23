@@ -87,7 +87,7 @@ class HomeViewModel @Inject constructor(
                     Environment.DIRECTORY_DOWNLOADS
                 )
 
-                val rootDirectory = File(downloadsDirectory, ConstantString.APP_NAME)
+                val rootDirectory = File(downloadsDirectory, ConstantString.ROOT_FOLDER)
 
                 val formatIdsRegex = Regex(pattern = "^\\+|\\+$")
 
@@ -128,7 +128,7 @@ class HomeViewModel @Inject constructor(
                     Environment.DIRECTORY_DOWNLOADS
                 )
 
-                val rootDirectory = File(downloadsDirectory, ConstantString.APP_NAME)
+                val rootDirectory = File(downloadsDirectory, ConstantString.ROOT_FOLDER)
 
                 val videoFormat = "bestvideo${
                     uiEvent.videoQuality?.height?.let { height -> "[height<=$height]" } ?: ""
@@ -217,8 +217,8 @@ class HomeViewModel @Inject constructor(
                         media.link == uiEvent.media.link
                     }?.let { existMedia ->
 
-                        medias.remove(element = existMedia)
-                    } ?: medias.add(element = uiEvent.media)
+                        medias.removing(element = existMedia)
+                    } ?: medias.adding(element = uiEvent.media)
                 }
             }
 

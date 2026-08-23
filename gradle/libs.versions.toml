@@ -33,9 +33,10 @@ empty-libs = "1.4.5-alpha02"
 accompanist-permissions = "0.37.3"
 coil-kt = "3.5.0"
 android-ytdl = "0.18.1"
-commons-io = "2.15.0"
-commons-compress = "1.24.0"
-fasterxml-jackson = "2.16.0"
+commons-io = "2.22.0"
+commons-compress = "1.28.0"
+fasterxml-jackson = "2.22.2"
+fasterxml-jackson-annotations = "2.22"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "core-ktx" }
@@ -128,7 +129,7 @@ commons-io = { group = "commons-io", name = "commons-io", version.ref = "commons
 apache-commons-compress = { group = "org.apache.commons", name = "commons-compress", version.ref = "commons-compress" }
 fasterxml-jackson-core = { group = "com.fasterxml.jackson.core", name = "jackson-core", version.ref = "fasterxml-jackson" }
 fasterxml-jackson-databind = { group = "com.fasterxml.jackson.core", name = "jackson-databind", version.ref = "fasterxml-jackson" }
-fasterxml-jackson-annotations = { group = "com.fasterxml.jackson.core", name = "jackson-annotations", version.ref = "fasterxml-jackson" }
+fasterxml-jackson-annotations = { group = "com.fasterxml.jackson.core", name = "jackson-annotations", version.ref = "fasterxml-jackson-annotations" }
 google-accompanist-permissions = { group = "com.google.accompanist", name = "accompanist-permissions", version.ref = "accompanist-permissions" }
 coil3-compose = { group = "io.coil-kt.coil3", name = "coil-compose", version.ref = "coil-kt" }
 coil3-gif = { group = "io.coil-kt.coil3", name = "coil-gif", version.ref = "coil-kt" }
