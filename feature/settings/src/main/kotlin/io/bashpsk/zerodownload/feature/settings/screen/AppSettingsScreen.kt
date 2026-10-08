@@ -1,8 +1,5 @@
 package io.bashpsk.zerodownload.feature.settings.screen
 
-import androidx.compose.animation.core.Spring
-import androidx.compose.animation.core.spring
-import androidx.compose.animation.core.tween
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.consumeWindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
@@ -10,23 +7,23 @@ import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.lazy.grid.rememberLazyGridState
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import io.bashpsk.zerodownload.core.model.resources.ConstantWindow
-import io.bashpsk.zerodownload.core.model.topbar.TopAppBarType
 import io.bashpsk.zerodownload.core.navigation.model.AppSettingCategory
 import io.bashpsk.zerodownload.core.navigation.screen.NavScreen
+import io.bashpsk.zerodownload.core.ui.animation.itemBounceAnimation
 import io.bashpsk.zerodownload.core.ui.settings.SettingCategoryView
-import io.bashpsk.zerodownload.core.ui.topbar.SettingsTopBar
+import io.bashpsk.zerodownload.core.ui.topbar.GenericArrowTopBar
+import io.bashpsk.zerodownload.core.ui.window.SettingsCategoryLayoutSize
+import io.bashpsk.zerodownload.feature.settings.R
 import kotlinx.collections.immutable.toImmutableList
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 inline fun AppSettingsScreen(
     crossinline onNavigateScreen: (navScreen: NavScreen) -> Unit,
@@ -44,9 +41,9 @@ inline fun AppSettingsScreen(
             .nestedScroll(connection = scrollBehavior.nestedScrollConnection),
         topBar = {
 
-            SettingsTopBar(
+            GenericArrowTopBar(
+                title = stringResource(R.string.settings_screen),
                 scrollBehavior = scrollBehavior,
-                topAppBarType = TopAppBarType.Arrow,
                 onNavigationClick = onNavigateBack
             )
         }
@@ -58,7 +55,7 @@ inline fun AppSettingsScreen(
                 .consumeWindowInsets(paddingValues = paddingValues),
             state = settingsLazyListState,
             contentPadding = paddingValues,
-            columns = GridCells.Adaptive(minSize = ConstantWindow.SETTINGS_CATEGORY),
+            columns = GridCells.Adaptive(minSize = SettingsCategoryLayoutSize),
             horizontalArrangement = Arrangement.spacedBy(space = 4.dp),
             verticalArrangement = Arrangement.spacedBy(space = 4.dp)
         ) {
@@ -69,14 +66,7 @@ inline fun AppSettingsScreen(
             ) { settingCategory ->
 
                 SettingCategoryView(
-                    modifier = Modifier.animateItem(
-                        fadeInSpec = tween(durationMillis = 250),
-                        fadeOutSpec = tween(durationMillis = 100),
-                        placementSpec = spring(
-                            stiffness = Spring.StiffnessLow,
-                            dampingRatio = Spring.DampingRatioMediumBouncy
-                        )
-                    ),
+                    modifier = Modifier.itemBounceAnimation(),
                     settingCategory = settingCategory,
                     onOpenSettings = onNavigateScreen
                 )

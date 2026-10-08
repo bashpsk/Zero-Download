@@ -2,13 +2,11 @@ package io.bashpsk.zerodownload.core.data.worker
 
 import android.app.PendingIntent
 import android.content.Context
-import android.content.Intent
 import android.content.pm.ServiceInfo
 import android.os.Build
 import android.util.Log
 import androidx.core.app.NotificationCompat
 import androidx.core.app.TaskStackBuilder
-import androidx.core.net.toUri
 import androidx.hilt.work.HiltWorker
 import androidx.work.CoroutineWorker
 import androidx.work.ForegroundInfo
@@ -24,7 +22,6 @@ import io.bashpsk.zerodownload.core.datastore.settings.PreferenceData
 import io.bashpsk.zerodownload.core.domain.repositories.EmptyDatastore
 import io.bashpsk.zerodownload.core.domain.repositories.EmptyNotification
 import io.bashpsk.zerodownload.core.model.notification.AppNotification
-import io.bashpsk.zerodownload.core.model.resources.ConstantIntent
 import io.bashpsk.zerodownload.core.model.resources.WorkerKey
 import io.bashpsk.zerodownload.core.model.worker.WorkTaskType
 import kotlinx.coroutines.Dispatchers
@@ -41,21 +38,21 @@ class YtDlUpdateWorker @AssistedInject constructor(
 
     companion object {
 
-        val WorkerId = WorkTaskType.LibraryUpdate.name
-        val NotificationId = WorkTaskType.LibraryUpdate.ordinal
+        val WorkerId = WorkTaskType.YtDlLibrary.name
+        val NotificationId = WorkTaskType.YtDlLibrary.ordinal
     }
 
     private val cancelIntent = WorkManager.getInstance(context).createCancelPendingIntent(id)
 
-    private val activityIntent = Intent().apply {
+    /*private val activityIntent = Intent().apply {
 
         action = Intent.ACTION_VIEW
         data = "${ConstantIntent.WORKER_BASE}/${WorkTaskType.LibraryUpdate.ordinal}".toUri()
-    }
+    }*/
 
     private val activityPendingIntent = TaskStackBuilder.create(context).run {
 
-        addNextIntentWithParentStack(activityIntent)
+//        addNextIntentWithParentStack(activityIntent)
         getPendingIntent(0, PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT)
     }
 

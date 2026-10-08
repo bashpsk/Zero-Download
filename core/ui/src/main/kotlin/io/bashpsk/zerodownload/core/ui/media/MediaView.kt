@@ -9,7 +9,6 @@ import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.AccessTime
 import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material.icons.filled.RemoveRedEye
 import androidx.compose.material.icons.filled.Repeat
@@ -117,118 +116,118 @@ inline fun MediaView(
     val elevatedCardBorderColor = MaterialTheme.colorScheme.outline.copy(alpha = 0.45F)
     val elevatedCardShape = MaterialTheme.shapes.extraSmall
 
-    when (isEmptyMediaView) {
+    if (isEmptyMediaView) EmptyMediaView(
+        modifier = modifier,
+        isEmptyMediaView = true,
+        emptyMediaType = EmptyMediaType.Large
+    ) else ElevatedCard(
+        modifier = modifier
+            .border(width = 0.6.dp, color = elevatedCardBorderColor, shape = elevatedCardShape)
+            .clip(shape = elevatedCardShape),
+        shape = elevatedCardShape,
+        colors = elevatedCardColors,
+        onClick = {
 
-        true -> EmptyMediaView(
-            modifier = modifier,
-            isEmptyMediaView = true,
-            emptyMediaType = EmptyMediaType.LARGE
-        )
+            onMediaClick(mediaData)
+        }
+    ) {
 
-        false -> ElevatedCard(
-            modifier = modifier
-                .border(width = 0.6.dp, color = elevatedCardBorderColor, shape = elevatedCardShape)
-                .clip(shape = elevatedCardShape),
-            shape = elevatedCardShape,
-            colors = elevatedCardColors,
-            onClick = {
-
-                onMediaClick(mediaData)
-            }
+        Box(
+            modifier = Modifier.fillMaxWidth(),
+            contentAlignment = Alignment.BottomCenter
         ) {
 
-            Box(
-                modifier = Modifier.fillMaxWidth(),
-                contentAlignment = Alignment.BottomCenter
-            ) {
+            AsyncImage(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .aspectRatio(ratio = thumbnailAspectRatio)
+                    .clip(shape = elevatedCardShape),
+                model = thumbnailRequest,
+                contentScale = ContentScale.Crop,
+                contentDescription = stringResource(R.string.thumbnail)
+            )
 
-                AsyncImage(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .aspectRatio(ratio = thumbnailAspectRatio)
-                        .clip(shape = elevatedCardShape),
-                    model = thumbnailRequest,
-                    contentScale = ContentScale.Crop,
-                    contentDescription = stringResource(R.string.thumbnail)
-                )
+            Box(
+                modifier = Modifier.matchParentSize(),
+                contentAlignment = Alignment.TopCenter
+            ) {
 
                 if (isMediaSelect) Checkbox(
                     modifier = Modifier.align(alignment = Alignment.TopEnd),
                     checked = isSelected,
                     onCheckedChange = null
                 )
-            }
 
-            Column(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 8.dp, vertical = 8.dp),
-                horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.spacedBy(space = 2.dp)
+                LabelRow(
+                    modifier = Modifier.align(alignment = Alignment.BottomEnd),
+                    text = formattedDuration
+                )
+            }
+        }
+
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 8.dp, vertical = 8.dp),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.spacedBy(space = 2.dp)
+        ) {
+
+            Text(
+                modifier = Modifier.fillMaxWidth(),
+                text = mediaData.title,
+                textAlign = TextAlign.Start,
+                style = MaterialTheme.typography.bodyMedium
+            )
+
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.spacedBy(space = 4.dp),
+                verticalAlignment = Alignment.CenterVertically
             ) {
 
-                Text(
-                    modifier = Modifier.fillMaxWidth(),
-                    text = mediaData.title,
-                    textAlign = TextAlign.Start,
-                    style = MaterialTheme.typography.bodyMedium
+                LabelRow(
+                    modifier = Modifier.weight(weight = 2.0F),
+                    icon = Icons.Filled.AccountCircle,
+                    text = mediaData.channelName
                 )
 
-                Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.spacedBy(space = 4.dp),
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
+                LabelRow(
+                    modifier = Modifier.weight(weight = 1.0F),
+                    image = painterResource(extractorImage),
+                    text = extractorType.label
+                )
+            }
 
-                    LabelRow(
-                        modifier = Modifier.weight(weight = 2.0F),
-                        icon = Icons.Filled.AccountCircle,
-                        text = mediaData.channelName
-                    )
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.spacedBy(space = 4.dp),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
 
-                    LabelRow(
-                        modifier = Modifier.weight(weight = 1.0F),
-                        image = painterResource(extractorImage),
-                        text = extractorType.label
-                    )
-                }
+                LabelRow(
+                    modifier = Modifier.weight(weight = 1.0F),
+                    icon = Icons.Filled.RemoveRedEye,
+                    text = formattedViewCount
+                )
 
-                Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.spacedBy(space = 4.dp),
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
+                LabelRow(
+                    modifier = Modifier.weight(weight = 1.0F),
+                    icon = Icons.Filled.ThumbUp,
+                    text = formattedLikeCount
+                )
 
-                    LabelRow(
-                        modifier = Modifier.weight(weight = 1.0F),
-                        icon = Icons.Filled.AccessTime,
-                        text = formattedDuration
-                    )
+                LabelRow(
+                    modifier = Modifier.weight(weight = 1.0F),
+                    icon = Icons.Filled.ThumbDown,
+                    text = formattedDisLikeCount
+                )
 
-                    LabelRow(
-                        modifier = Modifier.weight(weight = 1.0F),
-                        icon = Icons.Filled.RemoveRedEye,
-                        text = formattedViewCount
-                    )
-
-                    LabelRow(
-                        modifier = Modifier.weight(weight = 1.0F),
-                        icon = Icons.Filled.ThumbUp,
-                        text = formattedLikeCount
-                    )
-
-                    LabelRow(
-                        modifier = Modifier.weight(weight = 1.0F),
-                        icon = Icons.Filled.ThumbDown,
-                        text = formattedDisLikeCount
-                    )
-
-                    LabelRow(
-                        modifier = Modifier.weight(weight = 1.0F),
-                        icon = Icons.Filled.Repeat,
-                        text = formattedRepostCount
-                    )
-                }
+                LabelRow(
+                    modifier = Modifier.weight(weight = 1.0F),
+                    icon = Icons.Filled.Repeat,
+                    text = formattedRepostCount
+                )
             }
         }
     }

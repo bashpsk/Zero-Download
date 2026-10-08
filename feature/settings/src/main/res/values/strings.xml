@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <string name="settings_screen">Settings</string>
+    <string name="general_settings_screen">General Settings</string>
+    <string name="downloader_settings_screen">Downloader Settings</string>
+    <string name="downloads_settings_screen">Downloads Settings</string>
+
     <string name="library_update_already_running_message">Library update is already in progress!</string>
     <string name="library_update_starting_message">Starting library update!</string>
 

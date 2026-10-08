@@ -1,30 +1,27 @@
 package io.bashpsk.zerodownload.feature.settings.screen
 
 import android.os.Build
-import androidx.compose.animation.core.Spring
-import androidx.compose.animation.core.spring
-import androidx.compose.animation.core.tween
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.consumeWindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.rememberLazyGridState
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import io.bashpsk.zerodownload.core.model.resources.ConstantWindow
-import io.bashpsk.zerodownload.core.model.topbar.TopAppBarType
-import io.bashpsk.zerodownload.core.ui.topbar.GeneralSettingTopBar
+import io.bashpsk.zerodownload.core.ui.animation.itemBounceAnimation
+import io.bashpsk.zerodownload.core.ui.topbar.GenericArrowTopBar
+import io.bashpsk.zerodownload.core.ui.window.SettingsViewLayoutSize
+import io.bashpsk.zerodownload.feature.settings.R
 import io.bashpsk.zerodownload.feature.settings.ui.ApplicationLanguageSetting
 import io.bashpsk.zerodownload.feature.settings.ui.ApplicationThemeSetting
 import io.bashpsk.zerodownload.feature.settings.ui.DynamicColorThemeSetting
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 inline fun GeneralSettingScreen(
     noinline onNavigateBack: () -> Unit
@@ -39,9 +36,9 @@ inline fun GeneralSettingScreen(
             .nestedScroll(connection = scrollBehavior.nestedScrollConnection),
         topBar = {
 
-            GeneralSettingTopBar(
+            GenericArrowTopBar(
+                title = stringResource(R.string.general_settings_screen),
                 scrollBehavior = scrollBehavior,
-                topAppBarType = TopAppBarType.Arrow,
                 onNavigationClick = onNavigateBack
             )
         }
@@ -53,7 +50,7 @@ inline fun GeneralSettingScreen(
                 .consumeWindowInsets(paddingValues = paddingValues),
             state = settingsLazyListState,
             contentPadding = paddingValues,
-            columns = GridCells.Adaptive(minSize = ConstantWindow.SETTING_VIEW),
+            columns = GridCells.Adaptive(minSize = SettingsViewLayoutSize),
             horizontalArrangement = Arrangement.spacedBy(space = 4.dp),
             verticalArrangement = Arrangement.spacedBy(space = 4.dp)
         ) {
@@ -61,14 +58,7 @@ inline fun GeneralSettingScreen(
             item {
 
                 ApplicationThemeSetting(
-                    modifier = Modifier.animateItem(
-                        fadeInSpec = tween(durationMillis = 250),
-                        fadeOutSpec = tween(durationMillis = 100),
-                        placementSpec = spring(
-                            stiffness = Spring.StiffnessLow,
-                            dampingRatio = Spring.DampingRatioMediumBouncy
-                        )
-                    )
+                    modifier = Modifier.itemBounceAnimation()
                 )
             }
 
@@ -77,14 +67,7 @@ inline fun GeneralSettingScreen(
                 when {
 
                     Build.VERSION.SDK_INT >= Build.VERSION_CODES.S -> DynamicColorThemeSetting(
-                        modifier = Modifier.animateItem(
-                            fadeInSpec = tween(durationMillis = 250),
-                            fadeOutSpec = tween(durationMillis = 100),
-                            placementSpec = spring(
-                                stiffness = Spring.StiffnessLow,
-                                dampingRatio = Spring.DampingRatioMediumBouncy
-                            )
-                        )
+                        modifier = Modifier.itemBounceAnimation()
                     )
                 }
             }
@@ -92,14 +75,7 @@ inline fun GeneralSettingScreen(
             item {
 
                 ApplicationLanguageSetting(
-                    modifier = Modifier.animateItem(
-                        fadeInSpec = tween(durationMillis = 250),
-                        fadeOutSpec = tween(durationMillis = 100),
-                        placementSpec = spring(
-                            stiffness = Spring.StiffnessLow,
-                            dampingRatio = Spring.DampingRatioMediumBouncy
-                        )
-                    )
+                    modifier = Modifier.itemBounceAnimation()
                 )
             }
         }

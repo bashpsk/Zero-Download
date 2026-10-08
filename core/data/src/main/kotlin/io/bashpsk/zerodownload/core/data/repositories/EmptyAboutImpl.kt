@@ -73,23 +73,6 @@ class EmptyAboutImpl @Inject constructor(
         }.flowOn(context = Dispatchers.IO)
     }
 
-    override fun setAppLinkShare(activity: Activity, appPackage: String, message: String) {
-
-        emptyScope.launch(context = Dispatchers.IO + exceptionHandler) {
-
-            val appLink = "${message}https://play.google.com/store/apps/details?id=$appPackage"
-
-            Intent(Intent.ACTION_SEND).apply {
-
-                type = "text/plain"
-                putExtra(Intent.EXTRA_TEXT, appLink)
-            }.let { intent ->
-
-                activity.startActivity(Intent.createChooser(intent, "App Share with..."))
-            }
-        }
-    }
-
     override fun setAppOpenGooglePlay(activity: Activity, appPackage: String) {
 
         try {
@@ -118,20 +101,6 @@ class EmptyAboutImpl @Inject constructor(
 
                 activity.startActivity(Intent.createChooser(intent, "Open link with..."))
             }
-        }
-    }
-
-    override fun setSendEmail(activity: Activity, email: String, subject: String, body: String) {
-
-        emptyScope.launch(context = Dispatchers.IO + exceptionHandler) {
-
-            Intent(Intent.ACTION_SENDTO).apply {
-
-                data = "mailto:".toUri()
-                putExtra(Intent.EXTRA_EMAIL, arrayOf(email))
-                putExtra(Intent.EXTRA_SUBJECT, subject)
-                putExtra(Intent.EXTRA_TEXT, body)
-            }.also(block = activity::startActivity)
         }
     }
 }

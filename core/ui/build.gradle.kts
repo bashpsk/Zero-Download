@@ -95,6 +95,7 @@ dependencies {
     implementation(libs.google.accompanist.permissions)
 
     //  COIL3               :
+    implementation(platform(libs.coil3.bom))
     implementation(libs.bundles.coil3.kt)
 
     //  MODULE              :

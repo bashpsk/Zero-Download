@@ -17,27 +17,19 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.selection.selectable
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AudioFile
 import androidx.compose.material.icons.filled.Check
-import androidx.compose.material.icons.filled.Close
-import androidx.compose.material.icons.filled.Download
 import androidx.compose.material.icons.filled.MusicVideo
 import androidx.compose.material.icons.filled.OndemandVideo
-import androidx.compose.material.icons.filled.PlayArrow
 import androidx.compose.material.icons.filled.VideoFile
 import androidx.compose.material3.AlertDialog
-import androidx.compose.material3.Button
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
-import androidx.compose.material3.ElevatedButton
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ExposedDropdownMenuAnchorType
 import androidx.compose.material3.ExposedDropdownMenuBox
 import androidx.compose.material3.ExposedDropdownMenuDefaults
-import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -69,6 +61,9 @@ import io.bashpsk.zerodownload.core.model.media.MediaFormatData
 import io.bashpsk.zerodownload.core.model.media.MediaFormatType
 import io.bashpsk.zerodownload.core.model.media.PlaylistMediaData
 import io.bashpsk.zerodownload.core.ui.R
+import io.bashpsk.zerodownload.core.ui.buttons.DismissButton
+import io.bashpsk.zerodownload.core.ui.buttons.MediaDownloadOperationButton
+import io.bashpsk.zerodownload.core.ui.buttons.MediaPlayOperationButton
 import io.bashpsk.zerodownload.core.ui.components.DialogTitleView
 import io.bashpsk.zerodownload.core.ui.media.MediaFormatView
 import kotlinx.collections.immutable.ImmutableList
@@ -195,7 +190,7 @@ inline fun MediaConfirmDialog(
                                 verticalAlignment = Alignment.CenterVertically
                             ) {
 
-                                FilledTonalButton(
+                                MediaPlayOperationButton(
                                     onClick = {
 
                                         onStartPlayMedia(
@@ -206,23 +201,9 @@ inline fun MediaConfirmDialog(
 
                                         dialogVisibleState.targetState = false
                                     }
-                                ) {
+                                )
 
-                                    Icon(
-                                        imageVector = Icons.Filled.PlayArrow,
-                                        contentDescription = stringResource(R.string.play)
-                                    )
-
-                                    Spacer(modifier = Modifier.width(width = 4.dp))
-
-                                    Text(
-                                        text = stringResource(R.string.play),
-                                        maxLines = 1,
-                                        overflow = TextOverflow.Ellipsis
-                                    )
-                                }
-
-                                ElevatedButton(
+                                MediaDownloadOperationButton(
                                     onClick = {
 
                                         onDownloadMedia(
@@ -235,21 +216,7 @@ inline fun MediaConfirmDialog(
 
                                         dialogVisibleState.targetState = false
                                     }
-                                ) {
-
-                                    Icon(
-                                        imageVector = Icons.Filled.Download,
-                                        contentDescription = stringResource(R.string.download)
-                                    )
-
-                                    Spacer(modifier = Modifier.width(width = 4.dp))
-
-                                    Text(
-                                        text = stringResource(R.string.download),
-                                        maxLines = 1,
-                                        overflow = TextOverflow.Ellipsis
-                                    )
-                                }
+                                )
                             }
                         }
 
@@ -387,7 +354,7 @@ inline fun MediaConfirmDialog(
 
                             HorizontalDivider()
 
-                            ElevatedButton(
+                            MediaDownloadOperationButton(
                                 onClick = {
 
                                     onDownloadPlaylist(
@@ -401,21 +368,7 @@ inline fun MediaConfirmDialog(
 
                                     dialogVisibleState.targetState = false
                                 }
-                            ) {
-
-                                Icon(
-                                    imageVector = Icons.Filled.Download,
-                                    contentDescription = stringResource(R.string.download)
-                                )
-
-                                Spacer(modifier = Modifier.width(width = 4.dp))
-
-                                Text(
-                                    text = stringResource(R.string.download),
-                                    maxLines = 1,
-                                    overflow = TextOverflow.Ellipsis
-                                )
-                            }
+                            )
                         }
 
                         else -> Text(
@@ -430,33 +383,17 @@ inline fun MediaConfirmDialog(
             },
             confirmButton = {
 
-                Button(
+                DismissButton(
                     onClick = {
 
                         dialogVisibleState.targetState = false
                     }
-                ) {
-
-                    Icon(
-                        imageVector = Icons.Filled.Close,
-                        contentDescription = stringResource(R.string.cancel)
-                    )
-
-                    Spacer(modifier = Modifier.width(width = 4.dp))
-
-                    Text(
-                        text = stringResource(R.string.cancel),
-                        textAlign = TextAlign.Center,
-                        maxLines = 1,
-                        overflow = TextOverflow.Ellipsis
-                    )
-                }
+                )
             }
         )
     }
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 inline fun MediaConfirmVideoQualitySelection(
     modifier: Modifier = Modifier,
@@ -577,7 +514,6 @@ inline fun MediaConfirmVideoQualitySelection(
     }
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 inline fun MediaConfirmAudioQualitySelection(
     modifier: Modifier = Modifier,
@@ -678,7 +614,6 @@ inline fun MediaConfirmAudioQualitySelection(
     }
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 inline fun MediaConfirmVideoFormatSelection(
     modifier: Modifier = Modifier,
@@ -779,7 +714,6 @@ inline fun MediaConfirmVideoFormatSelection(
     }
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 inline fun MediaConfirmAudioFormatSelection(
     modifier: Modifier = Modifier,

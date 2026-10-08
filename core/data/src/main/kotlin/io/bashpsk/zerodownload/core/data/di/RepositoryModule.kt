@@ -4,20 +4,18 @@ import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import io.bashpsk.zerodownload.core.domain.repositories.EmptyAbout
 import io.bashpsk.zerodownload.core.data.repositories.EmptyAboutImpl
-import io.bashpsk.zerodownload.core.domain.repositories.EmptyDatastore
 import io.bashpsk.zerodownload.core.data.repositories.EmptyDatastoreImpl
-import io.bashpsk.zerodownload.core.domain.repositories.EmptyMedia
 import io.bashpsk.zerodownload.core.data.repositories.EmptyMediaImpl
-import io.bashpsk.zerodownload.core.domain.repositories.EmptyNotification
 import io.bashpsk.zerodownload.core.data.repositories.EmptyNotificationImpl
-import io.bashpsk.zerodownload.core.domain.repositories.EmptyPlayer
 import io.bashpsk.zerodownload.core.data.repositories.EmptyPlayerImpl
-import io.bashpsk.zerodownload.core.domain.repositories.EmptyStorage
-import io.bashpsk.zerodownload.core.data.repositories.EmptyStorageImpl
-import io.bashpsk.zerodownload.core.domain.repositories.EmptyWorker
 import io.bashpsk.zerodownload.core.data.repositories.EmptyWorkerImpl
+import io.bashpsk.zerodownload.core.domain.repositories.EmptyAbout
+import io.bashpsk.zerodownload.core.domain.repositories.EmptyDatastore
+import io.bashpsk.zerodownload.core.domain.repositories.EmptyMedia
+import io.bashpsk.zerodownload.core.domain.repositories.EmptyNotification
+import io.bashpsk.zerodownload.core.domain.repositories.EmptyPlayer
+import io.bashpsk.zerodownload.core.domain.repositories.EmptyWorker
 import javax.inject.Singleton
 
 @Module
@@ -27,10 +25,6 @@ abstract class RepositoryModule {
     @Binds
     @Singleton
     abstract fun bindEmptyMedia(emptyMedia: EmptyMediaImpl): EmptyMedia
-
-    @Binds
-    @Singleton
-    abstract fun bindEmptyStorage(emptyStorage: EmptyStorageImpl): EmptyStorage
 
     @Binds
     @Singleton

@@ -73,9 +73,6 @@ dependencies {
     implementation(libs.kotlinx.datetime)
     implementation(libs.kotlinx.io.core)
 
-    //  MATERIAL ICONS      :
-    implementation(libs.androidx.material.icons.extended)
-
     //  EMPTY LIBS          :
     implementation(libs.bundles.bashpsk.emptylibs)
 

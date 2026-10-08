@@ -8,7 +8,6 @@ import io.bashpsk.zerodownload.core.common.viewmodel.stateInWhileSubscribed
 import io.bashpsk.zerodownload.core.domain.repositories.EmptyWorker
 import io.bashpsk.zerodownload.core.model.worker.WorkTaskType
 import io.bashpsk.zerodownload.feature.settings.event.DownloaderSettingUIEvent
-import kotlinx.collections.immutable.toImmutableList
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.collectLatest
@@ -25,21 +24,11 @@ class DownloaderSettingViewModel @Inject constructor(
     private val emptyWorker: EmptyWorker
 ) : ViewModel() {
 
-    val runningUpdateWorkList = emptyWorker.getWorkInfoList(
-        workerId = WorkTaskType.LibraryUpdate.name
+    val isYtDlUpdating = emptyWorker.getWorkInfoList(
+        workerId = WorkTaskType.YtDlLibrary.name
     ).flatMapLatest { workInfos ->
 
-        val newInfoList = workInfos.filter { workInfo ->
-
-            !workInfo.state.isFinished
-        }.toImmutableList()
-
-        flowOf(value = newInfoList)
-    }.flowOn(context = Dispatchers.Default).stateInWhileSubscribed(initial = null)
-
-    val isYtDlUpdating = runningUpdateWorkList.flatMapLatest { workInfos ->
-
-        flowOf(value = workInfos?.isNotEmpty())
+        flowOf(value = workInfos.any { workInfo -> !workInfo.state.isFinished })
     }.flowOn(context = Dispatchers.Default).stateInWhileSubscribed(initial = null)
 
     fun onUIEvent(uiEvent: DownloaderSettingUIEvent) = viewModelScope.launch(Dispatchers.Default) {

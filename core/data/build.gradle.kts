@@ -105,6 +105,7 @@ dependencies {
     implementation(libs.bundles.github.youtubedl.android)
 
     //  COIL3               :
+    implementation(platform(libs.coil3.bom))
     implementation(libs.bundles.coil3.kt)
 
     //  MODULE              :

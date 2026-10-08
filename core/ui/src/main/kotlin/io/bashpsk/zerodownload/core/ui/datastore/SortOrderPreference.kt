@@ -5,22 +5,16 @@ import androidx.compose.animation.core.MutableTransitionState
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowDownward
 import androidx.compose.material.icons.filled.ArrowUpward
-import androidx.compose.material.icons.filled.Close
-import androidx.compose.material.icons.filled.Done
 import androidx.compose.material3.AlertDialog
-import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.SegmentedButton
 import androidx.compose.material3.SegmentedButtonDefaults
@@ -34,7 +28,6 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -48,6 +41,8 @@ import io.bashpsk.zerodownload.core.model.settings.FileSort
 import io.bashpsk.zerodownload.core.model.settings.MediaSort
 import io.bashpsk.zerodownload.core.model.settings.SortType
 import io.bashpsk.zerodownload.core.ui.R
+import io.bashpsk.zerodownload.core.ui.buttons.ConfirmationButton
+import io.bashpsk.zerodownload.core.ui.components.DialogTitleView
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlin.enums.EnumEntries
@@ -95,33 +90,13 @@ fun MediaSortOrderPreference(
             shape = MaterialTheme.shapes.small,
             title = {
 
-                Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.SpaceBetween,
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
+                DialogTitleView(
+                    title = stringResource(R.string.sort_order_dialog_title),
+                    onClick = {
 
-                    Text(
-                        text = stringResource(R.string.sort_order_dialog_title),
-                        textAlign = TextAlign.Start,
-                        style = MaterialTheme.typography.titleMedium,
-                        maxLines = 1,
-                        overflow = TextOverflow.Ellipsis
-                    )
-
-                    IconButton(
-                        onClick = {
-
-                            dialogVisibleState.targetState = false
-                        }
-                    ) {
-
-                        Icon(
-                            imageVector = Icons.Filled.Close,
-                            contentDescription = stringResource(R.string.close)
-                        )
+                        dialogVisibleState.targetState = false
                     }
-                }
+                )
             },
             text = {
 
@@ -252,28 +227,12 @@ fun MediaSortOrderPreference(
             },
             confirmButton = {
 
-                Button(
+                ConfirmationButton(
                     onClick = {
 
                         dialogVisibleState.targetState = false
                     }
-                ) {
-
-                    Icon(
-                        modifier = Modifier.size(size = 18.dp),
-                        imageVector = Icons.Filled.Done,
-                        contentDescription = stringResource(R.string.done)
-                    )
-
-                    Spacer(modifier = Modifier.width(width = 4.dp))
-
-                    Text(
-                        text = stringResource(R.string.done),
-                        textAlign = TextAlign.Center,
-                        maxLines = 1,
-                        overflow = TextOverflow.Ellipsis
-                    )
-                }
+                )
             }
         )
     }
@@ -322,33 +281,13 @@ fun FileSortOrderPreferenceDialog(
             shape = MaterialTheme.shapes.small,
             title = {
 
-                Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.SpaceBetween,
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
+                DialogTitleView(
+                    title = stringResource(R.string.sort_order_dialog_title),
+                    onClick = {
 
-                    Text(
-                        text = stringResource(R.string.sort_order_dialog_title),
-                        textAlign = TextAlign.Start,
-                        style = MaterialTheme.typography.titleMedium,
-                        maxLines = 1,
-                        overflow = TextOverflow.Ellipsis
-                    )
-
-                    IconButton(
-                        onClick = {
-
-                            dialogVisibleState.targetState = false
-                        }
-                    ) {
-
-                        Icon(
-                            imageVector = Icons.Filled.Close,
-                            contentDescription = stringResource(R.string.close)
-                        )
+                        dialogVisibleState.targetState = false
                     }
-                }
+                )
             },
             text = {
 
@@ -479,28 +418,12 @@ fun FileSortOrderPreferenceDialog(
             },
             confirmButton = {
 
-                Button(
+                ConfirmationButton(
                     onClick = {
 
                         dialogVisibleState.targetState = false
                     }
-                ) {
-
-                    Icon(
-                        modifier = Modifier.size(size = 18.dp),
-                        imageVector = Icons.Filled.Done,
-                        contentDescription = stringResource(R.string.done)
-                    )
-
-                    Spacer(modifier = Modifier.width(width = 4.dp))
-
-                    Text(
-                        text = stringResource(R.string.done),
-                        textAlign = TextAlign.Center,
-                        maxLines = 1,
-                        overflow = TextOverflow.Ellipsis
-                    )
-                }
+                )
             }
         )
     }

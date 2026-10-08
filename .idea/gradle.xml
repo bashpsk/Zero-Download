@@ -25,11 +25,9 @@
             <option value="$PROJECT_DIR$/feature/command" />
             <option value="$PROJECT_DIR$/feature/downloads" />
             <option value="$PROJECT_DIR$/feature/home" />
-            <option value="$PROJECT_DIR$/feature/navigation" />
             <option value="$PROJECT_DIR$/feature/player" />
             <option value="$PROJECT_DIR$/feature/settings" />
             <option value="$PROJECT_DIR$/feature/unknown" />
-            <option value="$PROJECT_DIR$/feature/worker" />
           </set>
         </option>
       </GradleProjectSettings>

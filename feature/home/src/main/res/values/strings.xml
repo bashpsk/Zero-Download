@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <string name="home_screen">Media</string>
+
     <string name="video_audio_media_category_title">Video with Audio</string>
     <string name="audio_only_media_category_title">Audio Only</string>
     <string name="video_only_media_category_title">Video Only</string>

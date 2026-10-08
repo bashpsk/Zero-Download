@@ -24,9 +24,13 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.onVisibilityChanged
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
@@ -37,84 +41,95 @@ import io.bashpsk.zerodownload.core.ui.R
 @Composable
 fun EmptyMediaView(
     modifier: Modifier = Modifier,
-    isEmptyMediaView: Boolean,
+    isEmptyMediaView: Boolean?,
     emptyMediaType: EmptyMediaType
 ) {
 
-    val infiniteTransition = rememberInfiniteTransition(stringResource(R.string.no_media_found))
+    isEmptyMediaView?.let { isEmptyMediaViewVisible ->
 
-    val mediaAlphaLevel = when (isEmptyMediaView) {
-
-        true -> infiniteTransition.animateFloat(
-            initialValue = 0.80F,
-            targetValue = 0.003F,
-            animationSpec = infiniteRepeatable(
-                animation = tween(durationMillis = 3000, easing = FastOutLinearInEasing),
-                repeatMode = RepeatMode.Reverse
-            ),
+        val infiniteTransition = rememberInfiniteTransition(
             label = stringResource(R.string.no_media_found)
-        ).value
+        )
 
-        false -> 1.0F
-    }
+        var isAnimationVisible by rememberSaveable { mutableStateOf(false) }
 
-    val mediaContentColor = when (emptyMediaType) {
+        val mediaAlphaLevel = when (isAnimationVisible) {
 
-        EmptyMediaType.EXTRA_SMALL -> MaterialTheme.colorScheme.onPrimaryContainer
-        EmptyMediaType.SMALL -> MaterialTheme.colorScheme.onSecondaryContainer
-        EmptyMediaType.MEDIUM -> MaterialTheme.colorScheme.onTertiaryContainer
-        EmptyMediaType.LARGE -> MaterialTheme.colorScheme.onErrorContainer
-    }
+            true -> infiniteTransition.animateFloat(
+                initialValue = 0.80F,
+                targetValue = 0.003F,
+                animationSpec = infiniteRepeatable(
+                    animation = tween(durationMillis = 3000, easing = FastOutLinearInEasing),
+                    repeatMode = RepeatMode.Reverse
+                ),
+                label = stringResource(R.string.no_media_found)
+            ).value
 
-    val mediaLabelStyle = when (emptyMediaType) {
+            false -> 1.0F
+        }
 
-        EmptyMediaType.EXTRA_SMALL -> MaterialTheme.typography.labelMedium
-        EmptyMediaType.SMALL -> MaterialTheme.typography.titleSmall
-        EmptyMediaType.MEDIUM -> MaterialTheme.typography.titleMedium
-        EmptyMediaType.LARGE -> MaterialTheme.typography.headlineSmall
-    }
+        val mediaContentColor = when (emptyMediaType) {
 
-    val mediaIconSize by remember(emptyMediaType) {
-        derivedStateOf {
-            when (emptyMediaType) {
+            EmptyMediaType.ExtraSmall -> MaterialTheme.colorScheme.onPrimaryContainer
+            EmptyMediaType.Small -> MaterialTheme.colorScheme.onSecondaryContainer
+            EmptyMediaType.Medium -> MaterialTheme.colorScheme.onTertiaryContainer
+            EmptyMediaType.Large -> MaterialTheme.colorScheme.onErrorContainer
+        }
 
-                EmptyMediaType.EXTRA_SMALL -> 50.dp
-                EmptyMediaType.SMALL -> 60.dp
-                EmptyMediaType.MEDIUM -> 80.dp
-                EmptyMediaType.LARGE -> 100.dp
+        val mediaLabelStyle = when (emptyMediaType) {
+
+            EmptyMediaType.ExtraSmall -> MaterialTheme.typography.labelMedium
+            EmptyMediaType.Small -> MaterialTheme.typography.titleSmall
+            EmptyMediaType.Medium -> MaterialTheme.typography.titleMedium
+            EmptyMediaType.Large -> MaterialTheme.typography.headlineSmall
+        }
+
+        val mediaIconSize by remember(emptyMediaType) {
+            derivedStateOf {
+                when (emptyMediaType) {
+
+                    EmptyMediaType.ExtraSmall -> 50.dp
+                    EmptyMediaType.Small -> 60.dp
+                    EmptyMediaType.Medium -> 80.dp
+                    EmptyMediaType.Large -> 100.dp
+                }
             }
         }
-    }
 
-    AnimatedVisibility(
-        visible = isEmptyMediaView,
-        enter = slideInVertically() + fadeIn(),
-        exit = slideOutVertically() + fadeOut()
-    ) {
-
-        Column(
-            modifier = modifier
-                .fillMaxWidth()
-                .padding(horizontal = 8.dp, vertical = 8.dp),
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.spacedBy(space = 8.dp)
+        AnimatedVisibility(
+            visible = isEmptyMediaViewVisible,
+            enter = slideInVertically() + fadeIn(),
+            exit = slideOutVertically() + fadeOut()
         ) {
 
-            Icon(
-                modifier = Modifier.size(size = mediaIconSize),
-                imageVector = Icons.TwoTone.FolderOpen,
-                tint = mediaContentColor.copy(alpha = mediaAlphaLevel),
-                contentDescription = stringResource(R.string.no_media_found)
-            )
+            Column(
+                modifier = modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 8.dp, vertical = 8.dp)
+                    .onVisibilityChanged { isVisible ->
 
-            Text(
-                text = stringResource(R.string.no_media_found),
-                textAlign = TextAlign.Center,
-                style = mediaLabelStyle,
-                color = mediaContentColor.copy(alpha = mediaAlphaLevel),
-                maxLines = 1,
-                overflow = TextOverflow.Ellipsis
-            )
+                        isAnimationVisible = isVisible
+                    },
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.spacedBy(space = 8.dp)
+            ) {
+
+                Icon(
+                    modifier = Modifier.size(size = mediaIconSize),
+                    imageVector = Icons.TwoTone.FolderOpen,
+                    tint = mediaContentColor.copy(alpha = mediaAlphaLevel),
+                    contentDescription = stringResource(R.string.no_media_found)
+                )
+
+                Text(
+                    text = stringResource(R.string.no_media_found),
+                    textAlign = TextAlign.Center,
+                    style = mediaLabelStyle,
+                    color = mediaContentColor.copy(alpha = mediaAlphaLevel),
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis
+                )
+            }
         }
     }
 }

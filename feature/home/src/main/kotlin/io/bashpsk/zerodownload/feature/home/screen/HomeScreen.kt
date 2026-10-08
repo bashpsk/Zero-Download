@@ -14,16 +14,11 @@ import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.GridItemSpan
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.rememberLazyGridState
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Add
-import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.ExtendedFloatingActionButton
-import androidx.compose.material3.Icon
+import androidx.compose.material3.ExperimentalMaterial3ExpressiveApi
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.SearchBarDefaults
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
-import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.pulltorefresh.PullToRefreshBox
 import androidx.compose.material3.pulltorefresh.PullToRefreshDefaults
 import androidx.compose.material3.pulltorefresh.rememberPullToRefreshState
@@ -36,9 +31,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -46,43 +38,42 @@ import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.google.accompanist.permissions.isGranted
 import com.google.accompanist.permissions.rememberPermissionState
 import io.bashpsk.emptylibs.datastoreui.datastore.LocalDatastore
-import io.bashpsk.zerodownload.core.model.resources.ConstantWindow
 import io.bashpsk.zerodownload.core.navigation.screen.NavScreen
-import io.bashpsk.zerodownload.core.ui.R
 import io.bashpsk.zerodownload.core.ui.dialogs.MediaConfirmDialog
 import io.bashpsk.zerodownload.core.ui.dialogs.MediaDetailDialog
-import io.bashpsk.zerodownload.core.ui.dialogs.SearchLinkInputDialog
+import io.bashpsk.zerodownload.core.ui.fab.DownloadSmallFab
 import io.bashpsk.zerodownload.core.ui.permissions.FileWritePermission
 import io.bashpsk.zerodownload.core.ui.permissions.rememberManageStoragePermission
-import io.bashpsk.zerodownload.core.ui.topbar.HomeTopBar
+import io.bashpsk.zerodownload.core.ui.window.MediaViewLayoutSize
+import io.bashpsk.zerodownload.feature.home.bottombar.HomeBottomBar
 import io.bashpsk.zerodownload.feature.home.event.HomeUIEvent
+import io.bashpsk.zerodownload.feature.home.topbar.HomeTopBar
 import io.bashpsk.zerodownload.feature.home.ui.MediaSearchStateView
 
-@OptIn(ExperimentalMaterial3Api::class, ExperimentalPermissionsApi::class)
+@OptIn(ExperimentalPermissionsApi::class, ExperimentalMaterial3ExpressiveApi::class)
 @Composable
 inline fun HomeScreen(crossinline onNavigateScreen: (navScreen: NavScreen) -> Unit) {
 
-    val mainViewModel = hiltViewModel<HomeViewModel>()
+    val viewModel = hiltViewModel<HomeViewModel>()
 
     val context = LocalContext.current
     val activity = LocalActivity.current
     val datastore = LocalDatastore.current
     val homePullToRefreshState = rememberPullToRefreshState()
     val homeLazyGridState = rememberLazyGridState()
-    val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior()
+    val scrollBehavior = SearchBarDefaults.enterAlwaysSearchBarScrollBehavior()
     val snakeBarCoroutineScope = rememberCoroutineScope()
     val snackbarHostState = remember { SnackbarHostState() }
     val mediaDetailsDialogVisibleState = remember { MutableTransitionState(false) }
     val mediaConfirmDialogVisibleState = remember { MutableTransitionState(false) }
-    val linkInputDialogVisibleState = remember { MutableTransitionState(false) }
 
-    val isOptionMenu by mainViewModel.isOptionMenu.collectAsStateWithLifecycle()
-    val searchMediaState by mainViewModel.searchMediaState.collectAsStateWithLifecycle()
-    val selectedPlaylistMedias by mainViewModel.selectedPlaylistMedias.collectAsStateWithLifecycle()
-    val isScreenRefreshing by mainViewModel.isScreenRefreshing.collectAsStateWithLifecycle()
-    val isMediaSelect by mainViewModel.isMediaSelect.collectAsStateWithLifecycle()
-    val selectedAudioFormat by mainViewModel.selectedAudioFormat.collectAsStateWithLifecycle()
-    val selectedVideoFormat by mainViewModel.selectedVideoFormat.collectAsStateWithLifecycle()
+    val isOptionMenu by viewModel.isOptionMenu.collectAsStateWithLifecycle()
+    val searchMediaState by viewModel.searchMediaState.collectAsStateWithLifecycle()
+    val selectedPlaylistMedias by viewModel.selectedPlaylistMedias.collectAsStateWithLifecycle()
+    val isScreenRefreshing by viewModel.isScreenRefreshing.collectAsStateWithLifecycle()
+    val isMediaSelect by viewModel.isMediaSelect.collectAsStateWithLifecycle()
+    val selectedAudioFormat by viewModel.selectedAudioFormat.collectAsStateWithLifecycle()
+    val selectedVideoFormat by viewModel.selectedVideoFormat.collectAsStateWithLifecycle()
 
     val filePermissionState = rememberPermissionState(
         permission = Manifest.permission.WRITE_EXTERNAL_STORAGE
@@ -104,17 +95,17 @@ inline fun HomeScreen(crossinline onNavigateScreen: (navScreen: NavScreen) -> Un
         derivedStateOf { homeLazyGridState.firstVisibleItemIndex == 0 }
     }
 
-    BackHandler(enabled = true) {
+    BackHandler(enabled = isMediaSelect) {
 
         when {
 
             isMediaSelect -> {
 
-                mainViewModel.onUIEvent(uiEvent = HomeUIEvent.MediaSelect(isVisible = false))
-                mainViewModel.onUIEvent(uiEvent = HomeUIEvent.ResetSelectedFormat)
+                viewModel.onUIEvent(uiEvent = HomeUIEvent.MediaSelect(isVisible = false))
+                viewModel.onUIEvent(uiEvent = HomeUIEvent.ResetSelectedFormat)
             }
 
-            else -> activity?.finishAfterTransition()
+            else -> {}
         }
     }
 
@@ -125,61 +116,30 @@ inline fun HomeScreen(crossinline onNavigateScreen: (navScreen: NavScreen) -> Un
         topBar = {
 
             HomeTopBar(
-                scrollBehavior = scrollBehavior,
                 isOptionMenu = isOptionMenu,
-                isMediaSelect = isMediaSelect,
-                onOptionMenu = { isVisible ->
-
-                    mainViewModel.onUIEvent(uiEvent = HomeUIEvent.OptionMenu(isVisible))
-                },
-                onMediaSelect = { isVisible ->
-
-                    mainViewModel.onUIEvent(uiEvent = HomeUIEvent.MediaSelect(isVisible))
-                    mainViewModel.onUIEvent(uiEvent = HomeUIEvent.ResetSelectedFormat)
-                },
-                onDownloadClick = {
-
-                    mediaConfirmDialogVisibleState.targetState = true
-                },
-                onNavigateScreen = onNavigateScreen
+                onNavigateScreen = onNavigateScreen,
+                onUIEvent = viewModel::onUIEvent,
+                scrollBehavior = scrollBehavior
             )
         },
         snackbarHost = { SnackbarHost(hostState = snackbarHostState) },
         floatingActionButton = {
 
-            ExtendedFloatingActionButton(
+            if (isMediaSelect) DownloadSmallFab(
                 expanded = isFabExpanded,
-                icon = {
+                onClick = { mediaConfirmDialogVisibleState.targetState = true }
+            )
+        },
+        bottomBar = {
 
-                    Icon(
-                        imageVector = Icons.Filled.Add,
-                        contentDescription = stringResource(R.string.link_input_label)
-                    )
-                },
-                text = {
-
-                    Text(
-                        text = stringResource(R.string.link_input_label),
-                        textAlign = TextAlign.Center,
-                        maxLines = 1,
-                        overflow = TextOverflow.Ellipsis
-                    )
-                },
-                onClick = {
-
-                    linkInputDialogVisibleState.targetState = true
-                }
+            HomeBottomBar(
+                isMediaSelect = isMediaSelect,
+                onNavigateScreen = onNavigateScreen,
+                onUIEvent = viewModel::onUIEvent,
+                scrollBehavior = scrollBehavior
             )
         }
     ) { paddingValues ->
-
-        SearchLinkInputDialog(
-            dialogVisibleState = linkInputDialogVisibleState,
-            onSearchClick = { link ->
-
-                mainViewModel.onUIEvent(uiEvent = HomeUIEvent.MediaSearch(link = link))
-            }
-        )
 
         MediaDetailDialog(
             dialogVisibleState = mediaDetailsDialogVisibleState,
@@ -194,19 +154,11 @@ inline fun HomeScreen(crossinline onNavigateScreen: (navScreen: NavScreen) -> Un
             selectedPlaylistMedias = selectedPlaylistMedias,
             onStartPlayMedia = { media, audio, video ->
 
-                mainViewModel.onUIEvent(
-                    uiEvent = HomeUIEvent.StartMediaPlayer(
-                        media = media,
-                        audio = audio,
-                        video = video
-                    )
-                )
-
-                mainViewModel.onUIEvent(uiEvent = HomeUIEvent.ResetSelectedFormat)
+                viewModel.onUIEvent(uiEvent = HomeUIEvent.ResetSelectedFormat)
             },
             onDownloadMedia = { media, audio, video,videoExt,audioExt ->
 
-                mainViewModel.onUIEvent(
+                viewModel.onUIEvent(
                     uiEvent = HomeUIEvent.MediaDownloadCombined(
                         media = media,
                         audio = audio,
@@ -216,11 +168,11 @@ inline fun HomeScreen(crossinline onNavigateScreen: (navScreen: NavScreen) -> Un
                     )
                 )
 
-                mainViewModel.onUIEvent(uiEvent = HomeUIEvent.ResetSelectedFormat)
+                viewModel.onUIEvent(uiEvent = HomeUIEvent.ResetSelectedFormat)
             },
             onDownloadPlaylist = { playlist, format, videoQuality, audioQuality,videoExt,audioExt ->
 
-                mainViewModel.onUIEvent(
+                viewModel.onUIEvent(
                     uiEvent = HomeUIEvent.MediaDownloadPlaylist(
                         playlist = playlist,
                         format = format,
@@ -241,7 +193,7 @@ inline fun HomeScreen(crossinline onNavigateScreen: (navScreen: NavScreen) -> Un
             isRefreshing = isScreenRefreshing,
             indicator = {
 
-                PullToRefreshDefaults.Indicator(
+                PullToRefreshDefaults.LoadingIndicator(
                     modifier = Modifier
                         .align(alignment = Alignment.TopCenter)
                         .padding(paddingValues = paddingValues),
@@ -258,7 +210,7 @@ inline fun HomeScreen(crossinline onNavigateScreen: (navScreen: NavScreen) -> Un
                     .padding(paddingValues = paddingValues),
                 state = homeLazyGridState,
                 contentPadding = PaddingValues(horizontal = 4.dp, vertical = 4.dp),
-                columns = GridCells.Adaptive(minSize = ConstantWindow.MEDIA_VIEW),
+                columns = GridCells.Adaptive(minSize = MediaViewLayoutSize),
                 horizontalArrangement = Arrangement.spacedBy(space = 4.dp),
                 verticalArrangement = Arrangement.spacedBy(space = 4.dp)
             ) {
@@ -280,28 +232,28 @@ inline fun HomeScreen(crossinline onNavigateScreen: (navScreen: NavScreen) -> Un
                     selectedPlaylistMedias = selectedPlaylistMedias,
                     onVideoClick = { format ->
 
-                        mainViewModel.onUIEvent(HomeUIEvent.SetSelectVideoFormat(media = format))
+                        viewModel.onUIEvent(HomeUIEvent.SetSelectVideoFormat(media = format))
                         mediaConfirmDialogVisibleState.targetState = true
                     },
                     onVideoLongClick = { format ->
 
-                        mainViewModel.onUIEvent(HomeUIEvent.MediaSelect(isVisible = true))
-                        mainViewModel.onUIEvent(HomeUIEvent.SetSelectVideoFormat(media = format))
+                        viewModel.onUIEvent(HomeUIEvent.MediaSelect(isVisible = true))
+                        viewModel.onUIEvent(HomeUIEvent.SetSelectVideoFormat(media = format))
                     },
                     onAudioClick = { format ->
 
-                        mainViewModel.onUIEvent(HomeUIEvent.SetSelectAudioFormat(media = format))
+                        viewModel.onUIEvent(HomeUIEvent.SetSelectAudioFormat(media = format))
                         mediaConfirmDialogVisibleState.targetState = true
                     },
                     onAudioLongClick = { format ->
 
-                        mainViewModel.onUIEvent(HomeUIEvent.MediaSelect(isVisible = true))
-                        mainViewModel.onUIEvent(HomeUIEvent.SetSelectAudioFormat(media = format))
+                        viewModel.onUIEvent(HomeUIEvent.MediaSelect(isVisible = true))
+                        viewModel.onUIEvent(HomeUIEvent.SetSelectAudioFormat(media = format))
                     },
                     onSelectPlaylistMedia = { media ->
 
-                        mainViewModel.onUIEvent(HomeUIEvent.MediaSelect(isVisible = true))
-                        mainViewModel.onUIEvent(HomeUIEvent.SetSelectPlaylistMedia(media = media))
+                        viewModel.onUIEvent(HomeUIEvent.MediaSelect(isVisible = true))
+                        viewModel.onUIEvent(HomeUIEvent.SetSelectPlaylistMedia(media = media))
                     }
                 )
             }

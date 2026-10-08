@@ -90,6 +90,9 @@ dependencies {
     implementation(libs.androidx.hilt.navigation.compose)
     ksp(libs.androidx.hilt.compiler)
 
+    //  MEDIA3              :
+    implementation(libs.bundles.androidx.media3)
+
     //  EMPTY LIBS          :
     implementation(libs.bundles.bashpsk.emptylibs)
 
@@ -97,6 +100,7 @@ dependencies {
     implementation(libs.google.accompanist.permissions)
 
     //  COIL3               :
+    implementation(platform(libs.coil3.bom))
     implementation(libs.bundles.coil3.kt)
 
     //  MODULE              :

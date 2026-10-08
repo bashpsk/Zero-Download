@@ -122,12 +122,6 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
 
-    //  ADAPTIVE LAYOUT     :
-    implementation(libs.bundles.androidx.compose.material3.adaptive)
-
-    //  WINDOW              :
-    implementation(libs.androidx.material3.window.size)
-
     //  KOTLINX             :
     implementation(libs.kotlinx.serialization.core)
     implementation(libs.kotlinx.serialization.json)
@@ -138,9 +132,6 @@ dependencies {
     //  NAVIGATION          :
     implementation(libs.bundles.androidx.navigation3)
 
-    //  MATERIAL ICONS      :
-    implementation(libs.androidx.material.icons.extended)
-
     //  DATASTORE           :
     implementation(libs.androidx.datastore.preferences)
 
@@ -148,9 +139,6 @@ dependencies {
     implementation(libs.bundles.androidx.room)
     ksp(libs.androidx.room.compiler)
     testImplementation(libs.androidx.room.testing)
-
-    //  KTOR                :
-    implementation(libs.bundles.ktor.client)
 
     //  HILT                :
     implementation(libs.dagger.hilt.android)
@@ -168,23 +156,10 @@ dependencies {
     //  STARTUP             :
     implementation(libs.androidx.startup.runtime)
 
-    //  MEDIA3              :
-    implementation(libs.bundles.androidx.media3)
-
     //  EMPTY LIBS          :
     implementation(libs.bundles.bashpsk.emptylibs)
 
-    //  PERMISSION          :
-    implementation(libs.google.accompanist.permissions)
-
-    //  COIL3               :
-    implementation(libs.bundles.coil3.kt)
-
-    //  YOUTUBE-DL          :
-    implementation(libs.bundles.github.youtubedl.android)
-
     //  MODULE              :
-    implementation(fileTree("libs") { include("*.aar") })
     implementation(project(":core:common"))
     implementation(project(":core:data"))
     implementation(project(":core:database"))
@@ -194,5 +169,11 @@ dependencies {
     implementation(project(":core:navigation"))
     implementation(project(":core:network"))
     implementation(project(":core:ui"))
-    implementation(project(":feature:navigation"))
+    implementation(project(":feature:about"))
+    implementation(project(":feature:command"))
+    implementation(project(":feature:downloads"))
+    implementation(project(":feature:home"))
+    implementation(project(":feature:player"))
+    implementation(project(":feature:settings"))
+    implementation(project(":feature:unknown"))
 }

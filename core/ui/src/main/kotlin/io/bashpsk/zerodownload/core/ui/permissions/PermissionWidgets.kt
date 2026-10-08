@@ -8,24 +8,22 @@ import android.provider.Settings
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Settings
 import androidx.compose.material.icons.outlined.WarningAmber
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ElevatedCard
-import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.retain.RetainedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
@@ -37,6 +35,7 @@ import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.google.accompanist.permissions.rememberPermissionState
 import com.google.accompanist.permissions.shouldShowRationale
 import io.bashpsk.zerodownload.core.ui.R
+import io.bashpsk.zerodownload.core.ui.buttons.ButtonIconText
 
 @SuppressLint("InlinedApi")
 @OptIn(ExperimentalPermissionsApi::class)
@@ -88,7 +87,7 @@ inline fun PermissionView(
 
                 true -> Intent(actionSetting).apply {
 
-                    data = ("package:" + context.packageName).toUri()
+                    data = "package:${context.packageName}".toUri()
                 }.also(context::startActivity)
 
                 false -> permissionState.launchPermissionRequest()
@@ -96,12 +95,11 @@ inline fun PermissionView(
         }
     }
 
-    LaunchedEffect(isManageStorage, manageStoragePermission) {
+    RetainedEffect(isManageStorage, manageStoragePermission) {
 
-        when {
+        if (isManageStorage) onPermissionResult(manageStoragePermission)
 
-            isManageStorage -> onPermissionResult(manageStoragePermission)
-        }
+        onRetire {  }
     }
 
     ElevatedCard(
@@ -130,18 +128,14 @@ inline fun PermissionView(
 
             Button(
                 modifier = Modifier.fillMaxWidth(),
-                shape = MaterialTheme.shapes.small,
+                shapes = ButtonDefaults.shapes(),
                 onClick = onPermissionRequestClick
             ) {
 
-                Icon(
-                    imageVector = permissionStatusIcon,
-                    contentDescription = "Permission Status"
+                ButtonIconText(
+                    icon = permissionStatusIcon,
+                    text = stringResource(R.string.grant_permission)
                 )
-
-                Spacer(modifier = Modifier.width(width = 4.dp))
-
-                Text(text = "Request Permission")
             }
         }
     }
@@ -219,7 +213,7 @@ inline fun ReadMediaImagePermission(
     PermissionView(
         modifier = modifier,
         permission = Manifest.permission.READ_MEDIA_IMAGES,
-        description = stringResource(R.string.read_media_image_permission_desc),
+        description = stringResource(R.string.read_media_audio_permission_desc),
         actionSetting = Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
         onPermissionResult = onPermissionResult
     )

@@ -9,8 +9,6 @@ import androidx.work.WorkManager
 import androidx.work.workDataOf
 import dagger.hilt.android.qualifiers.ApplicationContext
 import io.bashpsk.zerodownload.core.data.worker.CopyWorker
-import io.bashpsk.zerodownload.core.data.worker.DeleteWorker
-import io.bashpsk.zerodownload.core.data.worker.MoveWorker
 import io.bashpsk.zerodownload.core.data.worker.YtDlCommandWorker
 import io.bashpsk.zerodownload.core.data.worker.YtDlUpdateWorker
 import io.bashpsk.zerodownload.core.domain.repositories.EmptyWorker
@@ -18,15 +16,12 @@ import io.bashpsk.zerodownload.core.domain.worker.WorkRequestResult
 import io.bashpsk.zerodownload.core.model.resources.WorkerKey
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import java.util.UUID
 import javax.inject.Inject
-import kotlin.time.ExperimentalTime
 
-@OptIn(ExperimentalCoroutinesApi::class, ExperimentalTime::class)
 class EmptyWorkerImpl @Inject constructor(
     @param:ApplicationContext private val context: Context
 ) : EmptyWorker {
@@ -115,64 +110,6 @@ class EmptyWorkerImpl @Inject constructor(
             }
 
             emit(value = WorkRequestResult.Completed)
-        }.flowOn(context = Dispatchers.IO)
-    }
-
-    override fun setFileMove(
-        destination: String,
-        pathList: ImmutableList<String>
-    ): Flow<WorkRequestResult> {
-
-        return flow {
-
-            emit(value = WorkRequestResult.Init)
-
-            pathList.forEach { path ->
-
-                val workInputData = workDataOf(
-                    WorkerKey.WORK_INPUT_DESTINATION to destination,
-                    WorkerKey.WORK_INPUT_SOURCE to path
-                )
-
-                val oneTimeWorkRequest = OneTimeWorkRequestBuilder<MoveWorker>()
-                    .setExpedited(policy = OutOfQuotaPolicy.RUN_AS_NON_EXPEDITED_WORK_REQUEST)
-                    .setInputData(inputData = workInputData)
-                    .build()
-
-                workManager.enqueueUniqueWork(
-                    uniqueWorkName = MoveWorker.WorkerId,
-                    existingWorkPolicy = ExistingWorkPolicy.APPEND_OR_REPLACE,
-                    request = oneTimeWorkRequest
-                )
-            }
-
-            emit(value = WorkRequestResult.Completed)
-        }.flowOn(context = Dispatchers.IO)
-    }
-
-    override fun setFileDelete(pathList: ImmutableList<String>): Flow<WorkRequestResult> {
-
-        return flow {
-
-            emit(value = WorkRequestResult.Init)
-
-            pathList.forEach { path ->
-
-                val workInputData = workDataOf(WorkerKey.WORK_INPUT_SOURCE to path)
-
-                val oneTimeWorkRequest = OneTimeWorkRequestBuilder<DeleteWorker>()
-                    .setExpedited(policy = OutOfQuotaPolicy.RUN_AS_NON_EXPEDITED_WORK_REQUEST)
-                    .setInputData(inputData = workInputData)
-                    .build()
-
-                workManager.enqueueUniqueWork(
-                    uniqueWorkName = DeleteWorker.WorkerId,
-                    existingWorkPolicy = ExistingWorkPolicy.APPEND_OR_REPLACE,
-                    request = oneTimeWorkRequest
-                )
-            }
-
-            emit(value = WorkRequestResult.Init)
         }.flowOn(context = Dispatchers.IO)
     }
 

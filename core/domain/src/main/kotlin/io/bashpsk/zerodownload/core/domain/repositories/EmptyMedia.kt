@@ -15,5 +15,7 @@ interface EmptyMedia {
 
     suspend fun setScanMediaPath(path: String): String
 
+    suspend fun setInitYtDl()
+
     suspend fun setYtDlDestroy(id: String): Boolean
 }

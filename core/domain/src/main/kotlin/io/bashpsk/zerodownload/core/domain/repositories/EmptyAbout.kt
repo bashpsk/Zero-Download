@@ -8,11 +8,7 @@ interface EmptyAbout {
 
     fun getAppVersion(): Flow<AppVersion>
 
-    fun setAppLinkShare(activity: Activity, appPackage: String, message: String)
-
     fun setAppOpenGooglePlay(activity: Activity, appPackage: String)
 
     fun setLinkOpenBrowser(activity: Activity, link: String)
-
-    fun setSendEmail(activity: Activity, email: String, subject: String, body: String)
 }

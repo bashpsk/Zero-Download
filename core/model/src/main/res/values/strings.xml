@@ -8,8 +8,6 @@
     <string name="kbps_320">320 Kbps</string>
     <string name="best">Best</string>
 
-    <string name="app_theme">App Theme</string>
-
     <string name="video_audio_media_category_title">Video with Audio</string>
     <string name="audio_only_media_category_title">Audio Only</string>
     <string name="video_only_media_category_title">Video Only</string>

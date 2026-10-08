@@ -4,6 +4,8 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.media.MediaScannerConnection
 import android.util.Log
+import com.yausername.aria2c.Aria2c
+import com.yausername.ffmpeg.FFmpeg
 import com.yausername.youtubedl_android.YoutubeDL
 import com.yausername.youtubedl_android.YoutubeDLRequest
 import dagger.hilt.android.qualifiers.ApplicationContext
@@ -163,6 +165,16 @@ class EmptyMediaImpl @Inject constructor(
 
                 continuation.resume(value = path)
             }
+        }
+    }
+
+    override suspend fun setInitYtDl() {
+
+        withContext(context = Dispatchers.IO) {
+
+            YoutubeDL.getInstance().init(appContext = context)
+            FFmpeg.getInstance().init(appContext = context)
+            Aria2c.getInstance().init(appContext = context)
         }
     }
 

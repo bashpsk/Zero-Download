@@ -13,9 +13,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import io.bashpsk.zerodownload.core.ui.R
 
 @Composable
 fun LabelRow(modifier: Modifier = Modifier, title: String, text: String) {
@@ -110,4 +112,29 @@ fun LabelRow(modifier: Modifier = Modifier, image: Painter, text: String) {
             overflow = TextOverflow.Ellipsis
         )
     }
+}
+
+@Composable
+fun LabelRow(modifier: Modifier = Modifier, image: Painter) {
+
+    Image(
+        modifier = modifier.size(size = 16.dp),
+        painter = image,
+        contentScale = ContentScale.Fit,
+        contentDescription = stringResource(R.string.extractor_channel)
+    )
+}
+
+@Composable
+fun LabelRow(modifier: Modifier = Modifier, text: String) {
+
+    Text(
+        modifier = modifier,
+        text = text,
+        textAlign = TextAlign.Start,
+        style = MaterialTheme.typography.bodySmall,
+        color = MaterialTheme.colorScheme.onSurfaceVariant,
+        maxLines = 1,
+        overflow = TextOverflow.Ellipsis
+    )
 }

@@ -12,12 +12,12 @@ import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import io.bashpsk.zerodownload.core.model.resources.ConstantWindow
-import io.bashpsk.zerodownload.core.model.topbar.TopAppBarType
-import io.bashpsk.zerodownload.core.ui.topbar.DownloadsSettingTopBar
+import io.bashpsk.zerodownload.core.ui.topbar.GenericArrowTopBar
+import io.bashpsk.zerodownload.core.ui.window.SettingsViewLayoutSize
+import io.bashpsk.zerodownload.feature.settings.R
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 inline fun DownloadsSettingScreen(
     noinline onNavigateBack: () -> Unit
@@ -32,9 +32,9 @@ inline fun DownloadsSettingScreen(
             .nestedScroll(connection = scrollBehavior.nestedScrollConnection),
         topBar = {
 
-            DownloadsSettingTopBar(
+            GenericArrowTopBar(
+                title = stringResource(R.string.downloads_settings_screen),
                 scrollBehavior = scrollBehavior,
-                topAppBarType = TopAppBarType.Arrow,
                 onNavigationClick = onNavigateBack
             )
         }
@@ -46,7 +46,7 @@ inline fun DownloadsSettingScreen(
                 .consumeWindowInsets(paddingValues = paddingValues),
             state = settingsLazyListState,
             contentPadding = paddingValues,
-            columns = GridCells.Adaptive(minSize = ConstantWindow.SETTING_VIEW),
+            columns = GridCells.Adaptive(minSize = SettingsViewLayoutSize),
             horizontalArrangement = Arrangement.spacedBy(space = 4.dp),
             verticalArrangement = Arrangement.spacedBy(space = 4.dp)
         ) {

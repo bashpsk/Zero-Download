@@ -19,13 +19,6 @@ interface EmptyWorker {
         pathList: ImmutableList<String>
     ): Flow<WorkRequestResult>
 
-    fun setFileMove(
-        destination: String,
-        pathList: ImmutableList<String>
-    ): Flow<WorkRequestResult>
-
-    fun setFileDelete(pathList: ImmutableList<String>): Flow<WorkRequestResult>
-
     fun cancelUniqueWork(workId: String)
 
     fun cancelWorkByUuid(workId: UUID)

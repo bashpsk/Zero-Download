@@ -1,12 +1,10 @@
 package io.bashpsk.zerodownload.core.ui.permissions
 
 import android.os.Build
-import androidx.compose.animation.core.Spring
-import androidx.compose.animation.core.spring
-import androidx.compose.animation.core.tween
 import androidx.compose.foundation.lazy.grid.GridItemSpan
 import androidx.compose.foundation.lazy.grid.LazyGridScope
 import androidx.compose.ui.Modifier
+import io.bashpsk.zerodownload.core.ui.animation.itemBounceAnimation
 
 inline fun LazyGridScope.screenFileReadWritePermissionItems(
     manageStoragePermissionVisible: Boolean,
@@ -18,14 +16,7 @@ inline fun LazyGridScope.screenFileReadWritePermissionItems(
     item(span = { GridItemSpan(currentLineSpan = maxLineSpan) }) {
 
         FileReadPermission(
-            modifier = Modifier.animateItem(
-                fadeInSpec = tween(durationMillis = 250),
-                fadeOutSpec = tween(durationMillis = 100),
-                placementSpec = spring(
-                    stiffness = Spring.StiffnessLow,
-                    dampingRatio = Spring.DampingRatioMediumBouncy
-                )
-            ),
+            modifier = Modifier.itemBounceAnimation(),
             visibleState = when {
 
                 Build.VERSION.SDK_INT >= Build.VERSION_CODES.R -> manageStoragePermissionVisible
@@ -42,14 +33,7 @@ inline fun LazyGridScope.screenFileReadWritePermissionItems(
         else -> item(span = { GridItemSpan(currentLineSpan = maxLineSpan) }) {
 
             FileWritePermission(
-                modifier = Modifier.animateItem(
-                    fadeInSpec = tween(durationMillis = 250),
-                    fadeOutSpec = tween(durationMillis = 100),
-                    placementSpec = spring(
-                        stiffness = Spring.StiffnessLow,
-                        dampingRatio = Spring.DampingRatioMediumBouncy
-                    )
-                ),
+                modifier = Modifier.itemBounceAnimation(),
                 visibleState = writeStoragePermissionVisible,
                 onPermissionResult = onPermissionResult
             )

@@ -4,10 +4,9 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import io.bashpsk.zerodownload.activities.MainKeepSplashScreen
+import io.bashpsk.zerodownload.activities.SavedStateKey
 import io.bashpsk.zerodownload.core.navigation.extension.findNavScreen
 import io.bashpsk.zerodownload.core.navigation.screen.NavScreen
-import io.bashpsk.zerodownload.feature.navigation.event.MainUIEvent
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.receiveAsFlow
@@ -20,7 +19,7 @@ class MainViewModel @Inject constructor(
 ) : ViewModel() {
 
     val isKeepSplashScreen = savedStateHandle.getStateFlow(
-        key = MainKeepSplashScreen,
+        key = SavedStateKey.MAIN_KEEP_SPLASH_SCREEN,
         initialValue = false
     )
 
@@ -36,7 +35,7 @@ class MainViewModel @Inject constructor(
             is MainUIEvent.SetNavChannel -> {
 
                 _navScreenChannel.send(findNavScreen(uri = uiEvent.uri, type = uiEvent.type))
-                savedStateHandle[MainKeepSplashScreen] = false
+                savedStateHandle[SavedStateKey.MAIN_KEEP_SPLASH_SCREEN] = false
             }
         }
     }

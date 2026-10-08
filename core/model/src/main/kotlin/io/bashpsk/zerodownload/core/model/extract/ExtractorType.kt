@@ -26,9 +26,9 @@ enum class ExtractorType(@StringRes val id: Int) {
         }
 
         val ExtractorType.label: String
-        @Stable
-        @ReadOnlyComposable
-        @Composable
-        get() = stringResource(id)
+            @Stable
+            @ReadOnlyComposable
+            @Composable
+            get() = stringResource(id)
     }
 }

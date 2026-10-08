@@ -64,9 +64,6 @@ dependencies {
     implementation(libs.kotlinx.datetime)
     implementation(libs.kotlinx.io.core)
 
-    //  MATERIAL ICONS      :
-    implementation(libs.androidx.material.icons.extended)
-
     //  DATASTORE           :
     implementation(libs.androidx.datastore.preferences)
 

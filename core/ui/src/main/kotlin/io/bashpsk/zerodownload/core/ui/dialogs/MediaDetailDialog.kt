@@ -8,17 +8,11 @@ import androidx.compose.animation.slideInVertically
 import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.text.selection.SelectionContainer
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Done
 import androidx.compose.material3.AlertDialog
-import androidx.compose.material3.Button
-import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -31,6 +25,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.DialogProperties
 import io.bashpsk.zerodownload.core.domain.states.MediaSearchState
 import io.bashpsk.zerodownload.core.ui.R
+import io.bashpsk.zerodownload.core.ui.buttons.ConfirmationButton
 import io.bashpsk.zerodownload.core.ui.components.DialogTitleView
 
 @Composable
@@ -144,27 +139,12 @@ fun MediaDetailDialog(
             },
             confirmButton = {
 
-                Button(
+                ConfirmationButton(
                     onClick = {
 
                         dialogVisibleState.targetState = false
                     }
-                ) {
-
-                    Icon(
-                        imageVector = Icons.Filled.Done,
-                        contentDescription = stringResource(R.string.ok)
-                    )
-
-                    Spacer(modifier = Modifier.width(width = 4.dp))
-
-                    Text(
-                        text = stringResource(R.string.ok),
-                        textAlign = TextAlign.Center,
-                        maxLines = 1,
-                        overflow = TextOverflow.Ellipsis
-                    )
-                }
+                )
             }
         )
     }

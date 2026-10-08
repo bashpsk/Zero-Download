@@ -6,8 +6,8 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.compose.runtime.CompositionLocalProvider
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.retain.RetainedEffect
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation3.runtime.rememberNavBackStack
@@ -17,12 +17,9 @@ import io.bashpsk.emptylibs.datastoreui.extension.getPreference
 import io.bashpsk.zerodownload.core.datastore.datastore.datastore
 import io.bashpsk.zerodownload.core.datastore.settings.PreferenceData
 import io.bashpsk.zerodownload.core.model.settings.AppTheme
-import io.bashpsk.zerodownload.core.navigation.extension.addSafe
-import io.bashpsk.zerodownload.core.navigation.extension.removeSafe
 import io.bashpsk.zerodownload.core.navigation.screen.NavScreen
-import io.bashpsk.zerodownload.core.ui.theme.ZeroDownloadTheme
-import io.bashpsk.zerodownload.feature.navigation.event.MainUIEvent
-import io.bashpsk.zerodownload.feature.navigation.host.MainNavigation
+import io.bashpsk.zerodownload.naviagtion.MainNavigation
+import io.bashpsk.zerodownload.ui.theme.ZeroDownloadTheme
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
@@ -62,7 +59,7 @@ class MainActivity : ComponentActivity() {
                 initialValue = null
             )
 
-            LaunchedEffect(intent, navBackStack) {
+            RetainedEffect(intent, navBackStack) {
 
                 if (navBackStack.contains(element = NavScreen.Unknown)) mainViewModel.onUIEvent(
                     uiEvent = MainUIEvent.SetNavChannel(
@@ -70,15 +67,19 @@ class MainActivity : ComponentActivity() {
                         type = intent.type ?: ""
                     )
                 )
+
+                onRetire { }
             }
 
-            LaunchedEffect(navScreenChannel) {
+            RetainedEffect(navScreenChannel) {
 
                 navScreenChannel?.let { screen ->
 
-                    navBackStack.addSafe(element = screen)
-                    navBackStack.removeSafe(element = NavScreen.Unknown)
+                    navBackStack.add(element = screen)
+                    navBackStack.remove(element = NavScreen.Unknown)
                 }
+
+                onRetire { }
             }
 
             CompositionLocalProvider(LocalDatastore provides datastore) {

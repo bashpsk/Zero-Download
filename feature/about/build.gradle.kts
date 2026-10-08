@@ -93,17 +93,9 @@ dependencies {
     //  EMPTY LIBS          :
     implementation(libs.bundles.bashpsk.emptylibs)
 
-    //  PERMISSION          :
-    implementation(libs.google.accompanist.permissions)
-
-    //  COIL3               :
-    implementation(libs.bundles.coil3.kt)
-
     //  MODULE              :
     implementation(project(":core:common"))
     implementation(project(":core:datastore"))
     implementation(project(":core:domain"))
-    implementation(project(":core:model"))
-    implementation(project(":core:navigation"))
     implementation(project(":core:ui"))
 }

@@ -1,15 +1,16 @@
 [versions]
-agp = "9.3.1"
-kotlin = "2.4.10"
-devtools-ksp = "2.3.11"
-core-ktx = "1.19.0"
+agp = "9.4.1"
+kotlin = "2.4.20"
+devtools-ksp = "2.3.12"
+core-ktx = "1.19.1"
 junit = "4.13.2"
 junit-version = "1.3.0"
 espresso-core = "3.7.0"
 lifecycle-runtime = "2.11.0"
 activity-compose = "1.13.0"
-compose-bom = "2026.08.00"
-androidx-navigation3 = "1.2.0-alpha07"
+compose-bom = "2026.09.00"
+material3 = "1.5.0-beta01"
+androidx-navigation3 = "1.2.0"
 lifecycle-navigation3 = "2.11.0"
 adaptive-navigation3 = "1.3.0"
 material-icons = "1.7.8"
@@ -19,23 +20,22 @@ hilt-navigation-compose = "1.4.0"
 hilt-compiler = "1.4.0"
 androidx-splashscreen = "1.2.0"
 androidx-startup = "1.2.0"
-androidx-work = "2.11.2"
+androidx-work = "2.12.0"
 hilt-work = "1.4.0"
-material3-window-size = "1.4.0"
-androidx-media3 = "1.11.0"
-ktor-client = "3.5.2"
+androidx-media3 = "1.11.1"
+ktor-client = "3.6.0"
 kotlinx-serialization = "1.11.0"
-kotlinx-collections-immutable = "0.5.1"
+kotlinx-collections-immutable = "0.5.2"
 kotlinx-datetime = "0.8.0"
 kotlinx-io = "0.9.1"
-room-ktx = "2.8.4"
-empty-libs = "1.4.5-alpha02"
+room-ktx = "2.8.5"
+empty-libs = "1.4.5-alpha03"
 accompanist-permissions = "0.37.3"
-coil-kt = "3.5.0"
-android-ytdl = "0.18.1"
+coil-kt = "3.6.3"
+youtubedl-android = "0.18.1"
 commons-io = "2.22.0"
 commons-compress = "1.28.0"
-fasterxml-jackson = "2.22.2"
+fasterxml-jackson = "2.22.3"
 fasterxml-jackson-annotations = "2.22"
 
 [libraries]
@@ -53,7 +53,7 @@ androidx-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
 androidx-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
 androidx-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
 androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
-androidx-material3 = { group = "androidx.compose.material3", name = "material3" }
+androidx-material3 = { group = "androidx.compose.material3", name = "material3", version.ref = "material3" }
 androidx-navigation3-runtime = { group = "androidx.navigation3", name = "navigation3-runtime", version.ref = "androidx-navigation3" }
 androidx-navigation3-ui = { group = "androidx.navigation3", name = "navigation3-ui", version.ref = "androidx-navigation3" }
 androidx-lifecycle-viewmodel-navigation3 = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-navigation3", version.ref = "lifecycle-navigation3" }
@@ -71,7 +71,7 @@ androidx-core-splashscreen = { group = "androidx.core", name = "core-splashscree
 androidx-startup-runtime = { group = "androidx.startup", name = "startup-runtime", version.ref = "androidx-startup" }
 androidx-work-runtime-ktx = { group = "androidx.work", name = "work-runtime-ktx", version.ref = "androidx-work" }
 androidx-hilt-work = { group = "androidx.hilt", name = "hilt-work", version.ref = "hilt-work" }
-androidx-material3-window-size = { group = "androidx.compose.material3", name = "material3-window-size-class", version.ref = "material3-window-size" }
+androidx-material3-window-size = { group = "androidx.compose.material3", name = "material3-window-size-class", version.ref = "material3" }
 androidx-media3-common = { group = "androidx.media3", name = "media3-common", version.ref = "androidx-media3" }
 androidx-media3-common-ktx = { group = "androidx.media3", name = "media3-common-ktx", version.ref = "androidx-media3" }
 androidx-media3-datasource = { group = "androidx.media3", name = "media3-datasource", version.ref = "androidx-media3" }
@@ -122,20 +122,22 @@ bashpsk-emptylibs-pdf-template = { group = "com.github.bashpsk.emptylibs", name 
 bashpsk-emptylibs-pdf-viewer = { group = "com.github.bashpsk.emptylibs", name = "pdf-viewer", version.ref = "empty-libs" }
 bashpsk-emptylibs-serialization-xml = { group = "com.github.bashpsk.emptylibs", name = "serialization-xml", version.ref = "empty-libs" }
 bashpsk-emptylibs-storage = { group = "com.github.bashpsk.emptylibs", name = "storage", version.ref = "empty-libs" }
-github-youtubedl-android-library = { group = "io.github.junkfood02.youtubedl-android", name = "library", version.ref = "android-ytdl" }
-github-youtubedl-android-ffmpeg = { group = "io.github.junkfood02.youtubedl-android", name = "ffmpeg", version.ref = "android-ytdl" }
-github-youtubedl-android-aria2c = { group = "io.github.junkfood02.youtubedl-android", name = "aria2c", version.ref = "android-ytdl" }
+github-youtubedl-android-library = { group = "io.github.junkfood02.youtubedl-android", name = "library", version.ref = "youtubedl-android" }
+github-youtubedl-android-ffmpeg = { group = "io.github.junkfood02.youtubedl-android", name = "ffmpeg", version.ref = "youtubedl-android" }
+github-youtubedl-android-aria2c = { group = "io.github.junkfood02.youtubedl-android", name = "aria2c", version.ref = "youtubedl-android" }
 commons-io = { group = "commons-io", name = "commons-io", version.ref = "commons-io" }
 apache-commons-compress = { group = "org.apache.commons", name = "commons-compress", version.ref = "commons-compress" }
 fasterxml-jackson-core = { group = "com.fasterxml.jackson.core", name = "jackson-core", version.ref = "fasterxml-jackson" }
 fasterxml-jackson-databind = { group = "com.fasterxml.jackson.core", name = "jackson-databind", version.ref = "fasterxml-jackson" }
 fasterxml-jackson-annotations = { group = "com.fasterxml.jackson.core", name = "jackson-annotations", version.ref = "fasterxml-jackson-annotations" }
 google-accompanist-permissions = { group = "com.google.accompanist", name = "accompanist-permissions", version.ref = "accompanist-permissions" }
-coil3-compose = { group = "io.coil-kt.coil3", name = "coil-compose", version.ref = "coil-kt" }
-coil3-gif = { group = "io.coil-kt.coil3", name = "coil-gif", version.ref = "coil-kt" }
-coil3-svg = { group = "io.coil-kt.coil3", name = "coil-svg", version.ref = "coil-kt" }
-coil3-video = { group = "io.coil-kt.coil3", name = "coil-video", version.ref = "coil-kt" }
-coil3-network-okhttp = { group = "io.coil-kt.coil3", name = "coil-network-okhttp", version.ref = "coil-kt" }
+coil3-bom = { group = "io.coil-kt.coil3", name = "coil-bom", version.ref = "coil-kt" }
+coil3-compose = { group = "io.coil-kt.coil3", name = "coil-compose" }
+coil3-core = { group = "io.coil-kt.coil3", name = "coil-core" }
+coil3-gif = { group = "io.coil-kt.coil3", name = "coil-gif" }
+coil3-svg = { group = "io.coil-kt.coil3", name = "coil-svg" }
+coil3-video = { group = "io.coil-kt.coil3", name = "coil-video" }
+coil3-network-okhttp = { group = "io.coil-kt.coil3", name = "coil-network-okhttp" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
@@ -212,6 +214,7 @@ bashpsk-emptylibs = [
 ]
 coil3-kt = [
     "coil3-compose",
+    "coil3-core",
     "coil3-gif",
     "coil3-svg",
     "coil3-video",

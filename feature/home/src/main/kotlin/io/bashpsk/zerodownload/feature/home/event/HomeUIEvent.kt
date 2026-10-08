@@ -44,10 +44,4 @@ sealed interface HomeUIEvent {
     data class SetSelectPlaylistMedia(val media: MediaData) : HomeUIEvent
 
     data class SetSelectVideoFormat(val media: MediaFormatData) : HomeUIEvent
-
-    data class StartMediaPlayer(
-        val media: MediaData,
-        val audio: MediaFormatData?,
-        val video: MediaFormatData?
-    ) : HomeUIEvent
 }

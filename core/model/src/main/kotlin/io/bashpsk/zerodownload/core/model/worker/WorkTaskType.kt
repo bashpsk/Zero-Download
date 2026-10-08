@@ -2,10 +2,7 @@ package io.bashpsk.zerodownload.core.model.worker
 
 enum class WorkTaskType {
 
-    LibraryUpdate,
+    YtDlLibrary,
     YtDlCommand,
-    FileCopy,
-    FileMove,
-    FileDelete,
-    FileRename;
+    FileCopy;
 }

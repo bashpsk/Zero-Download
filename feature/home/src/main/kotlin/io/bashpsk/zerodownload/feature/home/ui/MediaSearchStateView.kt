@@ -2,9 +2,6 @@ package io.bashpsk.zerodownload.feature.home.ui
 
 import androidx.annotation.StringRes
 import androidx.compose.animation.core.MutableTransitionState
-import androidx.compose.animation.core.Spring
-import androidx.compose.animation.core.spring
-import androidx.compose.animation.core.tween
 import androidx.compose.foundation.lazy.grid.GridItemSpan
 import androidx.compose.foundation.lazy.grid.LazyGridScope
 import androidx.compose.foundation.lazy.grid.items
@@ -18,6 +15,7 @@ import androidx.compose.ui.res.stringResource
 import io.bashpsk.zerodownload.core.domain.states.MediaSearchState
 import io.bashpsk.zerodownload.core.model.media.MediaData
 import io.bashpsk.zerodownload.core.model.media.MediaFormatData
+import io.bashpsk.zerodownload.core.ui.animation.itemBounceAnimation
 import io.bashpsk.zerodownload.core.ui.media.MediaFormatView
 import io.bashpsk.zerodownload.core.ui.media.MediaView
 import io.bashpsk.zerodownload.core.ui.media.PlaylistMediaView
@@ -55,14 +53,7 @@ internal inline fun LazyGridScope.MediaSearchStateView(
             item(span = { GridItemSpan(currentLineSpan = maxLineSpan) }) {
 
                 MediaView(
-                    modifier = Modifier.animateItem(
-                        fadeInSpec = tween(durationMillis = 250),
-                        fadeOutSpec = tween(durationMillis = 100),
-                        placementSpec = spring(
-                            stiffness = Spring.StiffnessLow,
-                            dampingRatio = Spring.DampingRatioMediumBouncy
-                        )
-                    ),
+                    modifier = Modifier.itemBounceAnimation(),
                     mediaData = searchState.media,
                     isMediaSelect = false,
                     isSelected = false,
@@ -76,14 +67,7 @@ internal inline fun LazyGridScope.MediaSearchStateView(
             item(span = { GridItemSpan(currentLineSpan = maxLineSpan) }) {
 
                 MediaCategoryTitle(
-                    modifier = Modifier.animateItem(
-                        fadeInSpec = tween(durationMillis = 250),
-                        fadeOutSpec = tween(durationMillis = 100),
-                        placementSpec = spring(
-                            stiffness = Spring.StiffnessLow,
-                            dampingRatio = Spring.DampingRatioMediumBouncy
-                        )
-                    ),
+                    modifier = Modifier.itemBounceAnimation(),
                     title = stringResource(R.string.video_audio_media_category_title),
                     isVisible = searchState.media.mediaFormats.isNotEmpty()
                 )
@@ -99,14 +83,7 @@ internal inline fun LazyGridScope.MediaSearchStateView(
                 }
 
                 MediaFormatView(
-                    modifier = Modifier.animateItem(
-                        fadeInSpec = tween(durationMillis = 250),
-                        fadeOutSpec = tween(durationMillis = 100),
-                        placementSpec = spring(
-                            stiffness = Spring.StiffnessLow,
-                            dampingRatio = Spring.DampingRatioMediumBouncy
-                        )
-                    ),
+                    modifier = Modifier.itemBounceAnimation(),
                     mediaFormat = mediaFormatData,
                     isMediaSelect = isMediaSelect,
                     isSelected = isSelected,
@@ -118,14 +95,7 @@ internal inline fun LazyGridScope.MediaSearchStateView(
             item(span = { GridItemSpan(currentLineSpan = maxLineSpan) }) {
 
                 MediaCategoryTitle(
-                    modifier = Modifier.animateItem(
-                        fadeInSpec = tween(durationMillis = 250),
-                        fadeOutSpec = tween(durationMillis = 100),
-                        placementSpec = spring(
-                            stiffness = Spring.StiffnessLow,
-                            dampingRatio = Spring.DampingRatioMediumBouncy
-                        )
-                    ),
+                    modifier = Modifier.itemBounceAnimation(),
                     title = stringResource(R.string.audio_only_media_category_title),
                     isVisible = searchState.media.audioFormats.isNotEmpty()
                 )
@@ -141,14 +111,7 @@ internal inline fun LazyGridScope.MediaSearchStateView(
                 }
 
                 MediaFormatView(
-                    modifier = Modifier.animateItem(
-                        fadeInSpec = tween(durationMillis = 250),
-                        fadeOutSpec = tween(durationMillis = 100),
-                        placementSpec = spring(
-                            stiffness = Spring.StiffnessLow,
-                            dampingRatio = Spring.DampingRatioMediumBouncy
-                        )
-                    ),
+                    modifier = Modifier.itemBounceAnimation(),
                     mediaFormat = mediaFormatData,
                     isMediaSelect = isMediaSelect,
                     isSelected = isSelected,
@@ -160,14 +123,7 @@ internal inline fun LazyGridScope.MediaSearchStateView(
             item(span = { GridItemSpan(currentLineSpan = maxLineSpan) }) {
 
                 MediaCategoryTitle(
-                    modifier = Modifier.animateItem(
-                        fadeInSpec = tween(durationMillis = 250),
-                        fadeOutSpec = tween(durationMillis = 100),
-                        placementSpec = spring(
-                            stiffness = Spring.StiffnessLow,
-                            dampingRatio = Spring.DampingRatioMediumBouncy
-                        )
-                    ),
+                    modifier = Modifier.itemBounceAnimation(),
                     title = stringResource(R.string.video_only_media_category_title),
                     isVisible = searchState.media.videoFormats.isNotEmpty()
                 )
@@ -183,14 +139,7 @@ internal inline fun LazyGridScope.MediaSearchStateView(
                 }
 
                 MediaFormatView(
-                    modifier = Modifier.animateItem(
-                        fadeInSpec = tween(durationMillis = 250),
-                        fadeOutSpec = tween(durationMillis = 100),
-                        placementSpec = spring(
-                            stiffness = Spring.StiffnessLow,
-                            dampingRatio = Spring.DampingRatioMediumBouncy
-                        )
-                    ),
+                    modifier = Modifier.itemBounceAnimation(),
                     mediaFormat = mediaFormatData,
                     isMediaSelect = isMediaSelect,
                     isSelected = isSelected,
@@ -205,14 +154,7 @@ internal inline fun LazyGridScope.MediaSearchStateView(
             item(span = { GridItemSpan(currentLineSpan = maxLineSpan) }) {
 
                 PlaylistView(
-                    modifier = Modifier.animateItem(
-                        fadeInSpec = tween(durationMillis = 250),
-                        fadeOutSpec = tween(durationMillis = 100),
-                        placementSpec = spring(
-                            stiffness = Spring.StiffnessLow,
-                            dampingRatio = Spring.DampingRatioMediumBouncy
-                        )
-                    ),
+                    modifier = Modifier.itemBounceAnimation(),
                     playlistData = searchState.playlist
                 )
             }
@@ -229,14 +171,7 @@ internal inline fun LazyGridScope.MediaSearchStateView(
                 }
 
                 PlaylistMediaView(
-                    modifier = Modifier.animateItem(
-                        fadeInSpec = tween(durationMillis = 250),
-                        fadeOutSpec = tween(durationMillis = 100),
-                        placementSpec = spring(
-                            stiffness = Spring.StiffnessLow,
-                            dampingRatio = Spring.DampingRatioMediumBouncy
-                        )
-                    ),
+                    modifier = Modifier.itemBounceAnimation(),
                     mediaData = mediaData,
                     isMediaSelect = true,
                     isSelected = isSelected,
@@ -247,19 +182,13 @@ internal inline fun LazyGridScope.MediaSearchStateView(
     }
 }
 
-fun LazyGridScope.mediaSearchStateMessageText(@StringRes id: Int) {
+@PublishedApi
+internal fun LazyGridScope.mediaSearchStateMessageText(@StringRes id: Int) {
 
     item(span = { GridItemSpan(currentLineSpan = maxLineSpan) }) {
 
         Text(
-            modifier = Modifier.animateItem(
-                fadeInSpec = tween(durationMillis = 250),
-                fadeOutSpec = tween(durationMillis = 100),
-                placementSpec = spring(
-                    stiffness = Spring.StiffnessLow,
-                    dampingRatio = Spring.DampingRatioMediumBouncy
-                )
-            ),
+            modifier = Modifier.itemBounceAnimation(),
             text = stringResource(id),
             style = MaterialTheme.typography.bodyMedium,
             color = MaterialTheme.colorScheme.onSurfaceVariant

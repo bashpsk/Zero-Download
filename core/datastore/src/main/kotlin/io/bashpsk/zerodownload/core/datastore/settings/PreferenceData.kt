@@ -10,7 +10,6 @@ import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.stringPreferencesKey
 import io.bashpsk.zerodownload.core.datastore.R
 import io.bashpsk.zerodownload.core.datastore.map.PreferenceMap
-import io.bashpsk.zerodownload.core.model.resources.ConstantString
 import io.bashpsk.zerodownload.core.model.settings.AppLanguage
 import io.bashpsk.zerodownload.core.model.settings.AppTheme
 import kotlinx.collections.immutable.ImmutableMap
@@ -54,7 +53,7 @@ sealed class PreferenceData<PK, EK, EV>(
         title = R.string.yt_dlp_library_preference_title,
         summary = R.string.yt_dlp_library_theme_preference_summary,
         key = stringPreferencesKey("YT-DL-LIBRARY-VERSION"),
-        initial = ConstantString.NONE,
+        initial = "",
         entities = persistentMapOf()
     )
 
