@@ -41,12 +41,12 @@ import kotlinx.coroutines.Dispatchers
 import kotlin.time.Duration.Companion.seconds
 
 @Composable
-inline fun PlaylistMediaView(
+fun PlaylistMediaView(
     modifier: Modifier = Modifier,
     mediaData: MediaData = MediaData(),
     isMediaSelect: Boolean = false,
     isSelected: Boolean = false,
-    crossinline onMediaClick: (media: MediaData) -> Unit = {}
+    onMediaClick: (media: MediaData) -> Unit = {}
 ) {
 
     val context = LocalContext.current

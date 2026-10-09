@@ -33,7 +33,6 @@ fun LabelRow(modifier: Modifier = Modifier, title: String, text: String) {
             text = title,
             textAlign = TextAlign.Start,
             style = MaterialTheme.typography.bodySmall,
-            color = MaterialTheme.colorScheme.onSurfaceVariant,
             maxLines = 1,
             overflow = TextOverflow.Ellipsis
         )
@@ -42,7 +41,6 @@ fun LabelRow(modifier: Modifier = Modifier, title: String, text: String) {
             text = ":",
             textAlign = TextAlign.Center,
             style = MaterialTheme.typography.bodySmall,
-            color = MaterialTheme.colorScheme.onSurfaceVariant,
             maxLines = 1,
             overflow = TextOverflow.Ellipsis
         )
@@ -52,7 +50,6 @@ fun LabelRow(modifier: Modifier = Modifier, title: String, text: String) {
             text = text,
             textAlign = TextAlign.Start,
             style = MaterialTheme.typography.bodySmall,
-            color = MaterialTheme.colorScheme.onSurfaceVariant,
             maxLines = 1,
             overflow = TextOverflow.Ellipsis
         )
@@ -79,7 +76,6 @@ fun LabelRow(modifier: Modifier = Modifier, icon: ImageVector, text: String) {
             text = text,
             textAlign = TextAlign.Start,
             style = MaterialTheme.typography.bodySmall,
-            color = MaterialTheme.colorScheme.onSurfaceVariant,
             maxLines = 1,
             overflow = TextOverflow.Ellipsis
         )
@@ -107,7 +103,6 @@ fun LabelRow(modifier: Modifier = Modifier, image: Painter, text: String) {
             text = text,
             textAlign = TextAlign.Start,
             style = MaterialTheme.typography.bodySmall,
-            color = MaterialTheme.colorScheme.onSurfaceVariant,
             maxLines = 1,
             overflow = TextOverflow.Ellipsis
         )
@@ -133,7 +128,6 @@ fun LabelRow(modifier: Modifier = Modifier, text: String) {
         text = text,
         textAlign = TextAlign.Start,
         style = MaterialTheme.typography.bodySmall,
-        color = MaterialTheme.colorScheme.onSurfaceVariant,
         maxLines = 1,
         overflow = TextOverflow.Ellipsis
     )

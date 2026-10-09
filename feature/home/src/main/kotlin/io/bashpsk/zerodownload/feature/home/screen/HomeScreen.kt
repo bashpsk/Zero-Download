@@ -52,7 +52,7 @@ import io.bashpsk.zerodownload.feature.home.ui.MediaSearchStateView
 
 @OptIn(ExperimentalPermissionsApi::class, ExperimentalMaterial3ExpressiveApi::class)
 @Composable
-inline fun HomeScreen(crossinline onNavigateScreen: (navScreen: NavScreen) -> Unit) {
+fun HomeScreen(onNavigateScreen: (navScreen: NavScreen) -> Unit) {
 
     val viewModel = hiltViewModel<HomeViewModel>()
 
@@ -156,7 +156,7 @@ inline fun HomeScreen(crossinline onNavigateScreen: (navScreen: NavScreen) -> Un
 
                 viewModel.onUIEvent(uiEvent = HomeUIEvent.ResetSelectedFormat)
             },
-            onDownloadMedia = { media, audio, video,videoExt,audioExt ->
+            onDownloadMedia = { media, audio, video, videoExt, audioExt ->
 
                 viewModel.onUIEvent(
                     uiEvent = HomeUIEvent.MediaDownloadCombined(
@@ -170,7 +170,7 @@ inline fun HomeScreen(crossinline onNavigateScreen: (navScreen: NavScreen) -> Un
 
                 viewModel.onUIEvent(uiEvent = HomeUIEvent.ResetSelectedFormat)
             },
-            onDownloadPlaylist = { playlist, format, videoQuality, audioQuality,videoExt,audioExt ->
+            onDownloadPlaylist = { playlist, format, videoQuality, audioQuality, videoExt, audioExt ->
 
                 viewModel.onUIEvent(
                     uiEvent = HomeUIEvent.MediaDownloadPlaylist(

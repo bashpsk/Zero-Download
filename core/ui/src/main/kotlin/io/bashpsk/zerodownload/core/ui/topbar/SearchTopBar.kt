@@ -24,17 +24,17 @@ import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-inline fun SearchTopBar(
+fun SearchTopBar(
     modifier: Modifier = Modifier,
     placeholder: String,
     scrollBehavior: SearchBarScrollBehavior? = null,
-    crossinline onSearch: (query: String) -> Unit,
+    onSearch: (query: String) -> Unit,
     keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
-    noinline navigationIcon: @Composable () -> Unit = {},
-    noinline actions: @Composable RowScope.() -> Unit = {},
-    noinline leadingIcon: @Composable () -> Unit = {},
-    noinline trailingIcon: @Composable () -> Unit = {},
-    noinline content: @Composable ColumnScope.() -> Unit = {}
+    navigationIcon: @Composable () -> Unit = {},
+    actions: @Composable RowScope.() -> Unit = {},
+    leadingIcon: @Composable () -> Unit = {},
+    trailingIcon: @Composable () -> Unit = {},
+    content: @Composable ColumnScope.() -> Unit = {}
 ) {
 
     val textFieldState = rememberTextFieldState()
@@ -92,16 +92,16 @@ inline fun SearchTopBar(
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-inline fun SearchFullTopBar(
+fun SearchFullTopBar(
     modifier: Modifier = Modifier,
     placeholder: String,
     scrollBehavior: SearchBarScrollBehavior? = null,
-    crossinline onSearch: (query: String) -> Unit,
-    noinline navigationIcon: @Composable () -> Unit = {},
-    noinline actions: @Composable RowScope.() -> Unit = {},
-    noinline leadingIcon: @Composable () -> Unit = {},
-    noinline trailingIcon: @Composable () -> Unit = {},
-    noinline content: @Composable ColumnScope.() -> Unit
+    onSearch: (query: String) -> Unit,
+    navigationIcon: @Composable () -> Unit = {},
+    actions: @Composable RowScope.() -> Unit = {},
+    leadingIcon: @Composable () -> Unit = {},
+    trailingIcon: @Composable () -> Unit = {},
+    content: @Composable ColumnScope.() -> Unit
 ) {
 
     val textFieldState = rememberTextFieldState()

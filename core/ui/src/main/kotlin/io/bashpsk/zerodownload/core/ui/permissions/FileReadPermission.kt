@@ -6,10 +6,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 
 @Composable
-inline fun FileReadPermission(
+fun FileReadPermission(
     modifier: Modifier = Modifier,
-    visibleState:  Boolean,
-    crossinline onPermissionResult: (result: Boolean) -> Unit = {}
+    visibleState: Boolean,
+    onPermissionResult: (result: Boolean) -> Unit = {}
 ) {
 
     AnimatedVisibility(visible = visibleState) {

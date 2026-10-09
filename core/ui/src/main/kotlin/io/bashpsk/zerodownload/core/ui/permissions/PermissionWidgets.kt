@@ -40,12 +40,12 @@ import io.bashpsk.zerodownload.core.ui.buttons.ButtonIconText
 @SuppressLint("InlinedApi")
 @OptIn(ExperimentalPermissionsApi::class)
 @Composable
-inline fun PermissionView(
+fun PermissionView(
     modifier: Modifier = Modifier,
     permission: String,
     description: String,
     actionSetting: String,
-    crossinline onPermissionResult: (result: Boolean) -> Unit = {}
+    onPermissionResult: (result: Boolean) -> Unit = {}
 ) {
 
     val context = LocalContext.current
@@ -99,7 +99,7 @@ inline fun PermissionView(
 
         if (isManageStorage) onPermissionResult(manageStoragePermission)
 
-        onRetire {  }
+        onRetire { }
     }
 
     ElevatedCard(
@@ -142,9 +142,9 @@ inline fun PermissionView(
 }
 
 @Composable
-inline fun ReadStoragePermission(
+fun ReadStoragePermission(
     modifier: Modifier = Modifier,
-    crossinline onPermissionResult: (result: Boolean) -> Unit = {}
+    onPermissionResult: (result: Boolean) -> Unit = {}
 ) {
 
     PermissionView(
@@ -157,9 +157,9 @@ inline fun ReadStoragePermission(
 }
 
 @Composable
-inline fun WriteStoragePermission(
+fun WriteStoragePermission(
     modifier: Modifier = Modifier,
-    crossinline onPermissionResult: (result: Boolean) -> Unit = {}
+    onPermissionResult: (result: Boolean) -> Unit = {}
 ) {
 
     PermissionView(
@@ -173,9 +173,9 @@ inline fun WriteStoragePermission(
 
 @RequiresApi(Build.VERSION_CODES.R)
 @Composable
-inline fun ManageStoragePermission(
+fun ManageStoragePermission(
     modifier: Modifier = Modifier,
-    crossinline onPermissionResult: (result: Boolean) -> Unit = {}
+    onPermissionResult: (result: Boolean) -> Unit = {}
 ) {
 
     PermissionView(
@@ -189,9 +189,9 @@ inline fun ManageStoragePermission(
 
 @RequiresApi(Build.VERSION_CODES.TIRAMISU)
 @Composable
-inline fun ReadMediaAudioPermission(
+fun ReadMediaAudioPermission(
     modifier: Modifier = Modifier,
-    crossinline onPermissionResult: (result: Boolean) -> Unit = {}
+    onPermissionResult: (result: Boolean) -> Unit = {}
 ) {
 
     PermissionView(
@@ -205,9 +205,9 @@ inline fun ReadMediaAudioPermission(
 
 @RequiresApi(Build.VERSION_CODES.TIRAMISU)
 @Composable
-inline fun ReadMediaImagePermission(
+fun ReadMediaImagePermission(
     modifier: Modifier = Modifier,
-    crossinline onPermissionResult: (result: Boolean) -> Unit = {}
+    onPermissionResult: (result: Boolean) -> Unit = {}
 ) {
 
     PermissionView(
@@ -221,9 +221,9 @@ inline fun ReadMediaImagePermission(
 
 @RequiresApi(Build.VERSION_CODES.TIRAMISU)
 @Composable
-inline fun ReadMediaVideoPermission(
+fun ReadMediaVideoPermission(
     modifier: Modifier = Modifier,
-    crossinline onPermissionResult: (result: Boolean) -> Unit = {}
+    onPermissionResult: (result: Boolean) -> Unit = {}
 ) {
 
     PermissionView(
@@ -237,9 +237,9 @@ inline fun ReadMediaVideoPermission(
 
 @RequiresApi(Build.VERSION_CODES.TIRAMISU)
 @Composable
-inline fun PostNotificationPermission(
+fun PostNotificationPermission(
     modifier: Modifier = Modifier,
-    crossinline onPermissionResult: (result: Boolean) -> Unit = {}
+    onPermissionResult: (result: Boolean) -> Unit = {}
 ) {
 
     PermissionView(

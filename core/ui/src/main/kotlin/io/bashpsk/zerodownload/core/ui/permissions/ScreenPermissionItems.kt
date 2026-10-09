@@ -6,11 +6,11 @@ import androidx.compose.foundation.lazy.grid.LazyGridScope
 import androidx.compose.ui.Modifier
 import io.bashpsk.zerodownload.core.ui.animation.itemBounceAnimation
 
-inline fun LazyGridScope.screenFileReadWritePermissionItems(
+fun LazyGridScope.screenFileReadWritePermissionItems(
     manageStoragePermissionVisible: Boolean,
     readStoragePermissionVisible: Boolean,
     writeStoragePermissionVisible: Boolean,
-    crossinline onPermissionResult: (result: Boolean) -> Unit = {}
+    onPermissionResult: (result: Boolean) -> Unit = {}
 ) {
 
     item(span = { GridItemSpan(currentLineSpan = maxLineSpan) }) {

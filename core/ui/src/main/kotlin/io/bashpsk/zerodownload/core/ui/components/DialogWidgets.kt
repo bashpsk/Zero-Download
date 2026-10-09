@@ -16,10 +16,10 @@ import androidx.compose.ui.unit.dp
 import io.bashpsk.zerodownload.core.ui.buttons.DismissIconButton
 
 @Composable
-inline fun DialogTitleView(
+fun DialogTitleView(
     title: String,
-    noinline onClick: () -> Unit,
-    crossinline content: @Composable RowScope.() -> Unit = {}
+    onClick: () -> Unit,
+    content: @Composable RowScope.() -> Unit = {}
 ) {
 
     val iconButtonColors = IconButtonDefaults.iconButtonColors(

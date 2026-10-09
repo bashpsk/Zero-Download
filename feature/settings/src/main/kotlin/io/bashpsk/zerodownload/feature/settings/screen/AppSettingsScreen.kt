@@ -25,9 +25,9 @@ import io.bashpsk.zerodownload.feature.settings.R
 import kotlinx.collections.immutable.toImmutableList
 
 @Composable
-inline fun AppSettingsScreen(
-    crossinline onNavigateScreen: (navScreen: NavScreen) -> Unit,
-    noinline onNavigateBack: () -> Unit
+fun AppSettingsScreen(
+    onNavigateScreen: (navScreen: NavScreen) -> Unit,
+    onNavigateBack: () -> Unit
 ) {
 
     val settingsLazyListState = rememberLazyGridState()

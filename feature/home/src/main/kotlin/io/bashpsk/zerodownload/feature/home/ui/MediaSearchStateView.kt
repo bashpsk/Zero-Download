@@ -23,19 +23,18 @@ import io.bashpsk.zerodownload.core.ui.playlist.PlaylistView
 import io.bashpsk.zerodownload.feature.home.R
 import kotlinx.collections.immutable.ImmutableList
 
-@PublishedApi
-internal inline fun LazyGridScope.MediaSearchStateView(
+internal fun LazyGridScope.MediaSearchStateView(
     searchState: MediaSearchState,
     mediaDetailsDialogVisibleState: MutableTransitionState<Boolean>,
     selectedAudioFormat: MediaFormatData?,
     selectedVideoFormat: MediaFormatData?,
     isMediaSelect: Boolean,
     selectedPlaylistMedias: ImmutableList<MediaData>,
-    crossinline onVideoClick: (format: MediaFormatData) -> Unit,
-    crossinline onVideoLongClick: (format: MediaFormatData) -> Unit,
-    crossinline onAudioClick: (format: MediaFormatData) -> Unit,
-    crossinline onAudioLongClick: (format: MediaFormatData) -> Unit,
-    crossinline onSelectPlaylistMedia: (media: MediaData) -> Unit,
+    onVideoClick: (format: MediaFormatData) -> Unit,
+    onVideoLongClick: (format: MediaFormatData) -> Unit,
+    onAudioClick: (format: MediaFormatData) -> Unit,
+    onAudioLongClick: (format: MediaFormatData) -> Unit,
+    onSelectPlaylistMedia: (media: MediaData) -> Unit,
 ) {
 
     when (searchState) {

@@ -22,21 +22,21 @@ import io.bashpsk.zerodownload.core.model.media.MediaFormatData
 import io.bashpsk.zerodownload.core.ui.components.LabelRow
 
 @Composable
-inline fun MediaFormatView(
+fun MediaFormatView(
     modifier: Modifier = Modifier,
     mediaFormat: MediaFormatData = MediaFormatData.Unknown(),
     isMediaSelect: Boolean = false,
     isSelected: Boolean = false,
-    crossinline onMediaClick: (media: MediaFormatData) -> Unit = {},
-    crossinline onMediaLongClick: (media: MediaFormatData) -> Unit = {}
+    onMediaClick: (media: MediaFormatData) -> Unit = {},
+    onMediaLongClick: (media: MediaFormatData) -> Unit = {}
 ) {
 
     val elevatedCardContainerColor = when (mediaFormat) {
 
-        is MediaFormatData.VideoAndAudio -> MaterialTheme.colorScheme.tertiaryContainer
-        is MediaFormatData.VideoOnly -> MaterialTheme.colorScheme.secondaryContainer
-        is MediaFormatData.AudioOnly -> MaterialTheme.colorScheme.primaryContainer
-        is MediaFormatData.Unknown -> MaterialTheme.colorScheme.errorContainer
+        is MediaFormatData.VideoAndAudio -> MaterialTheme.colorScheme.tertiaryFixedDim
+        is MediaFormatData.VideoOnly -> MaterialTheme.colorScheme.secondaryFixedDim
+        is MediaFormatData.AudioOnly -> MaterialTheme.colorScheme.primaryFixedDim
+        is MediaFormatData.Unknown -> MaterialTheme.colorScheme.error
     }
 
     val elevatedCardColors = CardDefaults.elevatedCardColors(
@@ -86,7 +86,6 @@ inline fun MediaFormatView(
                     textAlign = TextAlign.Center,
                     maxLines = 1,
                     style = MaterialTheme.typography.titleSmall,
-                    color = MaterialTheme.colorScheme.onPrimaryContainer,
                     overflow = TextOverflow.Ellipsis
                 )
 

@@ -19,11 +19,11 @@ import io.bashpsk.zerodownload.core.model.action.ContextualAction
 import kotlinx.collections.immutable.ImmutableList
 
 @Composable
-inline fun ContextualActionBar(
+fun ContextualActionBar(
     modifier: Modifier = Modifier,
     isVisible: Boolean,
     actionList: ImmutableList<ContextualAction>,
-    crossinline onActionClick: (action: ContextualAction) -> Unit,
+    onActionClick: (action: ContextualAction) -> Unit,
     windowInsets: WindowInsets = BottomAppBarDefaults.windowInsets
 ) {
 

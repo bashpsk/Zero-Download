@@ -27,11 +27,11 @@ import io.bashpsk.zerodownload.core.model.controls.PlayerAction
 import io.bashpsk.zerodownload.core.ui.R
 
 @Composable
-inline fun PlayPauseButton(
+fun PlayPauseButton(
     modifier: Modifier = Modifier,
     playbackState: Int = 0,
     isPlayerPlaying: Boolean = false,
-    crossinline onClick: (action: PlayerAction) -> Unit = {},
+    onClick: (action: PlayerAction) -> Unit = {},
     containerColor: Color = MaterialTheme.colorScheme.surfaceContainer.copy(alpha = 0.40F),
     contentColor: Color = LocalContentColor.current
 ) {

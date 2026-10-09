@@ -18,13 +18,12 @@ import io.bashpsk.zerodownload.core.ui.topbar.SearchTopBar
 import io.bashpsk.zerodownload.feature.home.R
 import io.bashpsk.zerodownload.feature.home.event.HomeUIEvent
 
-@PublishedApi
 @Composable
-internal inline fun HomeTopBar(
+internal fun HomeTopBar(
     modifier: Modifier = Modifier,
     isOptionMenu: Boolean,
-    crossinline onNavigateScreen: (navScreen: NavScreen) -> Unit,
-    crossinline onUIEvent: (uiEvent: HomeUIEvent) -> Unit,
+    onNavigateScreen: (navScreen: NavScreen) -> Unit,
+    onUIEvent: (uiEvent: HomeUIEvent) -> Unit,
     scrollBehavior: SearchBarScrollBehavior?
 ) {
 

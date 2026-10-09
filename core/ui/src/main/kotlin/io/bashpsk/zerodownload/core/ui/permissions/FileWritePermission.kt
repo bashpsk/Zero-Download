@@ -6,10 +6,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 
 @Composable
-inline fun FileWritePermission(
+fun FileWritePermission(
     modifier: Modifier = Modifier,
     visibleState: Boolean,
-    crossinline onPermissionResult: (result: Boolean) -> Unit = {}
+    onPermissionResult: (result: Boolean) -> Unit = {}
 ) {
 
     AnimatedVisibility(visible = visibleState) {

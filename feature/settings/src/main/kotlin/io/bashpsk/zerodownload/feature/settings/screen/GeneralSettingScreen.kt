@@ -23,8 +23,8 @@ import io.bashpsk.zerodownload.feature.settings.ui.ApplicationThemeSetting
 import io.bashpsk.zerodownload.feature.settings.ui.DynamicColorThemeSetting
 
 @Composable
-inline fun GeneralSettingScreen(
-    noinline onNavigateBack: () -> Unit
+fun GeneralSettingScreen(
+    onNavigateBack: () -> Unit
 ) {
 
     val settingsLazyListState = rememberLazyGridState()

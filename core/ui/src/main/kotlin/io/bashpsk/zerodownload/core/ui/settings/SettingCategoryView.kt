@@ -16,10 +16,10 @@ import io.bashpsk.zerodownload.core.navigation.screen.NavScreen
 import io.bashpsk.zerodownload.core.ui.R
 
 @Composable
-inline fun SettingCategoryView(
+fun SettingCategoryView(
     modifier: Modifier = Modifier,
     settingCategory: AppSettingCategory,
-    crossinline onOpenSettings: (navScreen: NavScreen) -> Unit
+    onOpenSettings: (navScreen: NavScreen) -> Unit
 ) {
 
     CardPreference(

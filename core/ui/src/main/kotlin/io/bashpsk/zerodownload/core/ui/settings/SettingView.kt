@@ -11,7 +11,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 
 @Composable
-inline fun SettingView(content: @Composable () -> Unit) {
+fun SettingView(content: @Composable () -> Unit) {
 
     Column(
         modifier = Modifier.fillMaxWidth(),

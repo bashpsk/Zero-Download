@@ -70,25 +70,25 @@ import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.persistentListOf
 
 @Composable
-inline fun MediaConfirmDialog(
+fun MediaConfirmDialog(
     dialogVisibleState: MutableTransitionState<Boolean>,
     searchState: MediaSearchState,
     audioFormat: MediaFormatData?,
     videoFormat: MediaFormatData?,
     selectedPlaylistMedias: ImmutableList<MediaData>,
-    crossinline onStartPlayMedia: (
+    onStartPlayMedia: (
         media: MediaData,
         audio: MediaFormatData?,
         video: MediaFormatData?
     ) -> Unit,
-    crossinline onDownloadMedia: (
+    onDownloadMedia: (
         media: MediaData,
         audio: MediaFormatData?,
         video: MediaFormatData?,
         videoExt: MediaExtensionType.Video,
         audioExt: MediaExtensionType.Audio
     ) -> Unit,
-    crossinline onDownloadPlaylist: (
+    onDownloadPlaylist: (
         playlist: PlaylistMediaData,
         format: MediaFormatType,
         videoQuality: ResolutionType?,
@@ -395,10 +395,10 @@ inline fun MediaConfirmDialog(
 }
 
 @Composable
-inline fun MediaConfirmVideoQualitySelection(
+private fun MediaConfirmVideoQualitySelection(
     modifier: Modifier = Modifier,
     videoQuality: ResolutionType?,
-    crossinline onVideoQuality: (quality: ResolutionType?) -> Unit
+    onVideoQuality: (quality: ResolutionType?) -> Unit
 ) {
 
     var isQualityMenuExpanded by rememberSaveable { mutableStateOf(false) }
@@ -515,10 +515,10 @@ inline fun MediaConfirmVideoQualitySelection(
 }
 
 @Composable
-inline fun MediaConfirmAudioQualitySelection(
+private fun MediaConfirmAudioQualitySelection(
     modifier: Modifier = Modifier,
     audioQuality: AudioQualityType,
-    crossinline onAudioQuality: (quality: AudioQualityType) -> Unit
+    onAudioQuality: (quality: AudioQualityType) -> Unit
 ) {
 
     var isQualityMenuExpanded by rememberSaveable { mutableStateOf(false) }
@@ -615,10 +615,10 @@ inline fun MediaConfirmAudioQualitySelection(
 }
 
 @Composable
-inline fun MediaConfirmVideoFormatSelection(
+private fun MediaConfirmVideoFormatSelection(
     modifier: Modifier = Modifier,
     videoExtension: MediaExtensionType.Video,
-    crossinline onVideoExtension: (extension: MediaExtensionType.Video) -> Unit
+    onVideoExtension: (extension: MediaExtensionType.Video) -> Unit
 ) {
 
     var isFormatMenuExpanded by rememberSaveable { mutableStateOf(false) }
@@ -715,10 +715,10 @@ inline fun MediaConfirmVideoFormatSelection(
 }
 
 @Composable
-inline fun MediaConfirmAudioFormatSelection(
+private fun MediaConfirmAudioFormatSelection(
     modifier: Modifier = Modifier,
     audioExtension: MediaExtensionType.Audio,
-    crossinline onAudioExtension: (extension: MediaExtensionType.Audio) -> Unit
+    onAudioExtension: (extension: MediaExtensionType.Audio) -> Unit
 ) {
 
     var isFormatMenuExpanded by rememberSaveable { mutableStateOf(false) }
@@ -815,7 +815,7 @@ inline fun MediaConfirmAudioFormatSelection(
 }
 
 @Composable
-fun MediaConfirmFormatPreview(mediaFormat: MediaFormatData?) {
+private fun MediaConfirmFormatPreview(mediaFormat: MediaFormatData?) {
 
     mediaFormat?.let { media ->
 

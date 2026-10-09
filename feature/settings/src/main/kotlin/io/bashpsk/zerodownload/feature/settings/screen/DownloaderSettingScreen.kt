@@ -30,8 +30,8 @@ import kotlinx.coroutines.cancelChildren
 import kotlinx.coroutines.launch
 
 @Composable
-inline fun DownloaderSettingScreen(
-    noinline onNavigateBack: () -> Unit
+fun DownloaderSettingScreen(
+    onNavigateBack: () -> Unit
 ) {
 
     val mainViewModel = hiltViewModel<DownloaderSettingViewModel>()

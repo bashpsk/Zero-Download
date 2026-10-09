@@ -7,18 +7,18 @@ import androidx.compose.ui.Modifier
 import io.bashpsk.zerodownload.core.model.media.MediaDataType
 
 @Composable
-inline fun MediaWritePermission(
+fun MediaWritePermission(
     modifier: Modifier = Modifier,
-    visibleState:  Boolean,
+    visibleState: Boolean,
     mediaDataType: MediaDataType,
-    crossinline onPermissionResult: (result: Boolean) -> Unit = {}
+    onPermissionResult: (result: Boolean) -> Unit = {}
 ) {
 
     AnimatedVisibility(visible = visibleState) {
 
         when {
 
-            Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU -> when (mediaDataType){
+            Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU -> when (mediaDataType) {
 
                 MediaDataType.Audio -> ReadMediaAudioPermission(
                     modifier = modifier,

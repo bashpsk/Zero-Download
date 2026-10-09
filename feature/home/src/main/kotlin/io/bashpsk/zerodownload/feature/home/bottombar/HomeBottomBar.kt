@@ -13,13 +13,12 @@ import io.bashpsk.zerodownload.core.ui.action.ContextualActionBar
 import io.bashpsk.zerodownload.feature.home.event.HomeUIEvent
 import kotlinx.collections.immutable.persistentListOf
 
-@PublishedApi
 @Composable
-internal inline fun HomeBottomBar(
+internal fun HomeBottomBar(
     modifier: Modifier = Modifier,
     isMediaSelect: Boolean,
-    crossinline onNavigateScreen: (navScreen: NavScreen) -> Unit,
-    crossinline onUIEvent: (uiEvent: HomeUIEvent) -> Unit,
+    onNavigateScreen: (navScreen: NavScreen) -> Unit,
+    onUIEvent: (uiEvent: HomeUIEvent) -> Unit,
     scrollBehavior: SearchBarScrollBehavior?
 ) {
 
@@ -31,7 +30,7 @@ internal inline fun HomeBottomBar(
         }
     }
 
-    val onActionClick = remember<(ContextualAction)-> Unit> {
+    val onActionClick = remember<(ContextualAction) -> Unit> {
         { action ->
 
             when (action) {
